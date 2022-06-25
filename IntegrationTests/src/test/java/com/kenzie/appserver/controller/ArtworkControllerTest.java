@@ -2,8 +2,8 @@ package com.kenzie.appserver.controller;
 
 import com.kenzie.appserver.IntegrationTest;
 import com.kenzie.appserver.controller.model.ExampleCreateRequest;
-import com.kenzie.appserver.service.ExampleService;
-import com.kenzie.appserver.service.model.Example;
+import com.kenzie.appserver.service.ArtworkService;
+import com.kenzie.appserver.service.model.Artwork;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -23,33 +23,60 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @IntegrationTest
-class ExampleControllerTest {
+class ArtworkControllerTest {
     @Autowired
     private MockMvc mvc;
 
     @Autowired
-    ExampleService exampleService;
+    ArtworkService artworkService;
 
     private final MockNeat mockNeat = MockNeat.threadLocal();
 
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Test
-    public void getById_Exists() throws Exception {
+    public void getById_ArtworkExists() throws Exception {
         String id = UUID.randomUUID().toString();
-        String name = mockNeat.strings().valStr();
+        String datePosted = mockNeat.strings().valStr();
+        String artistName = mockNeat.strings().valStr();
+        String title = mockNeat.strings().valStr();
+        String dateCreated = mockNeat.strings().valStr();
+        int height = mockNeat.ints().get();
+        int width = mockNeat.ints().get();
+        boolean isSold = true;
+        boolean isForSale = false;
+        Double price = mockNeat.doubles().val();
 
-        Example example = new Example(id, name);
-        Example persistedExample = exampleService.addNewExample(example);
-        mvc.perform(get("/example/{id}", persistedExample.getId())
+
+        Artwork artwork = new Artwork(id, datePosted, artistName, title, dateCreated, height, width, isSold,
+                isForSale, price);
+        Artwork persistedArtwork = artworkService.addNewExample(artwork);
+        mvc.perform(get("/example/{id}", persistedArtwork.getId())
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("id")
                         .value(is(id)))
-                .andExpect(jsonPath("name")
-                        .value(is(name)))
+                .andExpect(jsonPath("datePosted")
+                        .value(is(datePosted)))
+                .andExpect(jsonPath("artistName")
+                        .value(is(artistName)))
+                .andExpect(jsonPath("title")
+                        .value(is(title)))
+                .andExpect(jsonPath("dateCreated")
+                        .value(is(dateCreated)))
+                .andExpect(jsonPath("height")
+                        .value(is(height)))
+                .andExpect(jsonPath("width")
+                        .value(is(width)))
+                .andExpect(jsonPath("isSold")
+                        .value(is(isSold)))
+                .andExpect(jsonPath("isForSale")
+                        .value(is(isForSale)))
+                .andExpect(jsonPath("price")
+                        .value(is(price)))
                 .andExpect(status().isOk());
     }
 
+    //THIS TEST WAS GIVEN TO US AND WILL NEED TO BE REPLACED WITH OUR ARTWORK INSTEAD OF "EXAMPLE"*** -LAURIE
     @Test
     public void createExample_CreateSuccessful() throws Exception {
         String name = mockNeat.strings().valStr();

@@ -6,6 +6,9 @@ import com.kenzie.appserver.service.model.Artwork;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ArtworkService {
     private ArtworkRepository artworkRepository;
@@ -41,5 +44,17 @@ public class ArtworkService {
 
         artworkRepository.save(artworkRecord);
         return artwork;
+    }
+
+    public List<Artwork> findAllArtwork() {
+        List<Artwork> artworks = new ArrayList<>();
+
+        Iterable<ArtworkRecord>artworkRecordIterable = artworkRepository.findAll();
+        for (ArtworkRecord record : artworkRecordIterable) {
+            artworks.add(new Artwork(record.getId(),record.getDatePosted(),record.getArtistName(),record.getTitle(),
+                    record.getDateCreated(),record.getHeight(),record.getWidth(),record.getIsSold(),
+                    record.getIsForSale(),record.getPrice()));
+        }
+        return artworks;
     }
 }

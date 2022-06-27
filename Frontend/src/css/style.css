@@ -5,6 +5,7 @@
     --error-color: rgba(194, 0, 0, 0.71);
 }
 
+
 .background {
     background-color: #eaeded;
     margin: 0;
@@ -21,7 +22,22 @@
     padding: 0 20px;
 }
 
+.headerOne {
+    display: flex;
+    word-spacing: 10px;
+    font-size: 10px;
+    justify-content: center;
+    background-color: var(--primary-color);
+    padding: 0 20px;
+}
+
+a {
+    color: #eaeded;
+    word-spacing: normal;
+}
+
 .header_home {
+    font-family: 'Caveat', cursive;
     font-size: 36px;
     line-height: 40px;
     height: 100px;
@@ -30,7 +46,7 @@
 }
 
 .header_nav_link {
-    margin-left: 20px;
+    margin-left: 10px;
     vertical-align: top;
     line-height: 40px;
 }
@@ -52,6 +68,7 @@
 .button:hover, button:hover {
     background: #9cc3e4;
 }
+
 
 .card {
     color: var(--primary-color);

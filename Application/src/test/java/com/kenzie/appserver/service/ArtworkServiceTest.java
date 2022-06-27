@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static java.util.UUID.randomUUID;
@@ -76,5 +78,73 @@ public class ArtworkServiceTest {
         // THEN
         Assertions.assertNull(artwork, "The example is null when not found");
     }
+
+    @Test
+    void getAllArtwork() {
+
+         // GIVEN
+        ArtworkRecord record1 = new ArtworkRecord();
+        record1.setId(randomUUID().toString());
+        record1.setArtistName("artistname1");
+        record1.setDateCreated("recorddate1");
+        record1.setDatePosted("recorddate1");
+        record1.setHeight(10);
+        record1.setWidth(10);
+        record1.setForSale(true);
+        record1.setSold(false);
+        record1.setPrice(10.0);
+
+
+        ArtworkRecord record2 = new ArtworkRecord();
+        record1.setId(randomUUID().toString());
+        record1.setArtistName("artistname2");
+        record1.setDateCreated("recorddate2");
+        record1.setDatePosted("recorddate2");
+        record1.setHeight(12);
+        record1.setWidth(12);
+        record1.setForSale(true);
+        record1.setSold(false);
+        record1.setPrice(15.0);
+
+        List<ArtworkRecord> recordList = new ArrayList<>();
+        recordList.add(record1);
+        recordList.add(record2);
+        when(artworkRepository.findAll()).thenReturn(recordList);
+
+        // WHEN
+        List<Artwork> artworks = artworkService.findAllArtwork();
+
+        // THEN
+        Assertions.assertNotNull(artworks, "The artwork list is returned");
+        Assertions.assertEquals(2, artworks.size(), "There are two artworks");
+
+        for (Artwork artwork : artworks) {
+            if (artwork.getId() == record1.getId()) {
+                Assertions.assertEquals(record1.getId(), artwork.getId(), "The artwork id matches");
+                Assertions.assertEquals(record1.getArtistName(), artwork.getArtistName(), "The artist name matches");
+                Assertions.assertEquals(record1.getDateCreated(), artwork.getDateCreated(), "The date created matches");
+                Assertions.assertEquals(record1.getDatePosted(), artwork.getDatePosted(), "The date posted matches");
+                Assertions.assertEquals(record1.getHeight(), artwork.getHeight(), "The height matches");
+                Assertions.assertEquals(record1.getWidth(), artwork.getWidth(), "The width matches");
+                Assertions.assertEquals(record1.getIsForSale(), artwork.getIsForSale(), "The is for sale flag matches");
+                Assertions.assertEquals(record1.getIsSold(), artwork.getIsSold(), "The is sold flag matches");
+                Assertions.assertEquals(record1.getPrice(), artwork.getPrice(), "The artwork price matches");
+            } else if (artwork.getId() == record2.getId()) {
+                Assertions.assertEquals(record2.getId(), artwork.getId(), "The artwork id matches");
+                Assertions.assertEquals(record2.getArtistName(), artwork.getArtistName(), "The artist name matches");
+                Assertions.assertEquals(record2.getDateCreated(), artwork.getDateCreated(), "The date created matches");
+                Assertions.assertEquals(record2.getDatePosted(), artwork.getDatePosted(), "The date posted matches");
+                Assertions.assertEquals(record2.getHeight(), artwork.getHeight(), "The height matches");
+                Assertions.assertEquals(record2.getWidth(), artwork.getWidth(), "The width matches");
+                Assertions.assertEquals(record2.getIsForSale(), artwork.getIsForSale(), "The is for sale flag matches");
+                Assertions.assertEquals(record2.getIsSold(), artwork.getIsSold(), "The is sold flag matches");
+                Assertions.assertEquals(record2.getPrice(), artwork.getPrice(), "The artwork price matches");
+            } else {
+                Assertions.assertTrue(false, "Artwork returned that was not in the records!");
+            }
+        }
+    }
+
+
 
 }

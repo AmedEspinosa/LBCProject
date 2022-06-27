@@ -1,7 +1,7 @@
 package com.kenzie.appserver.controller;
 
 import com.kenzie.appserver.IntegrationTest;
-import com.kenzie.appserver.controller.model.ExampleCreateRequest;
+import com.kenzie.appserver.controller.model.ArtworkCreateRequest;
 import com.kenzie.appserver.service.ArtworkService;
 import com.kenzie.appserver.service.model.Artwork;
 
@@ -50,8 +50,8 @@ class ArtworkControllerTest {
 
         Artwork artwork = new Artwork(id, datePosted, artistName, title, dateCreated, height, width, isSold,
                 isForSale, price);
-        Artwork persistedArtwork = artworkService.addNewExample(artwork);
-        mvc.perform(get("/example/{id}", persistedArtwork.getId())
+        Artwork persistedArtwork = artworkService.addNewArtwork(artwork);
+        mvc.perform(get("/example/{id}", persistedArtwork.getId()) //example will need to be replaced w/endpoint-LAURIE
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("id")
                         .value(is(id)))
@@ -81,7 +81,7 @@ class ArtworkControllerTest {
     public void createExample_CreateSuccessful() throws Exception {
         String name = mockNeat.strings().valStr();
 
-        ExampleCreateRequest exampleCreateRequest = new ExampleCreateRequest();
+        ArtworkCreateRequest exampleCreateRequest = new ArtworkCreateRequest();
         exampleCreateRequest.setName(name);
 
         mapper.registerModule(new JavaTimeModule());

@@ -1,5 +1,6 @@
 package com.kenzie.appserver.service;
 
+import com.kenzie.appserver.config.CacheStore;
 import com.kenzie.appserver.repositories.ArtworkRepository;
 import com.kenzie.appserver.repositories.model.ArtworkRecord;
 import com.kenzie.appserver.service.model.Artwork;
@@ -12,6 +13,8 @@ import java.util.List;
 @Service
 public class ArtworkService {
     private ArtworkRepository artworkRepository;
+    private CacheStore cache;
+
 
     public ArtworkService(ArtworkRepository artworkRepository) {
         this.artworkRepository = artworkRepository;
@@ -39,12 +42,39 @@ public class ArtworkService {
         artworkRecord.setDateCreated(artwork.getDateCreated());
         artworkRecord.setHeight(artwork.getHeight());
         artworkRecord.setWidth(artwork.getWidth());
-        artworkRecord.setSold(artwork.getIsSold()); //?
-        artworkRecord.setForSale(artwork.getIsForSale()); //?
+        artworkRecord.setSold(artwork.getIsSold());
+        artworkRecord.setForSale(artwork.getIsForSale());
         artworkRecord.setPrice(artwork.getPrice());
 
         artworkRepository.save(artworkRecord);
         return artwork;
+    }
+
+    public void updateArtwork(Artwork artwork) {
+        if (artworkRepository.existsById(artwork.getId())) {
+            ArtworkRecord artworkRecord = new ArtworkRecord();
+            artworkRecord.setId(artwork.getId());
+            artworkRecord.setDatePosted(artwork.getDatePosted());
+            artworkRecord.setArtistName(artwork.getArtistName());
+            artworkRecord.setTitle(artwork.getTitle());
+            artworkRecord.setDateCreated(artwork.getDateCreated());
+            artworkRecord.setHeight(artwork.getHeight());
+            artworkRecord.setWidth(artwork.getWidth());
+            artworkRecord.setSold(artwork.getIsSold());
+            artworkRecord.setForSale(artwork.getIsForSale());
+            artworkRecord.setPrice(artwork.getPrice());
+            artworkRepository.save(artworkRecord);
+            cache.evict(artwork.getId());
+        }
+    }
+
+    public void deleteArtwork(String id) {
+        try {
+            artworkRepository.deleteById(id);
+            cache.evict(id);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public List<Artwork> findAllArtwork() {

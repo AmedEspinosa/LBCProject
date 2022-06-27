@@ -1,6 +1,7 @@
 package com.kenzie.appserver;
 
 
+import com.kenzie.appserver.service.ArtworkService;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;

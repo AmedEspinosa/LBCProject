@@ -1,7 +1,7 @@
 package com.kenzie.appserver.controller;
 
 import com.kenzie.appserver.IntegrationTest;
-import com.kenzie.appserver.controller.model.ExampleCreateRequest;
+import com.kenzie.appserver.controller.model.ArtworkCreateRequest;
 import com.kenzie.appserver.service.ArtworkService;
 import com.kenzie.appserver.service.model.Artwork;
 
@@ -81,7 +81,7 @@ class ArtworkControllerTest {
     public void createExample_CreateSuccessful() throws Exception {
         String name = mockNeat.strings().valStr();
 
-        ExampleCreateRequest exampleCreateRequest = new ExampleCreateRequest();
+        ArtworkCreateRequest exampleCreateRequest = new ArtworkCreateRequest();
         exampleCreateRequest.setName(name);
 
         mapper.registerModule(new JavaTimeModule());

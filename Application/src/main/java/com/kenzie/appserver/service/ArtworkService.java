@@ -17,6 +17,7 @@ public class ArtworkService {
         this.artworkRepository = artworkRepository;
     }
 
+    //WE MIGHT NOT NEED THIS OR THIS MAY NEED TO BE CHANGED
     public Artwork findById(String id) {
         Artwork artworkFromBackend = artworkRepository
                 .findById(id)
@@ -29,7 +30,7 @@ public class ArtworkService {
         return artworkFromBackend;
     }
 
-    public Artwork addNewExample(Artwork artwork) {
+    public Artwork addNewArtwork(Artwork artwork) {
         ArtworkRecord artworkRecord = new ArtworkRecord();
         artworkRecord.setId(artwork.getId());
         artworkRecord.setDatePosted(artwork.getDatePosted());

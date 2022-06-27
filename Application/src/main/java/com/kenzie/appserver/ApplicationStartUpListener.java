@@ -11,6 +11,11 @@ public class ApplicationStartUpListener {
 
     @EventListener
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        // Perform any application start-up tasks
+        //took this code as an example from unit 4 project, not sure what we have to do here yet -Laurie
+//        ReservedTicketService reservedTicketService = event.getApplicationContext()
+//                .getBean(ReservedTicketService.class);
+//        ConcurrentLinkedQueue queue = event.getApplicationContext().getBean(ConcurrentLinkedQueue.class);
+//        List<ReservedTicket> reservedTicketList = reservedTicketService.findAllUnclosedReservationTickets();
+//        queue.addAll(reservedTicketList);
     }
 }

@@ -60,9 +60,7 @@ public class ArtworkController {
                 artworkUpdateRequest.getIsForSale(),
                 artworkUpdateRequest.getPrice());
         artworkService.updateArtwork(artwork);
-
         ArtworkResponse artworkResponse = createArtworkResponse(artwork);
-
         return ResponseEntity.ok(artworkResponse);
     }
 

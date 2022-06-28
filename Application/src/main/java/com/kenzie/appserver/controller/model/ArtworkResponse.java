@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ArtworkResponse {
 
+    @JsonProperty("id")
+    private String id;
+
     @JsonProperty("artistName")
     private String artistName;
 
@@ -24,6 +27,14 @@ public class ArtworkResponse {
 
     @JsonProperty("price")
     private int price;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getArtistName() {
         return artistName;

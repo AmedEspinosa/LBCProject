@@ -9,6 +9,10 @@ import com.kenzie.appserver.service.model.Artwork;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+
+import static java.util.UUID.randomUUID;
+
 @RestController
 @RequestMapping("/artwork")
 public class ArtworkController {
@@ -33,19 +37,25 @@ public class ArtworkController {
 //        return ResponseEntity.ok(exampleResponse);
 //    }
 
-    //jon
-//    @PostMapping
-//    public ResponseEntity<ExampleResponse> addNewConcert(@RequestBody ExampleCreateRequest exampleCreateRequest) {
-//        Artwork example = new Artwork(randomUUID().toString(),
-//                exampleCreateRequest.getName());
-//        artworkService.addNewExample(example);
-//
-//        ExampleResponse exampleResponse = new ExampleResponse();
-//        exampleResponse.setId(example.getId());
-//        exampleResponse.setName(example.getName());
-//
-//        return ResponseEntity.created(URI.create("/example/" + exampleResponse.getId())).body(exampleResponse);
-//    }
+    @PostMapping
+    public ResponseEntity<ArtworkResponse> addNewArtwork(@RequestBody ArtworkCreateRequest artworkCreateRequest) {
+        Artwork artwork = new Artwork(randomUUID().toString(),
+                artworkCreateRequest.getDatePosted(),
+                artworkCreateRequest.getArtistName(),
+                artworkCreateRequest.getTitle(),
+                artworkCreateRequest.getDateCreated(),
+                artworkCreateRequest.getHeight(),
+                artworkCreateRequest.getWidth(),
+                artworkCreateRequest.isSold(),
+                artworkCreateRequest.isForSale(),
+                artworkCreateRequest.getPrice());
+
+        artworkService.addNewArtwork(artwork);
+
+        ArtworkResponse artworkResponse = createArtworkResponse(artwork);
+
+        return ResponseEntity.created(URI.create("/artwork/" + artworkResponse.getId())).body(artworkResponse);
+    }
 
     @PutMapping
     public ResponseEntity<ArtworkResponse> updateArtwork(@RequestBody ArtworkUpdateRequest artworkUpdateRequest) {
@@ -74,11 +84,13 @@ public class ArtworkController {
 
     private ArtworkResponse createArtworkResponse(Artwork artwork) {
         ArtworkResponse artworkResponse = new ArtworkResponse();
+        artworkResponse.setId(artworkResponse.getId());
         artworkResponse.setArtistName(artwork.getArtistName());
         artworkResponse.setTitle(artwork.getTitle());
         artworkResponse.setDateCreated(artwork.getDateCreated());
         artworkResponse.setSold(artwork.getIsSold());
         artworkResponse.setForSale(artwork.getIsForSale());
+        artworkResponse.setPrice(artworkResponse.getPrice());
         return artworkResponse;
     }
 }

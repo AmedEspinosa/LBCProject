@@ -79,21 +79,21 @@ class ArtworkControllerTest {
     //THIS TEST WAS GIVEN TO US AND WILL NEED TO BE REPLACED WITH OUR ARTWORK INSTEAD OF "EXAMPLE"*** -LAURIE
     @Test
     public void createExample_CreateSuccessful() throws Exception {
-        String name = mockNeat.strings().valStr();
+        String title = mockNeat.strings().valStr();
 
-        ArtworkCreateRequest exampleCreateRequest = new ArtworkCreateRequest();
-        exampleCreateRequest.setName(name);
+        ArtworkCreateRequest artworkCreateRequest = new ArtworkCreateRequest();
+        artworkCreateRequest.setTitle(title);
 
         mapper.registerModule(new JavaTimeModule());
 
-        mvc.perform(post("/example")
+        mvc.perform(post("/artwork")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(mapper.writeValueAsString(exampleCreateRequest)))
+                        .content(mapper.writeValueAsString(artworkCreateRequest)))
                 .andExpect(jsonPath("id")
                         .exists())
-                .andExpect(jsonPath("name")
-                        .value(is(name)))
+                .andExpect(jsonPath("title")
+                        .value(is(title)))
                 .andExpect(status().isCreated());
     }
 }

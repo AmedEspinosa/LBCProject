@@ -33,20 +33,6 @@ public class ArtworkController {
 //        return ResponseEntity.ok(exampleResponse);
 //    }
 
-    //jon
-//    @PostMapping
-//    public ResponseEntity<ExampleResponse> addNewConcert(@RequestBody ExampleCreateRequest exampleCreateRequest) {
-//        Artwork example = new Artwork(randomUUID().toString(),
-//                exampleCreateRequest.getName());
-//        artworkService.addNewExample(example);
-//
-//        ExampleResponse exampleResponse = new ExampleResponse();
-//        exampleResponse.setId(example.getId());
-//        exampleResponse.setName(example.getName());
-//
-//        return ResponseEntity.created(URI.create("/example/" + exampleResponse.getId())).body(exampleResponse);
-//    }
-
     @PutMapping
     public ResponseEntity<ArtworkResponse> updateArtwork(@RequestBody ArtworkUpdateRequest artworkUpdateRequest) {
         Artwork artwork = new Artwork(artworkUpdateRequest.getId(),

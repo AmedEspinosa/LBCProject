@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="updatePage.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body class="background">
+<header class="header" id="header">
+    <div class="site-title">
+        <a class="header_home" href="index.html">Art Place</a>
+    </div>
+</header>
+<div class="card">
+    <h2>Update Artwork</h2>
+    <form class="card-content" id="update-id-form">
+        <p class="form-field">
+            <label>Today's Date</label>
+            <input type="text" required class="validated-field" id="update-datePosted-field">
+            <label>Name</label>
+            <input type="text" required class="validated-field" id="update-name-field">
+            <label>Title</label>
+            <input type="text" required class="validated-field" id="update-title-field">
+            <label>Date Created</label>
+            <input type="text" required class="validated-field" id="update-dateCreated-field">
+            <label>Height</label>
+            <input type="text" required class="validated-field" id="update-height-field">
+            <label>Width</label>
+            <input type="text" required class="validated-field" id="update-width-field">
+            <label> Is it sold?</label>
+            <label>
+                <input type="radio" name="choice-radio" required class="validated-field" id="update-artwork-isSoldYes">
+                Yes
+            </label>
+            <label>
+                <input type="radio" name="choice-radio" required class="validated-field" id="update-artwork-isSoldNo">
+                No
+            </label>
+            <label> Is it for sale?</label>
+            <label>
+                <input type="radio" name="choice-radio" required class="validated-field" id="update-artwork-isForSaleYes">
+                Yes
+            </label>
+            <label>
+                <input type="radio" name="choice-radio" required class="validated-field" id="update-artwork-isForSaleNo">
+                No
+            </label>
+            <label>Price</label>
+            <input type="number" required class="validate-field" id="update-artwork-price">
+        </p>
+        <button type="submit">Update</button>
+    </form>
+</div>
+<div class="card" id="result">
+    <h2>Result:</h2>
+    <p id="result-info"></p>
+</div>
+
+</body>
+</html>

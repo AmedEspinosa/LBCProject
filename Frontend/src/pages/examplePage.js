@@ -5,7 +5,7 @@ import ExampleClient from "../api/exampleClient";
 /**
  * Logic needed for the view playlist page of the website.
  */
-class ExamplePage extends BaseClass {
+class ArtworkPage extends BaseClass {
 
     constructor() {
         super();

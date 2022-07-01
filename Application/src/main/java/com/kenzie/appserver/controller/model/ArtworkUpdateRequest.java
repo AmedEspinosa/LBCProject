@@ -1,23 +1,45 @@
 package com.kenzie.appserver.controller.model;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class ArtworkResponse {
+import java.time.LocalDate;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
+public class ArtworkUpdateRequest {
+
+    @NotEmpty
     @JsonProperty("id")
     private String id;
 
+    @JsonFormat(shape =  JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
+    @JsonProperty("datePosted")
+    private String datePosted;
+
+    @NotEmpty
     @JsonProperty("artistName")
     private String artistName;
 
+    @NotEmpty
     @JsonProperty("title")
     private String title;
 
+    @JsonFormat(shape =  JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     @JsonProperty("dateCreated")
     private String dateCreated;
+
+    @Min(0)
+    @Max(240) //inches (240" == 20ft)
+    @JsonProperty("height")
+    private int height;
+
+    @Min(0)
+    @Max(240) //inches (240" == 20ft)
+    @JsonProperty("width")
+    private int width;
 
     @JsonProperty("isSold")
     private boolean isSold;
@@ -25,8 +47,9 @@ public class ArtworkResponse {
     @JsonProperty("isForSale")
     private boolean isForSale;
 
+    @Min(0)
     @JsonProperty("price")
-    private int price;
+    private Double price;
 
     public String getId() {
         return id;
@@ -34,6 +57,14 @@ public class ArtworkResponse {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getDatePosted() {
+        return datePosted;
+    }
+
+    public void setDatePosted(String datePosted) {
+        this.datePosted = datePosted;
     }
 
     public String getArtistName() {
@@ -60,7 +91,23 @@ public class ArtworkResponse {
         this.dateCreated = dateCreated;
     }
 
-    public boolean isSold() {
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public boolean getIsSold() {
         return isSold;
     }
 
@@ -68,7 +115,7 @@ public class ArtworkResponse {
         isSold = sold;
     }
 
-    public boolean isForSale() {
+    public boolean getIsForSale() {
         return isForSale;
     }
 
@@ -76,11 +123,11 @@ public class ArtworkResponse {
         isForSale = forSale;
     }
 
-    public int getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 }

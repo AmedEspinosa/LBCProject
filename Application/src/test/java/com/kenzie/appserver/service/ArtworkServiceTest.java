@@ -25,7 +25,7 @@ public class ArtworkServiceTest {
         artworkService = new ArtworkService(artworkRepository);
     }
     /** ------------------------------------------------------------------------
-     *  exampleService.findById
+     *  artworkService.findById
      *  ------------------------------------------------------------------------ **/
 
     @Test
@@ -78,6 +78,7 @@ public class ArtworkServiceTest {
         // THEN
         Assertions.assertNull(artwork, "The example is null when not found");
     }
+
 
     @Test
     void getAllArtwork() {
@@ -146,5 +147,22 @@ public class ArtworkServiceTest {
     }
 
 
+
+
+    /** ------------------------------------------------------------------------
+     *  artworkService.addNewArtwork
+     *  ------------------------------------------------------------------------ **/
+
+    /** ------------------------------------------------------------------------
+     *  artworkService.updateArtwork
+     *  ------------------------------------------------------------------------ **/
+
+    /** ------------------------------------------------------------------------
+     *  artworkService.deleteArtwork
+     *  ------------------------------------------------------------------------ **/
+
+    /** ------------------------------------------------------------------------
+     *  artworkService.findAllArtwork
+     *  ------------------------------------------------------------------------ **/
 
 }

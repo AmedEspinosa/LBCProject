@@ -1,7 +1,7 @@
 package com.kenzie.appserver.controller;
 
 import com.kenzie.appserver.IntegrationTest;
-import com.kenzie.appserver.controller.model.ExampleCreateRequest;
+import com.kenzie.appserver.controller.model.ArtworkCreateRequest;
 import com.kenzie.appserver.service.ArtworkService;
 import com.kenzie.appserver.service.model.Artwork;
 
@@ -50,8 +50,8 @@ class ArtworkControllerTest {
 
         Artwork artwork = new Artwork(id, datePosted, artistName, title, dateCreated, height, width, isSold,
                 isForSale, price);
-        Artwork persistedArtwork = artworkService.addNewExample(artwork);
-        mvc.perform(get("/example/{id}", persistedArtwork.getId())
+        Artwork persistedArtwork = artworkService.addNewArtwork(artwork);
+        mvc.perform(get("/example/{id}", persistedArtwork.getId()) //example will need to be replaced w/endpoint-LAURIE
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("id")
                         .value(is(id)))
@@ -79,21 +79,21 @@ class ArtworkControllerTest {
     //THIS TEST WAS GIVEN TO US AND WILL NEED TO BE REPLACED WITH OUR ARTWORK INSTEAD OF "EXAMPLE"*** -LAURIE
     @Test
     public void createExample_CreateSuccessful() throws Exception {
-        String name = mockNeat.strings().valStr();
+        String title = mockNeat.strings().valStr();
 
-        ExampleCreateRequest exampleCreateRequest = new ExampleCreateRequest();
-        exampleCreateRequest.setName(name);
+        ArtworkCreateRequest artworkCreateRequest = new ArtworkCreateRequest();
+        artworkCreateRequest.setTitle(title);
 
         mapper.registerModule(new JavaTimeModule());
 
-        mvc.perform(post("/example")
+        mvc.perform(post("/artwork")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(mapper.writeValueAsString(exampleCreateRequest)))
+                        .content(mapper.writeValueAsString(artworkCreateRequest)))
                 .andExpect(jsonPath("id")
                         .exists())
-                .andExpect(jsonPath("name")
-                        .value(is(name)))
+                .andExpect(jsonPath("title")
+                        .value(is(title)))
                 .andExpect(status().isCreated());
     }
 }

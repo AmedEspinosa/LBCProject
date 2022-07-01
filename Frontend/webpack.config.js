@@ -26,8 +26,8 @@ devServer: {
 },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: 'index.html',
+      template: './src/createformpage.html',
+      filename: 'createformpage.html',
       inject: false
     }),
     new CopyPlugin({

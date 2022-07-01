@@ -10,6 +10,7 @@ module.exports = {
   },
   entry: {
     examplePage: path.resolve(__dirname, 'src', 'pages', 'examplePage.js'),
+    updatePage: path.resolve(__dirname, 'src', 'pages', 'updatePage.js'),
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -24,13 +25,27 @@ module.exports = {
     disableHostCheck: true,
     contentBase: 'packaging_additional_published_artifacts',
     // overlay shows a full-screen overlay in the browser when there are compiler errors or warnings
-    overlay: true
-  },
+    overlay: true,
+    proxy: [
+       {
+         context: [
+           '/example',
+           '/update'
+         ],
+         target: 'http://localhost:5001'
+       }
+     ]
+   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
       inject: false
+    }),
+   new HtmlWebpackPlugin({
+       template: './src/updateFormPage.html',
+       filename: 'updateFormPage.html',
+       inject: false
     }),
     new CopyPlugin({
       patterns: [

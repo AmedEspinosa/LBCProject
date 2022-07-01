@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="updatePage.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body class="background">
+<header class="header" id="header">
+    <div class="site-title">
+        <a class="header_home" href="index.html">Art Place</a>
+    </div>
+</header>
+<div class="card">
+    <h1>Update Artwork</h1>
+    <form class="card-content" id="update-id-form">
+        <p class="form-field">
+            <h3>Today's Date:</h3>
+            <label> MM-DD-YYYY (For example: 01-01-2022)</label>
+            <input type="text" required class="validated-field" id="update-datePosted-field">
+            <h3>Name:</h3>
+            <input type="text" required class="validated-field" id="update-name-field">
+            <h3>Title</h3>
+            <input type="text" required class="validated-field" id="update-title-field">
+            <h3>Date Created:</h3>
+            <label> MM-DD-YYYY (For example: 01-01-2022)</label>
+            <input type="text" required class="validated-field" id="update-dateCreated-field">
+            <h3>Height:</h3>
+            <label> Between 0 and 240 (inches) </label>
+            <input type="text" required class="validated-field" id="update-height-field">
+            <h3>Width:</h3>
+            <label> Between 0 and 240 (inches) </label>
+            <input type="text" required class="validated-field" id="update-width-field">
+            <h3> Is it sold?</h3>
+            <label>
+            <input type="radio" name="choice-radio" required class="validated-field" id="update-artwork-isSoldYes">
+            Yes
+            </label>
+            <label>
+            <input type="radio" name="choice-radio" required class="validated-field" id="update-artwork-isSoldNo">
+            No
+            </label>
+            <h3> Is it for sale?</h3>
+            <label>
+            <input type="radio" name="choice-radio" required class="validated-field" id="update-artwork-isForSaleYes">
+            Yes
+            </label>
+            <label>
+            <input type="radio" name="choice-radio" required class="validated-field" id="update-artwork-isForSaleNo">
+            No
+            </label>
+            <h3>Price:</h3>
+            <label> Enter dollars in whole amount(For example: $20.00 can be entered as 20.00)</label>
+            <input type="number" required class="validate-field" id="update-artwork-price">
+        </p>
+        <button type="submit">Update</button>
+    </form>
+</div>
+<div class="card" id="result">
+    <h2>Result:</h2>
+    <p id="result-info"></p>
+</div>
+
+</body>
+</html>

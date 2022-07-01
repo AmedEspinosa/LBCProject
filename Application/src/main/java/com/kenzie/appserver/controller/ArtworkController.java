@@ -22,20 +22,18 @@ public class ArtworkController {
     ArtworkController(ArtworkService artworkService) {
         this.artworkService = artworkService;
     }
-    //WE WILL NOT HAVE A GET FOR ID ONLY, BUT WILL HAVE A GET FOR GET ALL -LAURIE
-//    @GetMapping("/id}")
-//    public ResponseEntity<ArtworkResponse> get(@PathVariable("id") String id) {
-//
-//        Artwork artwork = artworkService.findById(id);
-//        if (artwork == null) {
-//            return ResponseEntity.notFound().build();
-//        }
-//
-//        ArtworkResponse artworkResponse = new ArtworkResponse();
-//        artworkResponse.setId(artwork.getId());
-//        artworkResponse.setName(example.getName());
-//        return ResponseEntity.ok(exampleResponse);
-//    }
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ArtworkResponse> getArtwork(@PathVariable("id") String id) {
+
+        Artwork artwork = artworkService.findById(id);
+        if (artwork == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        ArtworkResponse artworkResponse = createArtworkResponse(artwork);
+        return ResponseEntity.ok(artworkResponse);
 
     @PostMapping
     public ResponseEntity<ArtworkResponse> addNewArtwork(@RequestBody ArtworkCreateRequest artworkCreateRequest) {
@@ -55,6 +53,7 @@ public class ArtworkController {
         ArtworkResponse artworkResponse = createArtworkResponse(artwork);
 
         return ResponseEntity.created(URI.create("/artwork/" + artworkResponse.getId())).body(artworkResponse);
+
     }
 
     @PutMapping
@@ -70,9 +69,7 @@ public class ArtworkController {
                 artworkUpdateRequest.getIsForSale(),
                 artworkUpdateRequest.getPrice());
         artworkService.updateArtwork(artwork);
-
         ArtworkResponse artworkResponse = createArtworkResponse(artwork);
-
         return ResponseEntity.ok(artworkResponse);
     }
 

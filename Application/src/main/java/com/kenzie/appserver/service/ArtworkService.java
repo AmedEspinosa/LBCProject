@@ -20,14 +20,12 @@ public class ArtworkService {
         this.artworkRepository = artworkRepository;
     }
 
-    //WE MIGHT NOT NEED THIS OR THIS MAY NEED TO BE CHANGED
     public Artwork findById(String id) {
         Artwork artworkFromBackend = artworkRepository
                 .findById(id)
                 .map(artwork -> new Artwork(artwork.getId(), artwork.getDatePosted(), artwork.getArtistName(),
                         artwork.getTitle(), artwork.getDateCreated(), artwork.getHeight(), artwork.getWidth(),
                         artwork.getIsSold(), artwork.getIsForSale(), artwork.getPrice()))
-                //.map(example -> new Example(example.getId(), example.getName())) //ORIGINAL LINE
                 .orElse(null);
 
         return artworkFromBackend;

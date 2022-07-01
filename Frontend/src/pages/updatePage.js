@@ -18,7 +18,7 @@ class updatePage extends BaseClass {
      */
     async mount() {
         document.getElementById('update-id-form').addEventListener('submit', this.onGet);
-        this.client = new ExampleClient();
+        this.client = new UpdateArtworkClient();
         this.dataStore.addChangeListener(this.renderExample);
         this.onUpdate();
     }
@@ -35,20 +35,19 @@ class updatePage extends BaseClass {
     async renderExample() {
         let resultArea = document.getElementById("result-info");
 
-        const artwork = this.dataStore.get("id");
+        const artwork = this.dataStore.get("artwork");
 
         if (artwork) {
             resultArea.innerHTML = `
-                <div>DatePosted: ${artwork.datePosted}</div>
-                <div>Name: ${artwork.name}</div>
-                                <div>ID: ${artwork.id}</div>
-                <div>Title: ${artwork.title}</div>
                 <div>ID: ${artwork.id}</div>
+                <div>DatePosted: ${artwork.datePosted}</div>
+                <div>Name: ${artwork.artistName}</div>
+
+                <div>Title: ${artwork.title}</div>
                 <div>DateCreated: ${artwork.dateCreated}</div>
                 <div>Height: ${artwork.height}</div>
                 <div>Width: ${artwork.width}</div>
                 <div>IsSold: ${artwork.isSold}</div>
-                <div>IsForSale: ${artwork.isForSale}</div>
                 <div>IsForSale: ${artwork.isForSale}</div>
                 <div>Price: ${artwork.price}</div>
             `
@@ -128,8 +127,8 @@ class updatePage extends BaseClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const examplePage = new ExamplePage();
-    examplePage.mount();
+    const updatePage1 = new updatePage();
+    updatePage1.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);

@@ -19,8 +19,8 @@ public class ArtworkController {
         this.artworkService = artworkService;
     }
 
-    @GetMapping("/id}")
-    public ResponseEntity<ArtworkResponse> get(@PathVariable("id") String id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<ArtworkResponse> getArtwork(@PathVariable("id") String id) {
 
         Artwork artwork = artworkService.findById(id);
         if (artwork == null) {

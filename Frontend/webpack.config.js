@@ -16,6 +16,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
   },
+
   devServer: {
     https: false,
     port: 8080,
@@ -36,10 +37,23 @@ module.exports = {
        }
      ]
    },
+
+devServer: {
+  https: false,
+  port: 8080,
+  open: true,
+  openPage: 'http://localhost:8080',
+  // diableHostChecks, otherwise we get an error about headers and the page won't render
+  disableHostCheck: true,
+  contentBase: 'packaging_additional_published_artifacts',
+  // overlay shows a full-screen overlay in the browser when there are compiler errors or warnings
+  overlay: true
+},
+
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: 'index.html',
+      template: './src/createformpage.html',
+      filename: 'createformpage.html',
       inject: false
     }),
    new HtmlWebpackPlugin({

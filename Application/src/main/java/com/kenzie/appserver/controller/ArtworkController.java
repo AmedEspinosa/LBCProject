@@ -9,6 +9,10 @@ import com.kenzie.appserver.service.model.Artwork;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+
+import static java.util.UUID.randomUUID;
+
 @RestController
 @RequestMapping("/artwork")
 public class ArtworkController {
@@ -18,6 +22,7 @@ public class ArtworkController {
     ArtworkController(ArtworkService artworkService) {
         this.artworkService = artworkService;
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<ArtworkResponse> getArtwork(@PathVariable("id") String id) {
@@ -29,6 +34,26 @@ public class ArtworkController {
 
         ArtworkResponse artworkResponse = createArtworkResponse(artwork);
         return ResponseEntity.ok(artworkResponse);
+
+    @PostMapping
+    public ResponseEntity<ArtworkResponse> addNewArtwork(@RequestBody ArtworkCreateRequest artworkCreateRequest) {
+        Artwork artwork = new Artwork(randomUUID().toString(),
+                artworkCreateRequest.getDatePosted(),
+                artworkCreateRequest.getArtistName(),
+                artworkCreateRequest.getTitle(),
+                artworkCreateRequest.getDateCreated(),
+                artworkCreateRequest.getHeight(),
+                artworkCreateRequest.getWidth(),
+                artworkCreateRequest.isSold(),
+                artworkCreateRequest.isForSale(),
+                artworkCreateRequest.getPrice());
+
+        artworkService.addNewArtwork(artwork);
+
+        ArtworkResponse artworkResponse = createArtworkResponse(artwork);
+
+        return ResponseEntity.created(URI.create("/artwork/" + artworkResponse.getId())).body(artworkResponse);
+
     }
 
     @PutMapping
@@ -56,11 +81,13 @@ public class ArtworkController {
 
     private ArtworkResponse createArtworkResponse(Artwork artwork) {
         ArtworkResponse artworkResponse = new ArtworkResponse();
+        artworkResponse.setId(artworkResponse.getId());
         artworkResponse.setArtistName(artwork.getArtistName());
         artworkResponse.setTitle(artwork.getTitle());
         artworkResponse.setDateCreated(artwork.getDateCreated());
         artworkResponse.setSold(artwork.getIsSold());
         artworkResponse.setForSale(artwork.getIsForSale());
+        artworkResponse.setPrice(artworkResponse.getPrice());
         return artworkResponse;
     }
 }

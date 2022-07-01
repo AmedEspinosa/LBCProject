@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="commentPage.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body class="background">
+<header class="header" id="header">
+    <div class="site-title">
+        <a class="header_home" href="homepage.html">Art Place</a>
+    </div>
+
+</header>
+<div class="headerOne">
+    <h1> <a href="homepage.html" style="text-decoration: none">VIEW ALL ART</a>
+        <a href="createformpage.html" style="text-decoration: none">UPLOAD ART</a>
+        <a href="createformpage.html" style="text-decoration: none">EDIT ART</a>
+        <a href="createformpage.html" style="text-decoration: none">DELETE ART</a>
+    </h1>
+</div>
+
+
+<div class="card">
+
+    <h2>UploadArt</h2>
+    <form class="card-content" id="create-comment-form">
+        <p class="form-field">
+            <label>Artwork</label>
+            <input type="file" required class="validate-field" id="create-artwork-image">
+            <label>Artist Name</label>
+            <input type="text" required class="validated-field" id="create-artwork-artist">
+            <label>Title</label>
+            <input type="text" required class="validate-field" id="create-artwork-title">
+            <label>Date Created</label>
+            <input type="date" required class="validate-field" id="create-artwork-dateCreated">
+            <label>Height</label>
+            <input type="number" required class="validate-field" id="create-artwork-height">
+            <label>Width</label>
+            <input type="number" required class="validate-field" id="create-artwork-width">
+            <label> Is it for sale?</label>
+            <label>
+                <input type="radio" name="choice-radio" required class="validated-field" id="create-artwork-isForSaleYes">
+                Yes
+            </label>
+            <label>
+                <input type="radio" name="choice-radio" required class="validated-field" id="create-artwork-isForSaleNo">
+                No
+            </label>
+            <label> Is it sold?</label>
+            <label>
+                <input type="radio" name="choice-radio" required class="validated-field" id="create-artwork-isSoldYes">
+                Yes
+            </label>
+            <label>
+                <input type="radio" name="choice-radio" required class="validated-field" id="create-artwork-isSoldNo">
+                No
+            </label>
+            <label>Price</label>
+            <input type="number" required class="validate-field" id="create-artwork-price">
+
+
+        </p>
+        <button type="submit">Create</button>
+    </form>
+</div>
+
+
+
+
+</body>
+</html>

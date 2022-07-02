@@ -50,7 +50,6 @@ public class ArtworkController {
                 artworkCreateRequest.getPrice());
 
         artworkService.addNewArtwork(artwork);
-
         ArtworkResponse artworkResponse = createArtworkResponse(artwork);
 
         return ResponseEntity.created(URI.create("/artwork/" + artworkResponse.getId())).body(artworkResponse);

@@ -38,21 +38,21 @@ export default class ExampleClient extends BaseClass {
      */
     async getExample(id, errorCallback) {
         try {
-            const response = await this.client.get(`/example/${id}`);
+            const response = await this.client.get(`/artwork/${id}`);
             return response.data;
         } catch (error) {
-            this.handleError("getConcert", error, errorCallback)
+            this.handleError("getArtwork", error, errorCallback)
         }
     }
 
     async createExample(name, errorCallback) {
         try {
-            const response = await this.client.post(`example`, {
+            const response = await this.client.post(`artwork`, {
                 name: name
             });
             return response.data;
         } catch (error) {
-            this.handleError("createExample", error, errorCallback);
+            this.handleError("addNewArtwork", error, errorCallback);
         }
     }
 

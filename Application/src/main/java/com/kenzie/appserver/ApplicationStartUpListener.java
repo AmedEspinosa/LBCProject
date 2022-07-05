@@ -25,6 +25,6 @@ public class ApplicationStartUpListener {
 //    ConcurrentLinkedQueue queue = event.getApplicationContext().getBean(ConcurrentLinkedQueue.class);
 //    List<Artwork> artworkList = artworkService.findAllArtwork();
 //    queue.addAll(artworkList);
-
+//  add
     }
 }

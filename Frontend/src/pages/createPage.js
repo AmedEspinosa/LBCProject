@@ -27,17 +27,15 @@ class createPage extends BaseClass {
     async renderExample() {
         let resultArea = document.getElementById("create-artwork-form");
 
-        const artwork = this.dataStore.get("artwork");
+        const artwork = this.dataStore.getState("createdArtwork");
 
         if (artwork) {
             resultArea.innerHTML = `
-                <div>DatePosted: ${artwork.datePosted}</div>
                 <div>Name: ${artwork.name}</div>
                 <div>Title: ${artwork.title}</div>
                 <div>DateCreated: ${artwork.dateCreated}</div>
                 <div>Height: ${artwork.height}</div>
                 <div>Width: ${artwork.width}</div>
-                <div>IsSold: ${artwork.isSold}</div>
                 <div>IsForSale: ${artwork.isForSale}</div>
                 <div>Price: ${artwork.price}</div>
             `
@@ -67,6 +65,8 @@ class createPage extends BaseClass {
     async onCreate(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
+        //this.dataStore.setState(null);
+
 
         let name = document.getElementById("create-artwork-artist").value;
         this.dataStore.set("artistName", name);

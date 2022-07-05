@@ -9,7 +9,7 @@ class createPage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onGet', 'onCreate', 'renderExample'], this);
+        this.bindClassMethods(['onCreate', 'renderExample'], this);
         this.dataStore = new DataStore();
     }
 
@@ -17,25 +17,22 @@ class createPage extends BaseClass {
      * Once the page has loaded, set up the event handlers and fetch the concert list.
      */
     async mount() {
-        document.getElementById('create-artwork-form').addEventListener('submit', this.onGet);
+        document.getElementById('create-artwork-form').addEventListener('submit', this.onCreate);
         this.client = new CreateArtworkClient();
         this.dataStore.addChangeListener(this.renderExample)
-        this.onCreate();
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
 
     async renderExample() {
-        let resultArea = document.getElementById("result-info");
+        let resultArea = document.getElementById("create-artwork-form");
 
         const artwork = this.dataStore.get("artwork");
 
         if (artwork) {
             resultArea.innerHTML = `
-                <div>ID: ${artwork.id}</div>
                 <div>DatePosted: ${artwork.datePosted}</div>
-                <div>Name: ${artwork.artistName}</div>
-
+                <div>Name: ${artwork.name}</div>
                 <div>Title: ${artwork.title}</div>
                 <div>DateCreated: ${artwork.dateCreated}</div>
                 <div>Height: ${artwork.height}</div>
@@ -51,26 +48,25 @@ class createPage extends BaseClass {
 
     // Event Handlers --------------------------------------------------------------------------------------------------
 
-    async onGet(event) {
-        // Prevent the page from refreshing on form submit
-        event.preventDefault();
-
-        let id = document.getElementById("id-field").value;
-        this.dataStore.set("artwork", null);
-
-        let result = await this.client.getArtwork(id, this.errorHandler);
-        this.dataStore.set("artwork", result);
-        if (result) {
-            this.showMessage(`Got ${result.name}!`)
-        } else {
-            this.errorHandler("Error doing GET!  Try again...");
-        }
-    }
+//    async onGet(event) {
+//        // Prevent the page from refreshing on form submit
+//        event.preventDefault();
+//
+////        let id = document.getElementById('create-artwork-form').value;
+////        this.dataStore.set("id", null);
+//
+//        let result = await this.client.getArtwork(id, this.errorHandler);
+//        this.dataStore.set("id", result);
+//        if (result) {
+//            this.showMessage(`Got ${result.id}!`)
+//        } else {
+//            this.errorHandler("Error doing GET!  Try again...");
+//        }
+//    }
 
     async onCreate(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
-        this.dataStore.set("artwork", null);
 
         let datePosted = document.getElementById("update-datePosted-field").value;
         this.dataStore.set("datePosted", datePosted);
@@ -90,12 +86,7 @@ class createPage extends BaseClass {
         let width = document.getElementById("create-artwork-width").value;
         this.dataStore.set("width", width);
 
-        let isSoldYes = document.getElementById("create-artwork-isSoldYes").value;
-        this.dataStore.set("isSold", isSoldYes);
-
-        let isSoldNo = document.getElementById("create-artwork-isSoldNo").value;
-        this.dataStore.set("isSold", isSoldNo);
-
+        //not sure if I might have to change this option?
         let isForSaleYes = document.getElementById("create-artwork-isForSaleYes").value;
         this.dataStore.set("isForSale", isForSaleYes);
 
@@ -105,11 +96,17 @@ class createPage extends BaseClass {
         let price = document.getElementById("create-artwork-price").value;
         this.dataStore.set("price", price);
 
-        const createdArtwork = await this.client.createExample(datePosted, name, title, dateCreated,
-         height, width, isSoldYes, isSoldNo, isForSaleYes, isForSaleNo, price, this.errorHandler);
-        this.dataStore.set("artwork", createdArtwork);
+        if(isForSaleNo) {
+        const createdArtwork = await this.client.post(datePosted, name, title, dateCreated,
+                 height, width, isForSaleNo, price, this.errorHandler);
+        } else {
+        const createdArtwork = await this.client.post(datePosted, name, title, dateCreated,
+         height, width, isForSaleYes, price, this.errorHandler);
+         }
+        //this.dataStore.set("artwork", createdArtwork);
+        this.dataStore.setState(createdArtwork);
 
-        if (createdExample) {
+        if (createdArtwork) {
             this.showMessage(`Created ${createdArtwork.name}!`)
         } else {
             this.errorHandler("Error creating!  Try again...");

@@ -44,7 +44,7 @@ public class ArtworkController {
                 artworkCreateRequest.getDateCreated(),
                 artworkCreateRequest.getHeight(),
                 artworkCreateRequest.getWidth(),
-                artworkCreateRequest.isSold(),
+                false,
                 artworkCreateRequest.isForSale(),
                 artworkCreateRequest.getPrice());
 

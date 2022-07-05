@@ -9,10 +9,6 @@ import javax.validation.constraints.NotEmpty;
 
 public class ArtworkCreateRequest {
 
-    @NotEmpty
-    @JsonProperty("id")
-    private String id;
-
     @JsonFormat(shape =  JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     @JsonProperty("datePosted")
     private String datePosted;
@@ -39,19 +35,12 @@ public class ArtworkCreateRequest {
     @JsonProperty("width")
     private int width;
 
-    @JsonProperty("isSold")
-    private boolean isSold;
-
     @JsonProperty("isForSale")
     private boolean isForSale;
 
     @Min(0)
     @JsonProperty("price")
     private Double price;
-
-    public String getId() {
-        return id;
-    }
 
     public String getDatePosted() {
         return datePosted;
@@ -99,14 +88,6 @@ public class ArtworkCreateRequest {
 
     public void setWidth(int width) {
         this.width = width;
-    }
-
-    public boolean isSold() {
-        return isSold;
-    }
-
-    public void setSold(boolean sold) {
-        isSold = sold;
     }
 
     public boolean isForSale() {

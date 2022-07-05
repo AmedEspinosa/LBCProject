@@ -72,18 +72,16 @@ class createPage extends BaseClass {
         let dateCreated = document.getElementById("create-artwork-dateCreated").value;
         let height = document.getElementById("create-artwork-height").value;
         let width = document.getElementById("create-artwork-width").value;
-        let isForSaleYes = document.getElementById("create-artwork-isForSaleYes").value;
-        let isForSaleNo = document.getElementById("create-artwork-isForSaleNo").value;
+        let isForSale = document.getElementById("create-artwork-isForSaleYes").value;
+
         let price = document.getElementById("create-artwork-price").value;
 
-        if (isForSaleNo) {
+        if(isForSale) {
         const createdArtwork = await this.client.addNewArtwork(name, title, dateCreated,
-                 height, width, isForSaleNo, price);
-                 this.dataStore.set("artwork", createdArtwork);
-        } else {
-        const createdArtwork = await this.client.addNewArtwork(name, title, dateCreated,
-         height, width, isForSaleYes, price);
-         this.dataStore.set("artwork", createdArtwork);
+         height, width, true, price);
+         } else {
+         const createdArtwork = await this.client.addNewArtwork(name, title, dateCreated,
+          height, width, false, price)
          }
 
 //        if (createdArtwork) {

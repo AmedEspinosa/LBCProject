@@ -45,16 +45,14 @@ export default class CreateArtworkClient extends BaseClass {
         }
     }
 
-    async addNewArtwork(datePosted, artistName, dateCreated, height, width,
-     isSold, isForSale, price, errorCallback) {
+    async addNewArtwork(name, title, dateCreated, height, width, isForSale, price, errorCallback) {
         try {
             const response = await this.client.post(`artwork`, {
-                "Date Posted": datePosted,
-                "Artist name": artistName,
+                "Artist name": name,
+                "Title": title,
                 "Date Created": dateCreated,
                 "Height": height,
                 "Width": width,
-                "Is it sold?": isSold,
                 "Is it for sale?": isForSale,
                 "Price": price
             });

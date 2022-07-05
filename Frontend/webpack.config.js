@@ -9,7 +9,8 @@ module.exports = {
     usedExports: true
   },
   entry: {
-    examplePage: path.resolve(__dirname, 'src', 'pages', 'examplePage.js'),
+    homePage: path.resolve(__dirname, 'src', 'pages', 'homePage.js'),
+    createPage: path.resolve(__dirname, 'src', 'pages', 'createPage.js'),
     updatePage: path.resolve(__dirname, 'src', 'pages', 'updatePage.js'),
   },
   output: {
@@ -30,7 +31,7 @@ module.exports = {
     proxy: [
        {
          context: [
-           '/example',
+           '/artwork',
            '/update'
          ],
          target: 'http://localhost:5001'
@@ -51,6 +52,11 @@ devServer: {
 },
 
   plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/homepage.html',
+      filename: 'homepage.html',
+      inject: false
+    }),
     new HtmlWebpackPlugin({
       template: './src/createformpage.html',
       filename: 'createformpage.html',

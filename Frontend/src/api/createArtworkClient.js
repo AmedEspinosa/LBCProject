@@ -2,18 +2,18 @@ import BaseClass from "../util/baseClass";
 import axios from 'axios'
 
 /**
- * Client to call the MusicPlaylistService.
+ * Client to call the ArtworkService.
  *
  * This could be a great place to explore Mixins. Currently the client is being loaded multiple times on each page,
  * which we could avoid using inheritance or Mixins.
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Mix-ins
  * https://javascript.info/mixins
  */
-export default class ExampleClient extends BaseClass {
+export default class CreateArtworkClient extends BaseClass {
 
     constructor(props = {}){
         super();
-        const methodsToBind = ['clientLoaded', 'getExample', 'createExample'];
+        const methodsToBind = ['clientLoaded', 'getArtwork', 'addNewArtwork'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);
@@ -36,7 +36,7 @@ export default class ExampleClient extends BaseClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The concert
      */
-    async getExample(id, errorCallback) {
+    async getArtwork(id, errorCallback) {
         try {
             const response = await this.client.get(`/artwork/${id}`);
             return response.data;
@@ -45,10 +45,18 @@ export default class ExampleClient extends BaseClass {
         }
     }
 
-    async createExample(name, errorCallback) {
+    async addNewArtwork(datePosted, artistName, dateCreated, height, width,
+     isSold, isForSale, price, errorCallback) {
         try {
             const response = await this.client.post(`artwork`, {
-                name: name
+                "Date Posted": datePosted,
+                "Artist name": artistName,
+                "Date Created": dateCreated,
+                "Height": height,
+                "Width": width,
+                "Is it sold?": isSold,
+                "Is it for sale?": isForSale,
+                "Price": price
             });
             return response.data;
         } catch (error) {

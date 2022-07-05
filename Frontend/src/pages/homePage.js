@@ -5,7 +5,7 @@ import ExampleClient from "../api/exampleClient";
 /**
  * Logic needed for the view playlist page of the website.
  */
-class ExamplePage extends BaseClass {
+class HomePage extends BaseClass {
 
     constructor() {
         super();
@@ -19,6 +19,8 @@ class ExamplePage extends BaseClass {
     async mount() {
         document.getElementById('get-by-id-form').addEventListener('submit', this.onGet);
         document.getElementById('create-form').addEventListener('submit', this.onCreate);
+
+        //CLIents****
         this.client = new ExampleClient();
 
         this.dataStore.addChangeListener(this.renderExample)
@@ -81,8 +83,8 @@ class ExamplePage extends BaseClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const examplePage = new ExamplePage();
-    examplePage.mount();
+    const homePage = new homePage();
+    homePage.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);

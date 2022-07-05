@@ -10,29 +10,25 @@
 <body class="background">
 <header class="header" id="header">
     <div class="site-title">
-        <a class="header_home" href="index.html">Art Place</a>
+        <a class="header_home" href="homePage.html">Art Place</a>
     </div>
 </header>
 <div class="card">
-    <h1>Update Artwork</h1>
+    <h2>Update Art</h2>
     <form class="card-content" id="update-id-form">
         <p class="form-field">
             <h3>Today's Date:</h3>
-            <label> MM-DD-YYYY (For example: 01-01-2022)</label>
-            <input type="text" required class="validated-field" id="update-datePosted-field">
+            <input type="date" required class="validate-field" id="update-datePosted-field">
             <h3>Name:</h3>
             <input type="text" required class="validated-field" id="update-name-field">
             <h3>Title</h3>
             <input type="text" required class="validated-field" id="update-title-field">
             <h3>Date Created:</h3>
-            <label> MM-DD-YYYY (For example: 01-01-2022)</label>
-            <input type="text" required class="validated-field" id="update-dateCreated-field">
-            <h3>Height:</h3>
-            <label> Between 0 and 240 (inches) </label>
-            <input type="text" required class="validated-field" id="update-height-field">
-            <h3>Width:</h3>
-            <label> Between 0 and 240 (inches) </label>
-            <input type="text" required class="validated-field" id="update-width-field">
+            <input type="date" required class="validate-field" id="update-dateCreated-field">
+            <h3>Height(Inches):</h3>
+            <input type="number" required class="validated-field" id="update-height-field">
+            <h3>Width(Inches):</h3>
+            <input type="number" required class="validated-field" id="update-width-field">
             <h3> Is it sold?</h3>
             <label>
             <input type="radio" name="choice-radio" required class="validated-field" id="update-artwork-isSoldYes">

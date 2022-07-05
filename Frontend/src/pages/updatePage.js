@@ -1,6 +1,6 @@
 import BaseClass from "../util/baseClass";
 import DataStore from "../util/DataStore";
-import ExampleClient from "../api/exampleClient";
+import UpdateArtworkClient from "../api/updateArtworkClient";
 
 /**
  * Logic needed for the view playlist page of the website.
@@ -63,43 +63,43 @@ class updatePage extends BaseClass {
         event.preventDefault();
 
         let datePosted = document.getElementById("update-datePosted-field").value;
-        this.dataStore.set("artwork", null);
+        this.dataStore.set("datePosted", datePosted);
 
         let name = document.getElementById("update-name-field").value;
-        this.dataStore.set("artwork", null);
+        this.dataStore.set("artistName", name);
 
         let title = document.getElementById("update-title-field").value;
-        this.dataStore.set("artwork", null);
+        this.dataStore.set("title", title);
 
         let dateCreated = document.getElementById("update-dateCreated-field").value;
-        this.dataStore.set("artwork", null);
+        this.dataStore.set("dateCreated", dateCreated);
 
         let height = document.getElementById("update-height-field").value;
-        this.dataStore.set("artwork", null);
+        this.dataStore.set("height", height);
 
         let width = document.getElementById("update-width-field").value;
-        this.dataStore.set("artwork", null);
+        this.dataStore.set("width", width);
 
         let isSoldYes = document.getElementById("update-artwork-isSoldYes").value;
-        this.dataStore.set("artwork", null);
+        this.dataStore.set("isSoldYes", isSoldYes);
 
         let isSoldNo = document.getElementById("update-artwork-isSoldNo").value;
-        this.dataStore.set("artwork", null);
+        this.dataStore.set("isSoldNo", isSoldNo);
 
         let isForSaleYes = document.getElementById("update-artwork-isForSaleYes").value;
-        this.dataStore.set("artwork", null);
+        this.dataStore.set("isForSaleYes", isForSaleYes);
 
         let isForSaleNo = document.getElementById("update-artwork-isForSaleNo").value;
-        this.dataStore.set("artwork", null);
+        this.dataStore.set("isForSaleNo", isForSaleNo);
 
         let price = document.getElementById("update-artwork-price").value;
-        this.dataStore.set("artwork", null);
+        this.dataStore.set("price", price);
 
 
-        let result = await this.client.getExample(id, this.errorHandler);
-        this.dataStore.set("example", result);
+        let result = await this.client.getArtwork(id, this.errorHandler);
+        this.dataStore.set("artwork", result);
         if (result) {
-            this.showMessage(`Got ${result.name}!`)
+            this.showMessage(`Updated ${result.name}!`)
         } else {
             this.errorHandler("Error doing GET!  Try again...");
         }
@@ -108,12 +108,12 @@ class updatePage extends BaseClass {
     async onCreate(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
-        this.dataStore.set("example", null);
+        this.dataStore.set("artwork", null);
 
         let name = document.getElementById("create-name-field").value;
 
         const createdExample = await this.client.createExample(name, this.errorHandler);
-        this.dataStore.set("example", createdExample);
+        this.dataStore.set("artwork", createdExample);
 
         if (createdExample) {
             this.showMessage(`Created ${createdExample.name}!`)
@@ -122,7 +122,6 @@ class updatePage extends BaseClass {
         }
     }
 }
-
 /**
  * Main method to run when the page contents have loaded.
  */

@@ -35,7 +35,6 @@ public class ArtworkController {
         ArtworkResponse artworkResponse = createArtworkResponse(artwork);
         return ResponseEntity.ok(artworkResponse);
     }
-
     @PostMapping
     public ResponseEntity<ArtworkResponse> addNewArtwork(@RequestBody ArtworkCreateRequest artworkCreateRequest) {
         Artwork artwork = new Artwork(randomUUID().toString(),

@@ -9,12 +9,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Service
 public class ArtworkService {
+
     private ArtworkRepository artworkRepository;
     private CacheStore cache;
-
 
     public ArtworkService(ArtworkRepository artworkRepository) {
         this.artworkRepository = artworkRepository;

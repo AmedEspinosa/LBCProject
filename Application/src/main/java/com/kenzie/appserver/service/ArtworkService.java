@@ -41,7 +41,7 @@ public class ArtworkService {
         artworkRecord.setDateCreated(artwork.getDateCreated());
         artworkRecord.setHeight(artwork.getHeight());
         artworkRecord.setWidth(artwork.getWidth());
-        artworkRecord.setSold(artwork.getIsSold());
+        artworkRecord.setSold(false);
         artworkRecord.setForSale(artwork.getIsForSale());
         artworkRecord.setPrice(artwork.getPrice());
 

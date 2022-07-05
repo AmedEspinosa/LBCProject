@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.time.LocalDateTime;
 
 import static java.util.UUID.randomUUID;
 
@@ -38,7 +39,7 @@ public class ArtworkController {
     @PostMapping
     public ResponseEntity<ArtworkResponse> addNewArtwork(@RequestBody ArtworkCreateRequest artworkCreateRequest) {
         Artwork artwork = new Artwork(randomUUID().toString(),
-                artworkCreateRequest.getDatePosted(),
+                LocalDateTime.now().toString(),
                 artworkCreateRequest.getArtistName(),
                 artworkCreateRequest.getTitle(),
                 artworkCreateRequest.getDateCreated(),

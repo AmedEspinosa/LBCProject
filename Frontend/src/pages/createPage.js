@@ -68,9 +68,6 @@ class createPage extends BaseClass {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
 
-        let datePosted = document.getElementById("update-datePosted-field").value;
-        this.dataStore.set("datePosted", datePosted);
-
         let name = document.getElementById("create-artwork-artist").value;
         this.dataStore.set("artistName", name);
 
@@ -97,10 +94,10 @@ class createPage extends BaseClass {
         this.dataStore.set("price", price);
 
         if(isForSaleNo) {
-        const createdArtwork = await this.client.post(datePosted, name, title, dateCreated,
+        const createdArtwork = await this.client.post(name, title, dateCreated,
                  height, width, isForSaleNo, price, this.errorHandler);
         } else {
-        const createdArtwork = await this.client.post(datePosted, name, title, dateCreated,
+        const createdArtwork = await this.client.post(name, title, dateCreated,
          height, width, isForSaleYes, price, this.errorHandler);
          }
         //this.dataStore.set("artwork", createdArtwork);

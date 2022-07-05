@@ -9,10 +9,6 @@ import javax.validation.constraints.NotEmpty;
 
 public class ArtworkCreateRequest {
 
-    @JsonFormat(shape =  JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
-    @JsonProperty("datePosted")
-    private String datePosted;
-
     @NotEmpty
     @JsonProperty("artistName")
     private String artistName;
@@ -41,14 +37,6 @@ public class ArtworkCreateRequest {
     @Min(0)
     @JsonProperty("price")
     private Double price;
-
-    public String getDatePosted() {
-        return datePosted;
-    }
-
-    public void setDatePosted(String datePosted) {
-        this.datePosted = datePosted;
-    }
 
     public String getArtistName() {
         return artistName;

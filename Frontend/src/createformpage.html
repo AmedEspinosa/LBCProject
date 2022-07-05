@@ -29,8 +29,6 @@
     <h2>Upload Art</h2>
     <form class="card-content" id="create-artwork-form">
         <p class="form-field">
-            <label>Artwork</label>
-            <input type="file" required class="validated-field" id="create-artwork-image">
             <label>Artist Name</label>
             <input type="text" required class="validated-field" id="create-artwork-artist">
             <label>Title</label>
@@ -43,12 +41,8 @@
             <input type="number" required class="validated-field" id="create-artwork-width">
             <label> Is it for sale?</label>
             <label>
-                <input type="radio" name="choice-radio" required class="validated-field" id="create-artwork-isForSaleYes">
+                <input type="checkbox" required class="validated-field" id="create-artwork-isForSaleYes">
                 Yes
-            </label>
-            <label>
-                <input type="radio" name="choice-radio" required class="validated-field" id="create-artwork-isForSaleNo">
-                No
             </label>
             <label>Price</label>
             <input type="number" required class="validated-field" id="create-artwork-price">

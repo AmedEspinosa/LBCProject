@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<!DOCTYPE html>
-<html>
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
     <script type="text/javascript" src="updatePage.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
@@ -10,26 +11,35 @@
 <body class="background">
 <header class="header" id="header">
     <div class="site-title">
-        <a class="header_home" href="homePage.html">Art Place</a>
+        <a class="header_home" href="homepage.html">Art Place</a>
     </div>
+
 </header>
+<div class="headerOne">
+    <h1> <a href="viewArtworkPage.html" style="text-decoration: none">VIEW ALL ART</a>
+        <a href="createformpage.html" style="text-decoration: none">UPLOAD ART</a>
+        <a href="updateFormPage.html" style="text-decoration: none">EDIT ART</a>
+        <a href="deleteArtworkPage.html" style="text-decoration: none">DELETE ART</a>
+    </h1>
+</div>
+
 <div class="card">
     <h2>Update Art</h2>
     <form class="card-content" id="update-id-form">
         <p class="form-field">
-            <h3>Today's Date:</h3>
+            <label>Today's Date:</label>
             <input type="date" required class="validate-field" id="update-datePosted-field">
-            <h3>Name:</h3>
+            <label>Name:</label>
             <input type="text" required class="validated-field" id="update-name-field">
-            <h3>Title</h3>
+            <label>Title</label>
             <input type="text" required class="validated-field" id="update-title-field">
-            <h3>Date Created:</h3>
+            <label>Date Created:</label>
             <input type="date" required class="validate-field" id="update-dateCreated-field">
-            <h3>Height(Inches):</h3>
+            <label>Height(Inches):</label>
             <input type="number" required class="validated-field" id="update-height-field">
-            <h3>Width(Inches):</h3>
+            <label>Width(Inches):</label>
             <input type="number" required class="validated-field" id="update-width-field">
-            <h3> Is it sold?</h3>
+            <label> Is it sold?</label>
             <label>
             <input type="radio" name="choice-radio" required class="validated-field" id="update-artwork-isSoldYes">
             Yes
@@ -50,7 +60,6 @@
             <h3>Price:</h3>
             <label> Enter dollars in whole amount(For example: $20.00 can be entered as 20.00)</label>
             <input type="number" required class="validate-field" id="update-artwork-price">
-        </p>
         <button type="submit">Update</button>
     </form>
 </div>

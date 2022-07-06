@@ -13,7 +13,7 @@ export default class CreateArtworkClient extends BaseClass {
 
     constructor(props = {}){
         super();
-        const methodsToBind = ['clientLoaded', 'getArtwork', 'addNewArtwork'];
+        const methodsToBind = ['clientLoaded','getArtwork', 'addNewArtwork'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);
@@ -36,6 +36,7 @@ export default class CreateArtworkClient extends BaseClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The concert
      */
+
     async getArtwork(id, errorCallback) {
         try {
             const response = await this.client.get(`/artwork/${id}`);

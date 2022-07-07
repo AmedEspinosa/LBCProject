@@ -93,7 +93,7 @@ class ArtworkControllerTest {
         artworkCreateRequest.setArtistName(artistName);
         artworkCreateRequest.setTitle(title);
         artworkCreateRequest.setDateCreated(dateCreated);
-        artworkCreateRequest.setForSale(isForSale);
+        artworkCreateRequest.setIsForSale(isForSale);
         artworkCreateRequest.setPrice(price);
 
         mapper.registerModule(new JavaTimeModule());

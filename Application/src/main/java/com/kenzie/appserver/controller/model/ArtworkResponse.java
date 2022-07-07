@@ -85,19 +85,19 @@ public class ArtworkResponse {
         this.width = width;
     }
 
-    public boolean isSold() {
+    public boolean getIsSold() {
         return isSold;
     }
 
-    public void setSold(boolean isSold) {
+    public void setIsSold(boolean isSold) {
         this.isSold = isSold;
     }
 
-    public boolean isForSale() {
+    public boolean getIsForSale() {
         return isForSale;
     }
 
-    public void setForSale(boolean isForSale) {
+    public void setIsForSale(boolean isForSale) {
         this.isForSale = isForSale;
     }
 

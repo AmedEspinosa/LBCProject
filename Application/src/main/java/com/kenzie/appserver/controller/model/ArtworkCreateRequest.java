@@ -17,20 +17,24 @@ public class ArtworkCreateRequest {
     @JsonProperty("title")
     private String title;
 
-    @JsonFormat(shape =  JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
+    @NotEmpty
+    @JsonFormat(shape =  JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonProperty("dateCreated")
     private String dateCreated;
 
+    @NotEmpty
     @Min(0)
     @Max(240) //inches (240" == 20ft)
     @JsonProperty("height")
     private int height;
 
+    @NotEmpty
     @Min(0)
     @Max(240) //inches (240" == 20ft)
     @JsonProperty("width")
     private int width;
 
+    @NotEmpty
     @JsonProperty("isForSale")
     private boolean isForSale;
 

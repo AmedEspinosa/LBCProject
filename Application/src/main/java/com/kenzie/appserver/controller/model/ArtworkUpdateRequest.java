@@ -19,11 +19,9 @@ public class ArtworkUpdateRequest {
     @JsonProperty("datePosted")
     private String datePosted;
 
-    @NotEmpty
     @JsonProperty("artistName")
     private String artistName;
 
-    @NotEmpty
     @JsonProperty("title")
     private String title;
 
@@ -111,16 +109,16 @@ public class ArtworkUpdateRequest {
         return isSold;
     }
 
-    public void setSold(boolean sold) {
-        isSold = sold;
+    public void setIsSold(boolean isSold) {
+        this.isSold = isSold;
     }
 
     public boolean getIsForSale() {
         return isForSale;
     }
 
-    public void setForSale(boolean forSale) {
-        isForSale = forSale;
+    public void setIsForSale(boolean isForSale) {
+        this.isForSale = isForSale;
     }
 
     public Double getPrice() {

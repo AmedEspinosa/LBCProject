@@ -39,9 +39,9 @@ public class GetArtworkController {
         artworkResponse.setDateCreated(artwork.getDateCreated());
         artworkResponse.setArtistName(artwork.getArtistName());
         artworkResponse.setTitle(artwork.getTitle());
-        artworkResponse.setForSale(artwork.getIsForSale());
-        artworkResponse.setSold(artwork.getIsSold());
-        artworkResponse.setPrice(artwork.getPrice());
+        artworkResponse.setIsForSale(artwork.getIsForSale());
+        artworkResponse.setIsSold(artwork.getIsSold());
+        artworkResponse.setPrice(artwork.getPrice().intValue());
 
         return artworkResponse;
     }

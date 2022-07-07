@@ -12,6 +12,8 @@ module.exports = {
     homePage: path.resolve(__dirname, 'src', 'pages', 'homePage.js'),
     createPage: path.resolve(__dirname, 'src', 'pages', 'createPage.js'),
     updatePage: path.resolve(__dirname, 'src', 'pages', 'updatePage.js'),
+    viewPage: path.resolve(__dirname, 'src', 'pages', 'viewPage.js'),
+    deletePage: path.resolve(__dirname, 'src', 'pages', 'deletePage.js')
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -55,6 +57,16 @@ module.exports = {
        filename: 'updateFormPage.html',
        inject: false
     }),
+   new HtmlWebpackPlugin({
+       template: './src/viewArtworkPage.html',
+       filename: 'viewArtworkPage.html',
+       inject: false
+    }),
+   new HtmlWebpackPlugin({
+       template: './src/deleteArtworkPage.html',
+       filename: 'deleteArtworkPage.html',
+       inject: false
+    })
     new CopyPlugin({
       patterns: [
         {

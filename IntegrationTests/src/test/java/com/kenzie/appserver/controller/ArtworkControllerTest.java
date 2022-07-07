@@ -51,7 +51,7 @@ class ArtworkControllerTest {
         Artwork artwork = new Artwork(id, datePosted, artistName, title, dateCreated, height, width, isSold,
                 isForSale, price);
         Artwork persistedArtwork = artworkService.addNewArtwork(artwork);
-        mvc.perform(get("/example/{id}", persistedArtwork.getId()) //example will need to be replaced w/endpoint-LAURIE
+        mvc.perform(get("/artwork/{id}", persistedArtwork.getId())
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("id")
                         .value(is(id)))
@@ -78,11 +78,23 @@ class ArtworkControllerTest {
 
     //THIS TEST WAS GIVEN TO US AND WILL NEED TO BE REPLACED WITH OUR ARTWORK INSTEAD OF "EXAMPLE"*** -LAURIE
     @Test
-    public void createExample_CreateSuccessful() throws Exception {
+    public void createArtwork_CreateSuccessful() throws Exception {
+        String id = UUID.randomUUID().toString();
+        String datePosted = mockNeat.strings().valStr();
+        String artistName = mockNeat.strings().valStr();
         String title = mockNeat.strings().valStr();
+        String dateCreated = mockNeat.strings().valStr();
+        int height = mockNeat.ints().get();
+        int width = mockNeat.ints().get();
+        boolean isForSale = true;
+        Double price = mockNeat.doubles().val();
 
         ArtworkCreateRequest artworkCreateRequest = new ArtworkCreateRequest();
+        artworkCreateRequest.setArtistName(artistName);
         artworkCreateRequest.setTitle(title);
+        artworkCreateRequest.setDateCreated(dateCreated);
+        artworkCreateRequest.setForSale(isForSale);
+        artworkCreateRequest.setPrice(price);
 
         mapper.registerModule(new JavaTimeModule());
 
@@ -92,8 +104,24 @@ class ArtworkControllerTest {
                         .content(mapper.writeValueAsString(artworkCreateRequest)))
                 .andExpect(jsonPath("id")
                         .exists())
+                .andExpect(jsonPath("datePosted")
+                        .value(is(datePosted)))
+                .andExpect(jsonPath("artistName")
+                        .value(is(artistName)))
                 .andExpect(jsonPath("title")
                         .value(is(title)))
+                .andExpect(jsonPath("dateCreated")
+                        .value(is(dateCreated)))
+                .andExpect(jsonPath("height")
+                        .value(is(height)))
+                .andExpect(jsonPath("width")
+                        .value(is(width)))
+                .andExpect(jsonPath("isSold")
+                        .value(is(false)))
+                .andExpect(jsonPath("isForSale")
+                        .value(is(isForSale)))
+                .andExpect(jsonPath("price")
+                        .value(is(price)))
                 .andExpect(status().isCreated());
     }
 }

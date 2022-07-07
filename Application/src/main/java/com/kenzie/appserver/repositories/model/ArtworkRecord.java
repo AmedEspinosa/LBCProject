@@ -84,7 +84,7 @@ public class ArtworkRecord {
         this.width = width;
     }
 
-    @DynamoDBAttribute(attributeName = "IsSold")
+    @DynamoDBAttribute(attributeName = "Sold")
     public boolean getIsSold() {
         return isSold;
     }
@@ -93,7 +93,7 @@ public class ArtworkRecord {
         isSold = sold;
     }
 
-    @DynamoDBAttribute(attributeName = "IsForSale")
+    @DynamoDBAttribute(attributeName = "ForSale")
     public boolean getIsForSale() {
         return isForSale;
     }
@@ -111,7 +111,6 @@ public class ArtworkRecord {
         this.price = price;
     }
 
-    //this may need to be changed later
     @Override
     public boolean equals(Object o) {
         if (this == o) {

@@ -48,7 +48,6 @@ export default class CreateArtworkClient extends BaseClass {
 
     async addNewArtwork(artistName, title, dateCreated, height, width, isForSale, price, errorCallback) {
         try {
-            console.log("in the client");
             console.log(artistName);
             console.log(title);
             console.log(dateCreated);

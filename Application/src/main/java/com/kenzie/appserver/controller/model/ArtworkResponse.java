@@ -60,7 +60,7 @@ public class ArtworkResponse {
         this.dateCreated = dateCreated;
     }
 
-    public boolean isSold() {
+    public boolean sold() {
         return isSold;
     }
 
@@ -68,7 +68,7 @@ public class ArtworkResponse {
         isSold = sold;
     }
 
-    public boolean isForSale() {
+    public boolean forSale() {
         return isForSale;
     }
 

@@ -7,7 +7,7 @@
 
 
 .background {
-    background-color: #eaeded;
+    background-color: #072F5F;
     margin: 0;
     counter-reset: section;
 }
@@ -40,6 +40,7 @@ a {
     font-family: 'Caveat', cursive;
     font-size: 36px;
     line-height: 40px;
+    margin-left: 900px;
     height: 100px;
     text-decoration: none;
     color: var(--secondary-color);
@@ -66,7 +67,7 @@ a {
 }
 
 .button:hover, button:hover {
-    background: #9cc3e4;
+    background: #FFC0CB;
 }
 
 
@@ -103,4 +104,53 @@ a {
 
 .state.active {
     display: block;
+}
+
+form > div {
+  margin-bottom: 10px;
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+.select-wrapper::after {
+  content: "▼";
+  font-size: 1rem;
+  top: 6px;
+  right: 10px;
+  position: absolute;
+}
+
+button, label, input, select, progress, meter {
+  display: block;
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  margin: 3px;
+  box-sizing: border-box;
+  width: 75%;
+  padding: 5px;
+  height: 40px;
+}
+
+input[type="text"], input[type="date"], input[type="number"], select {
+  padding: 8px;
+  box-shadow: inset 10px 1px 3px #abc;
+  border-radius: 100px;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+button {
+  width: 60%;
+  margin: 0 auto;
+  background-color: var(--primary-color);
+      color: var(--secondary-color);
 }

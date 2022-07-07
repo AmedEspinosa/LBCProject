@@ -47,7 +47,7 @@ public class ArtworkController {
                 artworkCreateRequest.getHeight(),
                 artworkCreateRequest.getWidth(),
                 false,
-                artworkCreateRequest.isForSale(),
+                artworkCreateRequest.forSale(),
                 artworkCreateRequest.getPrice());
 
         artworkService.addNewArtwork(artwork);

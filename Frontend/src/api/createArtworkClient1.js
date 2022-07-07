@@ -46,19 +46,31 @@ export default class CreateArtworkClient extends BaseClass {
         }
     }
 
-    async addNewArtwork(name, title, dateCreated, height, width, isForSale, price, errorCallback) {
+    async addNewArtwork(artistName, title, dateCreated, height, width, isForSale, price, errorCallback) {
         try {
-            const response = await this.client.post(`/artwork`, {
-                "Artist name": name,
-                "Title": title,
-                "Date Created": dateCreated,
-                "Height": height,
-                "Width": width,
-                "Is it for sale?": isForSale,
-                "Price": price
+            console.log("in the client");
+            console.log(artistName);
+            console.log(title);
+            console.log(dateCreated);
+            console.log(height);
+            console.log(width);
+            console.log(isForSale);
+            console.log(price);
+
+            const response = await this.client.post(`/artwork`,{
+            forSale: isForSale,
+            artistName: artistName,
+            title: title,
+            dateCreated: dateCreated,
+            height: height,
+            width: width,
+            isForSale: isForSale,
+            price: price
             });
+            console.log(response.data);
             return response.data;
         } catch (error) {
+            console.log(error);
             this.handleError("addNewArtwork", error, errorCallback);
         }
     }

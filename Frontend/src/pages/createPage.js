@@ -18,7 +18,7 @@ class createPage extends BaseClass {
      */
     async mount() {
         document.getElementById('create-artwork-form').addEventListener('submit', this.onCreate);
-        this.client = new CreateArtworkClient1();
+        this.client = new CreateArtworkClient();
         this.dataStore.addChangeListener(this.renderExample);
     }
 
@@ -27,11 +27,11 @@ class createPage extends BaseClass {
     async renderExample() {
         let resultArea = document.getElementById("create-artwork-form");
 
-        const artwork = this.dataStore.get("artwork");
+        const artwork = this.dataStore.get("createdArtwork");
 
         if (artwork) {
             resultArea.innerHTML = `
-                <div>Name: ${artwork.name}</div>
+                <div>Name: ${artwork.artistName}</div>
                 <div>Title: ${artwork.title}</div>
                 <div>DateCreated: ${artwork.dateCreated}</div>
                 <div>Height: ${artwork.height}</div>
@@ -65,40 +65,27 @@ class createPage extends BaseClass {
     async onCreate(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
-        this.dataStore.set("artwork", null);
+        //this.dataStore.set("artwork", null);
 
-        let name = document.getElementById("create-artwork-artist").value;
+        let artistName = document.getElementById("create-artwork-artist").value;
+        //this.dataStore.set("artistName", artistName);
+
         let title = document.getElementById("create-artwork-title").value;
         let dateCreated = document.getElementById("create-artwork-dateCreated").value;
         let height = document.getElementById("create-artwork-height").value;
         let width = document.getElementById("create-artwork-width").value;
-        let isForSaleYes = document.getElementById("create-artwork-isForSaleYes").value;
-        let isForSaleNo = document.getElementById("create-artwork-isForSaleNo").value;
+        let isForSale = document.getElementById("create-artwork-isForSale").value;
         let price = document.getElementById("create-artwork-price").value;
 
-//        const createdArtwork = await this.client.addNewArtwork(name, title, dateCreated,
-//            height, width, isForSale, price);
-//        this.dataStore.set("artwork", createdArtwork);
-        if(isForSaleYes) {
-            let isForSale = isForSaleYes;
-            this.dataStore.set("isForSale", isForSale);
-            const createdArtwork = await this.client.addNewArtwork(name, title, dateCreated,
+        const createdArtwork = await this.client.addNewArtwork(artistName, title, dateCreated,
             height, width, isForSale, price);
-            this.dataStore.set("artwork", createdArtwork);
-        }
-        if(isForSaleNo) {
-            let isForSale = isForSaleNo;
-            this.dataStore.set("isForSale", isForSale);
-            const createdArtwork = await this.client.addNewArtwork(name, title, dateCreated,
-            height, width, isForSale, price)
-            this.dataStore.set("artwork", createdArtwork);
-        }
+        this.dataStore.set("createdArtwork", createdArtwork);
 
-        if (createdArtwork) {
-            this.showMessage(`Created ${createdArtwork.name}!`)
-        } else {
-            this.errorHandler("Error creating!  Try again...");
-        }
+//        if (createdArtwork) {
+//            this.showMessage(`Created ${createdArtwork.artistName}!`)
+//        } else {
+//            this.errorHandler("Error creating!  Try again...");
+//        }
     }
 }
 

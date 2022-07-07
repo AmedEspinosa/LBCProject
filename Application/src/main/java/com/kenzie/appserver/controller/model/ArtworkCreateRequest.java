@@ -31,8 +31,8 @@ public class ArtworkCreateRequest {
     @JsonProperty("width")
     private int width;
 
-    @JsonProperty("isForSale")
-    private boolean isForSale;
+    @JsonProperty("forSale")
+    private boolean forSale;
 
     @Min(0)
     @JsonProperty("price")
@@ -79,11 +79,11 @@ public class ArtworkCreateRequest {
     }
 
     public boolean forSale() {
-        return isForSale;
+        return forSale;
     }
 
     public void setForSale(boolean forSale) {
-        isForSale = forSale;
+        this.forSale = forSale;
     }
 
     public Double getPrice() {

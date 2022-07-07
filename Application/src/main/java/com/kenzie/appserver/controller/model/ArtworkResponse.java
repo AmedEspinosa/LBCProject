@@ -4,6 +4,9 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ArtworkResponse {
 
@@ -18,6 +21,16 @@ public class ArtworkResponse {
 
     @JsonProperty("dateCreated")
     private String dateCreated;
+
+    @Min(0)
+    @Max(240) //inches (240" == 20ft)
+    @JsonProperty("height")
+    private int height;
+
+    @Min(0)
+    @Max(240) //inches (240" == 20ft)
+    @JsonProperty("width")
+    private int width;
 
     @JsonProperty("isSold")
     private boolean isSold;
@@ -58,6 +71,22 @@ public class ArtworkResponse {
 
     public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
     }
 
     public boolean sold() {

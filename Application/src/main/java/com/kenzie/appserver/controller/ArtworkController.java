@@ -36,7 +36,7 @@ public class ArtworkController {
         ArtworkResponse artworkResponse = createArtworkResponse(artwork);
         return ResponseEntity.ok(artworkResponse);
     }
-    
+
     @PostMapping
     public ResponseEntity<ArtworkResponse> addNewArtwork(@RequestBody ArtworkCreateRequest artworkCreateRequest) {
         Artwork artwork = new Artwork(randomUUID().toString(),
@@ -47,7 +47,7 @@ public class ArtworkController {
                 artworkCreateRequest.getHeight(),
                 artworkCreateRequest.getWidth(),
                 false,
-                artworkCreateRequest.isForSale(),
+                artworkCreateRequest.forSale(),
                 artworkCreateRequest.getPrice());
 
         artworkService.addNewArtwork(artwork);

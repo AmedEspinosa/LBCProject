@@ -78,7 +78,7 @@ public class ArtworkCreateRequest {
         this.width = width;
     }
 
-    public boolean isForSale() {
+    public boolean forSale() {
         return isForSale;
     }
 

@@ -78,12 +78,12 @@ public class ArtworkCreateRequest {
         this.width = width;
     }
 
-    public boolean forSale() {
+    public boolean getIsForSale() {
         return isForSale;
     }
 
-    public void setForSale(boolean forSale) {
-        isForSale = forSale;
+    public void setIsForSale(boolean isForSale) {
+        this.isForSale = isForSale;
     }
 
     public Double getPrice() {

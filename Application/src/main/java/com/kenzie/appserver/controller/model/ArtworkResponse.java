@@ -19,6 +19,15 @@ public class ArtworkResponse {
     @JsonProperty("dateCreated")
     private String dateCreated;
 
+    @JsonProperty("datePosted")
+    private String datePosted;
+
+    @JsonProperty("height")
+    private int height;
+
+    @JsonProperty("width")
+    private int width;
+
     @JsonProperty("isSold")
     private boolean isSold;
 
@@ -26,7 +35,7 @@ public class ArtworkResponse {
     private boolean isForSale;
 
     @JsonProperty("price")
-    private int price;
+    private Double price;
 
     public String getId() {
         return id;
@@ -60,27 +69,51 @@ public class ArtworkResponse {
         this.dateCreated = dateCreated;
     }
 
-    public boolean sold() {
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public boolean isSold() {
         return isSold;
     }
 
-    public void setSold(boolean sold) {
-        isSold = sold;
+    public void setSold(boolean isSold) {
+        this.isSold = isSold;
     }
 
-    public boolean forSale() {
+    public boolean isForSale() {
         return isForSale;
     }
 
-    public void setForSale(boolean forSale) {
-        isForSale = forSale;
+    public void setForSale(boolean isForSale) {
+        this.isForSale = isForSale;
     }
 
-    public int getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public String getDatePosted() {
+        return datePosted;
+    }
+
+    public void setDatePosted(String datePosted) {
+        this.datePosted = datePosted;
     }
 }

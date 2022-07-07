@@ -1,13 +1,13 @@
 :root {
     /* css variables: https://developer.mozilla.org/en-US/docs/Web/CSS/var */
-    --primary-color: #131921;
-    --secondary-color: #fff;
+    --primary-color: #BA55D3;
+    --secondary-color: #000000;
     --error-color: rgba(194, 0, 0, 0.71);
 }
 
 
 .background {
-    background-color: #072F5F;
+    background-color: #000000;
     margin: 0;
     counter-reset: section;
 }
@@ -17,39 +17,45 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    padding: 0 20px;
+    background-color: BA55D3;
+    font-color: #072F5F;
+    padding: 0 10px;
 }
 
 .headerOne {
     display: flex;
-    word-spacing: 10px;
-    font-size: 10px;
+    word-spacing: 50px;
+    font-size: 15px;
+    height: 80px;
     justify-content: center;
-    background-color: var(--primary-color);
+    background-color: #4B0082;
     padding: 0 20px;
 }
 
 a {
-    color: #eaeded;
+    color: #E6E6FA;
+    font-family: 'Caveat', cursive;
+    font-size: 36px;
     word-spacing: normal;
 }
 
 .header_home {
     font-family: 'Caveat', cursive;
-    font-size: 36px;
-    line-height: 40px;
-    margin-left: 900px;
+    background: -webkit-linear-gradient(#008080, #0000FF, #800080);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    font-size: 200px;
+    line-height: 200px;
+    margin-left: 600px;
     height: 100px;
     text-decoration: none;
-    color: var(--secondary-color);
+    padding: 0 20px;
 }
 
 .header_nav_link {
     margin-left: 10px;
     vertical-align: top;
-    line-height: 40px;
+    line-height: 39px;
 }
 
 .about {
@@ -74,8 +80,9 @@ a {
 .card {
     color: var(--primary-color);
     background-color: var(--secondary-color);
-    margin: 20px;
-    padding: 10px 20px;
+    margin-left: 700px;
+    margin-top:20px;
+    padding: 0 20px;
 }
 
 .validated-field:invalid {
@@ -130,7 +137,7 @@ select {
 button, label, input, select, progress, meter {
   display: block;
   font-family: 'Caveat', cursive;
-  font-size: 20px;
+  font-size: 30px;
   margin: 3px;
   box-sizing: border-box;
   width: 75%;
@@ -145,12 +152,13 @@ input[type="text"], input[type="date"], input[type="number"], select {
 }
 
 label {
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 button {
-  width: 60%;
-  margin: 0 auto;
+  left-margin: 2px;
+  align-items: center;
+  margin: 2 auto;
   background-color: var(--primary-color);
       color: var(--secondary-color);
 }

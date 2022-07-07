@@ -92,8 +92,8 @@ public class ArtworkController {
         artworkResponse.setDatePosted(artwork.getDatePosted());
         artworkResponse.setHeight(artwork.getHeight());
         artworkResponse.setWidth(artwork.getWidth());
-        artworkResponse.setSold(artwork.getIsSold());
-        artworkResponse.setForSale(artwork.getIsForSale());
+        artworkResponse.setIsSold(artwork.getIsSold());
+        artworkResponse.setIsForSale(artwork.getIsForSale());
         artworkResponse.setPrice(artwork.getPrice());
         return artworkResponse;
     }

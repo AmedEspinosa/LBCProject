@@ -80,17 +80,11 @@ class updatePage extends BaseClass {
         let width = document.getElementById("update-width-field").value;
         this.dataStore.set("width", width);
 
-        let isSoldYes = document.getElementById("update-artwork-isSoldYes").value;
-        this.dataStore.set("isSoldYes", isSoldYes);
+        let isSold = document.getElementById("update-artwork-isSold").value;
+        this.dataStore.set("isSold", isSold);
 
-        let isSoldNo = document.getElementById("update-artwork-isSoldNo").value;
-        this.dataStore.set("isSoldNo", isSoldNo);
-
-        let isForSaleYes = document.getElementById("update-artwork-isForSaleYes").value;
-        this.dataStore.set("isForSaleYes", isForSaleYes);
-
-        let isForSaleNo = document.getElementById("update-artwork-isForSaleNo").value;
-        this.dataStore.set("isForSaleNo", isForSaleNo);
+        let isForSaleYes = document.getElementById("update-artwork-isForSale").value;
+        this.dataStore.set("isForSale", isForSale);
 
         let price = document.getElementById("update-artwork-price").value;
         this.dataStore.set("price", price);

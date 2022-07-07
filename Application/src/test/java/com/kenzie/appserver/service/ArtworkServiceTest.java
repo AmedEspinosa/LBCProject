@@ -44,8 +44,8 @@ public class ArtworkServiceTest {
         record.setDateCreated("testCreatedDate");
         record.setHeight(48);
         record.setWidth(48);
-        record.setSold(false);
-        record.setForSale(false);
+        record.setIsSold(false);
+        record.setIsForSale(false);
         record.setPrice(50.00);
 
         // WHEN
@@ -94,8 +94,8 @@ public class ArtworkServiceTest {
         record1.setDatePosted("recorddate1");
         record1.setHeight(10);
         record1.setWidth(10);
-        record1.setForSale(true);
-        record1.setSold(false);
+        record1.setIsForSale(true);
+        record1.setIsSold(false);
         record1.setPrice(10.0);
 
 
@@ -106,8 +106,8 @@ public class ArtworkServiceTest {
         record1.setDatePosted("recorddate2");
         record1.setHeight(12);
         record1.setWidth(12);
-        record1.setForSale(true);
-        record1.setSold(false);
+        record1.setIsForSale(true);
+        record1.setIsSold(false);
         record1.setPrice(15.0);
 
         List<ArtworkRecord> recordList = new ArrayList<>();

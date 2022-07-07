@@ -5,6 +5,7 @@ import com.kenzie.appserver.repositories.ArtworkRepository;
 import com.kenzie.appserver.repositories.model.ArtworkRecord;
 import com.kenzie.appserver.service.model.Artwork;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class ArtworkService {
     private ArtworkRepository artworkRepository;
     private CacheStore cache;
 
+    @Autowired
     public ArtworkService(ArtworkRepository artworkRepository) {
         this.artworkRepository = artworkRepository;
     }
@@ -41,10 +43,9 @@ public class ArtworkService {
         artworkRecord.setDateCreated(artwork.getDateCreated());
         artworkRecord.setHeight(artwork.getHeight());
         artworkRecord.setWidth(artwork.getWidth());
-        artworkRecord.setSold(false);
-        artworkRecord.setForSale(artwork.getIsForSale());
+        artworkRecord.setIsSold(artwork.getIsSold());
+        artworkRecord.setIsForSale(artwork.getIsForSale());
         artworkRecord.setPrice(artwork.getPrice());
-
         artworkRepository.save(artworkRecord);
         return artwork;
     }
@@ -59,8 +60,8 @@ public class ArtworkService {
             artworkRecord.setDateCreated(artwork.getDateCreated());
             artworkRecord.setHeight(artwork.getHeight());
             artworkRecord.setWidth(artwork.getWidth());
-            artworkRecord.setSold(artwork.getIsSold());
-            artworkRecord.setForSale(artwork.getIsForSale());
+            artworkRecord.setIsSold(artwork.getIsSold());
+            artworkRecord.setIsForSale(artwork.getIsForSale());
             artworkRecord.setPrice(artwork.getPrice());
             artworkRepository.save(artworkRecord);
             cache.evict(artwork.getId());

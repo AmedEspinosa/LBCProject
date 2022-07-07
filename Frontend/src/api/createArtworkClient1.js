@@ -57,7 +57,6 @@ export default class CreateArtworkClient extends BaseClass {
             console.log(price);
 
             const response = await this.client.post(`/artwork`,{
-            forSale: isForSale,
             artistName: artistName,
             title: title,
             dateCreated: dateCreated,

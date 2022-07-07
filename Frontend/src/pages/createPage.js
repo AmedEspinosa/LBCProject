@@ -5,7 +5,7 @@ import CreateArtworkClient from "../api/createArtworkClient1";
 /**
  * Logic needed for the view playlist page of the website.
  */
-class createPage extends BaseClass {
+class CreatePage extends BaseClass {
 
     constructor() {
         super();
@@ -65,27 +65,24 @@ class createPage extends BaseClass {
     async onCreate(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
-        //this.dataStore.set("artwork", null);
 
         let artistName = document.getElementById("create-artwork-artist").value;
-        //this.dataStore.set("artistName", artistName);
-
         let title = document.getElementById("create-artwork-title").value;
         let dateCreated = document.getElementById("create-artwork-dateCreated").value;
-        let height = document.getElementById("create-artwork-height").value;
-        let width = document.getElementById("create-artwork-width").value;
+        let height = document.getElementById("create-artwork-height").valueAsNumber;
+        let width = document.getElementById("create-artwork-width").valueAsNumber;
         let isForSale = document.getElementById("create-artwork-isForSale").value;
-        let price = document.getElementById("create-artwork-price").value;
+        let price = document.getElementById("create-artwork-price").valueAsNumber;
 
         const createdArtwork = await this.client.addNewArtwork(artistName, title, dateCreated,
             height, width, isForSale, price);
         this.dataStore.set("createdArtwork", createdArtwork);
 
-//        if (createdArtwork) {
-//            this.showMessage(`Created ${createdArtwork.artistName}!`)
-//        } else {
-//            this.errorHandler("Error creating!  Try again...");
-//        }
+        if (createdArtwork) {
+            this.showMessage(`Created ${createdArtwork.artistName}!`)
+        } else {
+            this.errorHandler("Error creating!  Try again...");
+        }
     }
 }
 
@@ -93,8 +90,8 @@ class createPage extends BaseClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const createPage1 = new createPage();
-    createPage1.mount();
+    const createPage = new CreatePage();
+    createPage.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);

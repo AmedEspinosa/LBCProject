@@ -5,11 +5,11 @@ import UpdateArtworkClient from "../api/updateArtworkClient";
 /**
  * Logic needed for the view playlist page of the website.
  */
-class updatePage extends BaseClass {
+class UpdatePage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onGet','onUpdate', 'renderExample'], this);
+        this.bindClassMethods(['onGet','onUpdate', 'onCreate', 'renderExample'], this);
         this.dataStore = new DataStore();
     }
 
@@ -20,17 +20,9 @@ class updatePage extends BaseClass {
         document.getElementById('update-id-form').addEventListener('submit', this.onGet);
         this.client = new UpdateArtworkClient();
         this.dataStore.addChangeListener(this.renderExample);
-        this.onUpdate();
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
-
-    async onGet() {
-        event.preventDefault();
-
-         let result = await this.client.getElementById(this.errorHandler);
-         this.dataStore.set("id", result);
-    }
 
     async renderExample() {
         let resultArea = document.getElementById("result-info");
@@ -57,6 +49,13 @@ class updatePage extends BaseClass {
     }
 
     // Event Handlers --------------------------------------------------------------------------------------------------
+
+    async onGet(event) {
+        event.preventDefault();
+
+         let result = await this.client.getElementById(this.errorHandler);
+         this.dataStore.set("id", result);
+    }
 
     async onUpdate(event) {
         // Prevent the page from refreshing on form submit
@@ -126,8 +125,8 @@ class updatePage extends BaseClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const updatePage1 = new updatePage();
-    updatePage1.mount();
+    const updatePage = new UpdatePage();
+    updatePage.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);

@@ -41,7 +41,7 @@ public class GetArtworkController {
         artworkResponse.setTitle(artwork.getTitle());
         artworkResponse.setForSale(artwork.getIsForSale());
         artworkResponse.setSold(artwork.getIsSold());
-        artworkResponse.setPrice(artwork.getPrice().intValue());
+        artworkResponse.setPrice(artwork.getPrice());
 
         return artworkResponse;
     }

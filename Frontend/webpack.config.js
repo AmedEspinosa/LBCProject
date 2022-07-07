@@ -66,7 +66,7 @@ module.exports = {
        template: './src/deleteArtworkPage.html',
        filename: 'deleteArtworkPage.html',
        inject: false
-    })
+    }),
     new CopyPlugin({
       patterns: [
         {

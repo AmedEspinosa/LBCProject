@@ -27,6 +27,7 @@ public class ArtworkServiceTest {
         artworkRepository = mock(ArtworkRepository.class);
         artworkService = new ArtworkService(artworkRepository);
     }
+
     /** ------------------------------------------------------------------------.
      *  artworkService.findById
      *  ------------------------------------------------------------------------ **/
@@ -81,6 +82,7 @@ public class ArtworkServiceTest {
         // THEN
         Assertions.assertNull(artwork, "The example is null when not found");
     }
+
 
     /** ------------------------------------------------------------------------.
      *  artworkService.findAllArtwork
@@ -154,6 +156,7 @@ public class ArtworkServiceTest {
     /** ------------------------------------------------------------------------.
      *  artworkService.addNewArtwork
      *  ------------------------------------------------------------------------ **/
+
     @Test
     void addNewArtwork() {
         // GIVEN
@@ -194,11 +197,100 @@ public class ArtworkServiceTest {
         Assertions.assertEquals(record.getPrice(), artwork.getPrice(), "The artwork price matches");
     }
 
-    /** ------------------------------------------------------------------------
-     *  artworkService.updateArtwork
-     *  ------------------------------------------------------------------------ **/
+    /**
+     * ------------------------------------------------------------------------
+     * artworkService.updateArtwork
+     * ------------------------------------------------------------------------
+     **/
 
-    /** ------------------------------------------------------------------------
-     *  artworkService.deleteArtwork
-     *  ------------------------------------------------------------------------ **/
+    @Test
+    void updateArtwork() {
+        String artworkId = randomUUID().toString();
+
+        ArtworkRecord ArtworkRecord = new ArtworkRecord();
+        ArtworkRecord.setId(randomUUID().toString());
+        ArtworkRecord.setArtistName("artistname1");
+        ArtworkRecord.setDateCreated("recorddate1");
+        ArtworkRecord.setDatePosted("recorddate1");
+        ArtworkRecord.setHeight(10);
+        ArtworkRecord.setWidth(10);
+        ArtworkRecord.setForSale(true);
+        ArtworkRecord.setSold(false);
+        ArtworkRecord.setPrice(10);
+
+
+        ArgumentCaptor<ArtworkRecord> artworkRecordCaptor = ArgumentCaptor.forClass(ArtworkRecord.class);
+
+        Artwork artwork = new Artwork(artworkId, ArtworkRecord.getDatePosted(), ArtworkRecord.getArtistName(), ArtworkRecord.getTitle(),
+                ArtworkRecord.getDateCreated(), ArtworkRecord.getHeight(), ArtworkRecord.getWidth(),
+                ArtworkRecord.getIsSold(), ArtworkRecord.getIsForSale(), ArtworkRecord.getPrice());
+
+        artworkService.updateArtwork(artwork);
+
+        verify(artworkRepository).save(artworkRecordCaptor.capture());
+        ArtworkRecord record = artworkRecordCaptor.getValue();
+
+        Assertions.assertNotNull(record, "The artwork record is returned");
+        Assertions.assertEquals(record.getId(), artwork.getId(), "The artwork id matches");
+        Assertions.assertEquals(record.getDatePosted(), artwork.getDatePosted(), "The artwork date matches");
+        Assertions.assertEquals(record.getArtistName(), artwork.getArtistName(), "The artwork name matches");
+        Assertions.assertEquals(record.getTitle(), artwork.getTitle(), "The artwork title matches");
+        Assertions.assertEquals(record.getDateCreated(), artwork.getDateCreated(), "The artwork created date matches");
+        Assertions.assertEquals(record.getHeight(), artwork.getHeight(), "The artwork height matches");
+        Assertions.assertEquals(record.getWidth(), artwork.getWidth(), "The artwork width matches");
+        Assertions.assertEquals(record.getIsSold(), artwork.getIsSold(), "The artwork is sold flag matches");
+        Assertions.assertEquals(record.getIsForSale(), artwork.getIsForSale(), "The artwork is for sale flag matches");
+        Assertions.assertEquals(record.getPrice(), artwork.getPrice(), "The artwork price matches");
+
+
+    }
+
+
+    /**
+     * ------------------------------------------------------------------------
+     * artworkService.deleteArtwork
+     * ------------------------------------------------------------------------
+     **/
+
+    @Test
+    void deleteArtwork() {
+        String artworkId = randomUUID().toString();
+
+        ArtworkRecord ArtworkRecord = new ArtworkRecord();
+        ArtworkRecord.setId(randomUUID().toString());
+        ArtworkRecord.setArtistName("artistname1");
+        ArtworkRecord.setDateCreated("recorddate1");
+        ArtworkRecord.setDatePosted("recorddate1");
+        ArtworkRecord.setHeight(10);
+        ArtworkRecord.setWidth(10);
+        ArtworkRecord.setForSale(true);
+        ArtworkRecord.setSold(false);
+        ArtworkRecord.setPrice(10);
+
+
+        ArgumentCaptor<ArtworkRecord> artworkRecordCaptor = ArgumentCaptor.forClass(ArtworkRecord.class);
+
+        Artwork artwork = new Artwork(artworkId, ArtworkRecord.getDatePosted(), ArtworkRecord.getArtistName(), ArtworkRecord.getTitle(),
+                ArtworkRecord.getDateCreated(), ArtworkRecord.getHeight(), ArtworkRecord.getWidth(),
+                ArtworkRecord.getIsSold(), ArtworkRecord.getIsForSale(), ArtworkRecord.getPrice());
+
+
+        artworkService.deleteArtwork(artwork.getId());
+
+
+        verify(artworkRepository).delete(artworkRecordCaptor.capture());
+        ArtworkRecord record = artworkRecordCaptor.getValue();
+
+        Assertions.assertNotNull(record, "The artwork record is returned");
+        Assertions.assertEquals(record.getId(), artwork.getId(), "The artwork id matches");
+        Assertions.assertEquals(record.getDatePosted(), artwork.getDatePosted(), "The artwork date matches");
+        Assertions.assertEquals(record.getArtistName(), artwork.getArtistName(), "The artwork name matches");
+        Assertions.assertEquals(record.getTitle(), artwork.getTitle(), "The artwork title matches");
+        Assertions.assertEquals(record.getDateCreated(), artwork.getDateCreated(), "The artwork created date matches");
+        Assertions.assertEquals(record.getHeight(), artwork.getHeight(), "The artwork height matches");
+        Assertions.assertEquals(record.getWidth(), artwork.getWidth(), "The artwork width matches");
+        Assertions.assertEquals(record.getIsSold(), artwork.getIsSold(), "The artwork is sold flag matches");
+        Assertions.assertEquals(record.getIsForSale(), artwork.getIsForSale(), "The artwork is for sale flag matches");
+        Assertions.assertEquals(record.getPrice(), artwork.getPrice(), "The artwork price matches");
+    }
 }

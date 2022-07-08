@@ -3,6 +3,7 @@ package com.kenzie.appserver.service;
 import com.kenzie.appserver.repositories.ArtworkRepository;
 import com.kenzie.appserver.repositories.model.ArtworkRecord;
 import com.kenzie.appserver.service.model.Artwork;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 import static java.util.UUID.randomUUID;
 import static org.mockito.Mockito.*;
@@ -28,11 +28,9 @@ public class ArtworkServiceTest {
         artworkService = new ArtworkService(artworkRepository);
     }
 
-    /**
-     * ------------------------------------------------------------------------
-     * artworkService.findById
-     * ------------------------------------------------------------------------
-     **/
+    /** ------------------------------------------------------------------------.
+     *  artworkService.findById
+     *  ------------------------------------------------------------------------ **/
 
     @Test
     void findById() {
@@ -72,7 +70,7 @@ public class ArtworkServiceTest {
     }
 
     @Test
-    void findByArtworkId_invalid() {
+    void findById_invalidArtworkId_returnsNulls() {
         // GIVEN
         String id = randomUUID().toString();
 
@@ -86,11 +84,9 @@ public class ArtworkServiceTest {
     }
 
 
-    /**
-     * ------------------------------------------------------------------------
-     * artworkService.findAllArtwork
-     * ------------------------------------------------------------------------
-     **/
+    /** ------------------------------------------------------------------------.
+     *  artworkService.findAllArtwork
+     *  ------------------------------------------------------------------------ **/
 
     @Test
     void getAllArtwork() {
@@ -157,12 +153,10 @@ public class ArtworkServiceTest {
         }
     }
 
+    /** ------------------------------------------------------------------------.
+     *  artworkService.addNewArtwork
+     *  ------------------------------------------------------------------------ **/
 
-    /**
-     * ------------------------------------------------------------------------
-     * artworkService.addNewArtwork
-     * ------------------------------------------------------------------------
-     **/
     @Test
     void addNewArtwork() {
         // GIVEN

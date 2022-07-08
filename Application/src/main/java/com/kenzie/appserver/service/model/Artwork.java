@@ -11,10 +11,10 @@ public class Artwork {
     private final int width;
     private final boolean sold;
     private final boolean forSale;
-    private final Double price;
+    private final int price;
 
     public Artwork(String id, String datePosted, String artistName, String title, String dateCreated, int height,
-                   int width, boolean isSold, boolean isForSale, Double price) {
+                   int width, boolean isSold, boolean isForSale, int price) {
         this.id = id;
         this.datePosted = datePosted;
         this.artistName = artistName;
@@ -63,7 +63,7 @@ public class Artwork {
         return forSale;
     }
 
-    public Double getPrice() {
+    public int getPrice() {
         return price;
     }
 }

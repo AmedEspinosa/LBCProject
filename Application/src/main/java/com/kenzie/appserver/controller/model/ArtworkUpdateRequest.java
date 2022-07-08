@@ -49,7 +49,7 @@ public class ArtworkUpdateRequest {
 
     @Min(0)
     @JsonProperty("price")
-    private Double price;
+    private int price;
 
     public String getId() {
         return id;
@@ -123,11 +123,11 @@ public class ArtworkUpdateRequest {
         isForSale = forSale;
     }
 
-    public Double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 }

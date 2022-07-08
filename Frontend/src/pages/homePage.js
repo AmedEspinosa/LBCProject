@@ -83,7 +83,7 @@ class HomePage extends BaseClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const homePage = new homePage();
+    const homePage = new HomePage();
     homePage.mount();
 };
 

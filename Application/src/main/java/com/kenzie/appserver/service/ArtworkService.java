@@ -5,6 +5,7 @@ import com.kenzie.appserver.repositories.ArtworkRepository;
 import com.kenzie.appserver.repositories.model.ArtworkRecord;
 import com.kenzie.appserver.service.model.Artwork;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 @Service
 public class ArtworkService {
 
+    @Autowired
     private ArtworkRepository artworkRepository;
     private CacheStore cache;
 

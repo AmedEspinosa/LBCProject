@@ -36,6 +36,7 @@ class ArtworkControllerTest {
 
     @Test
     public void getById_ArtworkExists() throws Exception {
+        //GIVEN
         String id = UUID.randomUUID().toString();
         String datePosted = mockNeat.strings().valStr();
         String artistName = mockNeat.strings().valStr();
@@ -43,14 +44,15 @@ class ArtworkControllerTest {
         String dateCreated = mockNeat.strings().valStr();
         int height = mockNeat.ints().get();
         int width = mockNeat.ints().get();
-        boolean isSold = true;
+        boolean isSold = false;
         boolean isForSale = false;
-        Double price = mockNeat.doubles().val();
-
+        int price = mockNeat.ints().val();
 
         Artwork artwork = new Artwork(id, datePosted, artistName, title, dateCreated, height, width, isSold,
                 isForSale, price);
         Artwork persistedArtwork = artworkService.addNewArtwork(artwork);
+
+        //WHEN
         mvc.perform(get("/artwork/{id}", persistedArtwork.getId())
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("id")
@@ -68,12 +70,23 @@ class ArtworkControllerTest {
                 .andExpect(jsonPath("width")
                         .value(is(width)))
                 .andExpect(jsonPath("isSold")
-                        .value(is(isSold)))
+                        .value(is(false)))
                 .andExpect(jsonPath("isForSale")
                         .value(is(isForSale)))
                 .andExpect(jsonPath("price")
                         .value(is(price)))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void getArtwork_ArtworkDoesNotExist() throws Exception {
+        // GIVEN
+        String id = UUID.randomUUID().toString();
+        // WHEN
+        mvc.perform(get("/concerts/{concertId}", id)
+            .accept(MediaType.APPLICATION_JSON))
+        // THEN
+            .andExpect(status().isNotFound());
     }
 
     //THIS TEST WAS GIVEN TO US AND WILL NEED TO BE REPLACED WITH OUR ARTWORK INSTEAD OF "EXAMPLE"*** -LAURIE
@@ -87,7 +100,7 @@ class ArtworkControllerTest {
         int height = mockNeat.ints().get();
         int width = mockNeat.ints().get();
         boolean isForSale = true;
-        Double price = mockNeat.doubles().val();
+        int price = mockNeat.ints().val();
 
         ArtworkCreateRequest artworkCreateRequest = new ArtworkCreateRequest();
         artworkCreateRequest.setArtistName(artistName);
@@ -98,10 +111,12 @@ class ArtworkControllerTest {
 
         mapper.registerModule(new JavaTimeModule());
 
+        //WHEN
         mvc.perform(post("/artwork")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(artworkCreateRequest)))
+        //THEN
                 .andExpect(jsonPath("id")
                         .exists())
                 .andExpect(jsonPath("datePosted")
@@ -123,5 +138,45 @@ class ArtworkControllerTest {
                 .andExpect(jsonPath("price")
                         .value(is(price)))
                 .andExpect(status().isCreated());
+    }
+    public void updateArtwork_PutSuccessful() throws Exception {
+        // GIVEN
+        String id = UUID.randomUUID().toString();
+        String name = mockNeat.strings().valStr();
+        String date = LocalDate.now().toString();
+        Double ticketBasePrice = 90.0;
+
+        Concert concert = new Concert(id, name, date, ticketBasePrice, false);
+        Concert persistedConcert = concertService.addNewConcert(concert);
+
+        String newName = mockNeat.strings().valStr();
+        Double newTicketBasePrice = 100.0;
+
+        ConcertUpdateRequest concertUpdateRequest = new ConcertUpdateRequest();
+        concertUpdateRequest.setId(id);
+        concertUpdateRequest.setDate(LocalDate.now());
+        concertUpdateRequest.setName(newName);
+        concertUpdateRequest.setTicketBasePrice(newTicketBasePrice);
+        concertUpdateRequest.setReservationClosed(true);
+
+        mapper.registerModule(new JavaTimeModule());
+
+        // WHEN
+        mvc.perform(put("/concerts")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(mapper.writeValueAsString(concertUpdateRequest)))
+                // THEN
+                .andExpect(jsonPath("id")
+                        .exists())
+                .andExpect(jsonPath("name")
+                        .value(is(newName)))
+                .andExpect(jsonPath("date")
+                        .value(is(date)))
+                .andExpect(jsonPath("ticketBasePrice")
+                        .value(is(newTicketBasePrice)))
+                .andExpect(jsonPath("reservationClosed")
+                        .value(is(true)))
+                .andExpect(status().isOk());
     }
 }

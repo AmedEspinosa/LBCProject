@@ -36,7 +36,7 @@ class createPage extends BaseClass {
                 <div>DateCreated: ${artwork.dateCreated}</div>
                 <div>Height: ${artwork.height}</div>
                 <div>Width: ${artwork.width}</div>
-                <div>IsForSale: ${artwork.isForSale}</div>
+                <div>ForSale: ${artwork.forSale}</div>
                 <div>Price: ${artwork.price}</div>
             `
         } else {
@@ -74,18 +74,18 @@ class createPage extends BaseClass {
         let dateCreated = document.getElementById("create-artwork-dateCreated").value;
         let height = document.getElementById("create-artwork-height").value;
         let width = document.getElementById("create-artwork-width").value;
-        let isForSale = document.getElementById("create-artwork-isForSale").value;
+        let forSale = document.getElementById("create-artwork-isForSale").value;
         let price = document.getElementById("create-artwork-price").value;
 
         const createdArtwork = await this.client.addNewArtwork(artistName, title, dateCreated,
-            height, width, isForSale, price);
+            height, width, forSale, price);
         this.dataStore.set("createdArtwork", createdArtwork);
 
-//        if (createdArtwork) {
-//            this.showMessage(`Created ${createdArtwork.artistName}!`)
-//        } else {
-//            this.errorHandler("Error creating!  Try again...");
-//        }
+        if (createdArtwork) {
+            this.showMessage(`Created ${createdArtwork.artistName}!`)
+        } else {
+            this.errorHandler("Error creating!  Try again...");
+        }
     }
 }
 

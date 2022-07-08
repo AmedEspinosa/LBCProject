@@ -44,7 +44,7 @@ public class ArtworkServiceTest {
         record.setWidth(48);
         record.setSold(false);
         record.setForSale(false);
-        record.setPrice(50.00);
+        record.setPrice(50);
 
         // WHEN
         when(artworkRepository.findById(id)).thenReturn(Optional.of(record));
@@ -67,7 +67,7 @@ public class ArtworkServiceTest {
     }
 
     @Test
-    void findByConcertId_invalid() {
+    void findByArtworkId_invalid() {
         // GIVEN
         String id = randomUUID().toString();
 
@@ -94,7 +94,7 @@ public class ArtworkServiceTest {
         record1.setWidth(10);
         record1.setForSale(true);
         record1.setSold(false);
-        record1.setPrice(10.0);
+        record1.setPrice(10);
 
 
         ArtworkRecord record2 = new ArtworkRecord();
@@ -106,7 +106,7 @@ public class ArtworkServiceTest {
         record1.setWidth(12);
         record1.setForSale(true);
         record1.setSold(false);
-        record1.setPrice(15.0);
+        record1.setPrice(15);
 
         List<ArtworkRecord> recordList = new ArrayList<>();
         recordList.add(record1);

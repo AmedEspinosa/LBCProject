@@ -64,8 +64,8 @@ class ViewPage extends BaseClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const homePage = new HomePage();
-    homePage.mount();
+    const viewPage = new ViewPage();
+    viewPage.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);

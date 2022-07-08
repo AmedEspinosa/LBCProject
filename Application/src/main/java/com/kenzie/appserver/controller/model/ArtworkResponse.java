@@ -32,10 +32,10 @@ public class ArtworkResponse {
     @JsonProperty("width")
     private int width;
 
-    @JsonProperty("isSold")
+    @JsonProperty("sold")
     private boolean isSold;
 
-    @JsonProperty("isForSale")
+    @JsonProperty("forSale")
     private boolean isForSale;
 
     @JsonProperty("price")
@@ -97,7 +97,7 @@ public class ArtworkResponse {
         isSold = sold;
     }
 
-    public boolean forSale() {
+    public boolean isForSale() {
         return isForSale;
     }
 

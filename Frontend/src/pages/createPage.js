@@ -5,7 +5,7 @@ import CreateArtworkClient from "../api/createArtworkClient1";
 /**
  * Logic needed for the view playlist page of the website.
  */
-class createPage extends BaseClass {
+class CreatePage extends BaseClass {
 
     constructor() {
         super();
@@ -65,11 +65,8 @@ class createPage extends BaseClass {
     async onCreate(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
-        //this.dataStore.set("artwork", null);
 
         let artistName = document.getElementById("create-artwork-artist").value;
-        //this.dataStore.set("artistName", artistName);
-
         let title = document.getElementById("create-artwork-title").value;
         let dateCreated = document.getElementById("create-artwork-dateCreated").value;
         let height = document.getElementById("create-artwork-height").value;
@@ -93,8 +90,8 @@ class createPage extends BaseClass {
  * Main method to run when the page contents have loaded.
  */
 const main = async () => {
-    const createPage1 = new createPage();
-    createPage1.mount();
+    const createPage = new CreatePage();
+    createPage.mount();
 };
 
 window.addEventListener('DOMContentLoaded', main);

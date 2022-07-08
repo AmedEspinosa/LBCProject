@@ -9,7 +9,7 @@ class DeletePage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onGet', 'onCreate', 'renderExample'], this);
+        this.bindClassMethods(['onGet', 'onDelete', 'renderExample'], this);
         this.dataStore = new DataStore();
     }
 
@@ -42,7 +42,6 @@ class DeletePage extends BaseClass {
     }
 
     // Event Handlers --------------------------------------------------------------------------------------------------
-// TODO : RE-WRITE TO DELETE ARTWORK BY ID
     async onGet(event) {
 //        // Prevent the page from refreshing on form submit
 //        event.preventDefault();
@@ -56,6 +55,22 @@ class DeletePage extends BaseClass {
 //            this.showMessage(`Got ${result.name}!`)
 //        } else {
 //            this.errorHandler("Error doing GET!  Try again...");
+//        }
+    }
+
+    async onDelete() {
+    // TODO : DELETE ARTWORK BY ID
+//        let resultArea = document.getElementById("result-info");
+//
+//        const example = this.dataStore.get("example");
+//
+//        if (example) {
+//            resultArea.innerHTML = `
+//                <div>ID: ${example.id}</div>
+//                <div>Name: ${example.name}</div>
+//            `
+//        } else {
+//            resultArea.innerHTML = "No Item";
 //        }
     }
 }

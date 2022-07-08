@@ -26,12 +26,12 @@ public class ArtworkResponse {
     private String dateCreated;
 
     @Min(0)
-    @Max(240) //inches (240" == 20ft)
+    @Max(240) //inches
     @JsonProperty("height")
     private int height;
 
     @Min(0)
-    @Max(240) //inches (240" == 20ft)
+    @Max(240) //inches
     @JsonProperty("width")
     private int width;
 
@@ -41,6 +41,7 @@ public class ArtworkResponse {
     @JsonProperty("forSale")
     private boolean isForSale;
 
+    @Min(0)
     @JsonProperty("price")
     private int price;
 
@@ -104,16 +105,16 @@ public class ArtworkResponse {
         return isSold;
     }
 
-    public void setSold(boolean sold) {
-        isSold = sold;
+    public void setIsSold(boolean isSold) {
+        this.isSold = isSold;
     }
-
+    
     public boolean isForSale() {
         return isForSale;
     }
 
-    public void setForSale(boolean forSale) {
-        isForSale = forSale;
+    public void setIsForSale(boolean isForSale) {
+        this.isForSale = isForSale;
     }
 
     public int getPrice() {
@@ -123,4 +124,5 @@ public class ArtworkResponse {
     public void setPrice(int price) {
         this.price = price;
     }
+
 }

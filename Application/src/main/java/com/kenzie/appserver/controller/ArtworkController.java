@@ -82,6 +82,7 @@ public class ArtworkController {
     private ArtworkResponse createArtworkResponse(Artwork artwork) {
         ArtworkResponse artworkResponse = new ArtworkResponse();
         artworkResponse.setId(artworkResponse.getId());
+        artworkResponse.setDatePosted(artwork.getDatePosted());
         artworkResponse.setArtistName(artwork.getArtistName());
         artworkResponse.setTitle(artwork.getTitle());
         artworkResponse.setDateCreated(artwork.getDateCreated());

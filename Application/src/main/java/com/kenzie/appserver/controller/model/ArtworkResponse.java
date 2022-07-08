@@ -13,6 +13,9 @@ public class ArtworkResponse {
     @JsonProperty("id")
     private String id;
 
+    @JsonProperty("datePosted")
+    private String datePosted;
+
     @JsonProperty("artistName")
     private String artistName;
 
@@ -47,6 +50,14 @@ public class ArtworkResponse {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getDatePosted() {
+        return datePosted;
+    }
+
+    public void setDatePosted(String datePosted) {
+        this.datePosted = datePosted;
     }
 
     public String getArtistName() {

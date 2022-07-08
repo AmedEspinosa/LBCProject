@@ -38,6 +38,9 @@ class CreatePage extends BaseClass {
                 <div>Width: ${artwork.width}</div>
                 <div>ForSale: ${artwork.forSale}</div>
                 <div>Price: ${artwork.price}</div>
+                <div>ID: ${artwork.id}</div>
+                <div>Date Posted: ${artwork.datePosted}</div>
+                <div>Is Sold: ${artwork.isSold}</div>
             `
         } else {
             resultArea.innerHTML = "No Item";

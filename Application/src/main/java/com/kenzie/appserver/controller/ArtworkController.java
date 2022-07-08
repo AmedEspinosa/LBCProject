@@ -81,7 +81,7 @@ public class ArtworkController {
 
     private ArtworkResponse createArtworkResponse(Artwork artwork) {
         ArtworkResponse artworkResponse = new ArtworkResponse();
-        artworkResponse.setId(artworkResponse.getId());
+        artworkResponse.setId(artwork.getId());
         artworkResponse.setDatePosted(artwork.getDatePosted());
         artworkResponse.setArtistName(artwork.getArtistName());
         artworkResponse.setTitle(artwork.getTitle());
@@ -90,7 +90,7 @@ public class ArtworkController {
         artworkResponse.setWidth(artwork.getWidth());
         artworkResponse.setSold(artwork.getIsSold());
         artworkResponse.setForSale(artwork.getIsForSale());
-        artworkResponse.setPrice(artworkResponse.getPrice());
+        artworkResponse.setPrice(artwork.getPrice());
         return artworkResponse;
     }
 }

@@ -61,6 +61,7 @@ export default class CreateArtworkClient extends BaseClass {
             console.log("This is the price before the return:" + price);
             console.log("This is the client post response being printed before return" + response);
             console.log("This is the client post response.data being printed before return" + response.data);
+            console.log(response.data);
             return response.data;
         } catch (error) {
             console.log(error);

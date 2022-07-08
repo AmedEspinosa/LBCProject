@@ -44,8 +44,8 @@ public class ArtworkService {
         artworkRecord.setDateCreated(artwork.getDateCreated());
         artworkRecord.setHeight(artwork.getHeight());
         artworkRecord.setWidth(artwork.getWidth());
-        artworkRecord.setIsSold(artwork.getIsSold());
-        artworkRecord.setIsForSale(artwork.getIsForSale());
+        artworkRecord.setSold(artwork.getIsSold());
+        artworkRecord.setForSale(artwork.getIsForSale());
         artworkRecord.setPrice(artwork.getPrice());
         artworkRepository.save(artworkRecord);
         return artwork;
@@ -61,8 +61,8 @@ public class ArtworkService {
             artworkRecord.setDateCreated(artwork.getDateCreated());
             artworkRecord.setHeight(artwork.getHeight());
             artworkRecord.setWidth(artwork.getWidth());
-            artworkRecord.setIsSold(artwork.getIsSold());
-            artworkRecord.setIsForSale(artwork.getIsForSale());
+            artworkRecord.setSold(artwork.getIsSold());
+            artworkRecord.setForSale(artwork.getIsForSale());
             artworkRecord.setPrice(artwork.getPrice());
             artworkRepository.save(artworkRecord);
             cache.evict(artwork.getId());

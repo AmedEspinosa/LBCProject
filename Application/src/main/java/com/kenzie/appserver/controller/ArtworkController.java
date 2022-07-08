@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static java.util.UUID.randomUUID;
 
@@ -39,15 +40,17 @@ public class ArtworkController {
 
     @PostMapping
     public ResponseEntity<ArtworkResponse> addNewArtwork(@RequestBody ArtworkCreateRequest artworkCreateRequest) {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         Artwork artwork = new Artwork(randomUUID().toString(),
-                LocalDateTime.now().toString(),
+                now.format(formatter),
                 artworkCreateRequest.getArtistName(),
                 artworkCreateRequest.getTitle(),
                 artworkCreateRequest.getDateCreated(),
                 artworkCreateRequest.getHeight(),
                 artworkCreateRequest.getWidth(),
                 false,
-                artworkCreateRequest.forSale(),
+                artworkCreateRequest.getIsForSale(),
                 artworkCreateRequest.getPrice());
         artworkService.addNewArtwork(artwork);
         ArtworkResponse artworkResponse = createArtworkResponse(artwork);
@@ -82,6 +85,7 @@ public class ArtworkController {
     private ArtworkResponse createArtworkResponse(Artwork artwork) {
         ArtworkResponse artworkResponse = new ArtworkResponse();
         artworkResponse.setId(artwork.getId());
+
         artworkResponse.setDatePosted(artwork.getDatePosted());
         artworkResponse.setArtistName(artwork.getArtistName());
         artworkResponse.setTitle(artwork.getTitle());

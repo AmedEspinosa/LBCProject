@@ -89,8 +89,8 @@ public class ArtworkRecord {
         return isSold;
     }
 
-    public void setSold(boolean sold) {
-        isSold = sold;
+    public void setSold(boolean isSold) {
+        this.isSold = isSold;
     }
 
     @DynamoDBAttribute(attributeName = "ForSale")
@@ -98,8 +98,8 @@ public class ArtworkRecord {
         return isForSale;
     }
 
-    public void setForSale(boolean forSale) {
-        isForSale = forSale;
+    public void setForSale(boolean isForSale) {
+        this.isForSale = isForSale;
     }
 
     @DynamoDBAttribute(attributeName = "Price")

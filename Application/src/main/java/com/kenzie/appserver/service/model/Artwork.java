@@ -66,4 +66,20 @@ public class Artwork {
     public int getPrice() {
         return price;
     }
+
+    @Override
+    public String toString() {
+        return "Artwork{" +
+                "id='" + id + '\'' +
+                ", datePosted='" + datePosted + '\'' +
+                ", artistName='" + artistName + '\'' +
+                ", title='" + title + '\'' +
+                ", dateCreated='" + dateCreated + '\'' +
+                ", height=" + height +
+                ", width=" + width +
+                ", isSold=" + isSold +
+                ", isForSale=" + isForSale +
+                ", price=" + price +
+                '}';
+    }
 }

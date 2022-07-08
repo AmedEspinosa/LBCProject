@@ -6,15 +6,17 @@ import com.kenzie.appserver.service.model.Artwork;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import static java.util.UUID.randomUUID;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class ArtworkServiceTest {
     private ArtworkRepository artworkRepository;
@@ -80,6 +82,10 @@ public class ArtworkServiceTest {
         Assertions.assertNull(artwork, "The example is null when not found");
     }
 
+
+    /** ------------------------------------------------------------------------
+     *  artworkService.findAllArtwork
+     *  ------------------------------------------------------------------------ **/
 
     @Test
     void getAllArtwork() {
@@ -153,6 +159,45 @@ public class ArtworkServiceTest {
     /** ------------------------------------------------------------------------
      *  artworkService.addNewArtwork
      *  ------------------------------------------------------------------------ **/
+    @Test
+    void addNewArtwork() {
+        // GIVEN
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String id = randomUUID().toString();
+        String datePosted = simpleDateFormat.format(new Date());
+        String artistName = "test name";
+        String title = "test title";
+        String dateCreated = "01-01-2020";
+        int height = 10;
+        int width = 10;
+        boolean isSold = false;
+        boolean isForSale = true;
+        int price = 100;
+        Artwork artwork = new Artwork(id, datePosted, artistName, title, dateCreated, height, width, isSold,
+                isForSale, price);
+
+        ArgumentCaptor<ArtworkRecord> artworkRecordArgumentCaptor = ArgumentCaptor.forClass(ArtworkRecord.class);
+
+        // WHEN
+        Artwork returnedArtwork = artworkService.addNewArtwork(artwork);
+
+        // THEN
+        Assertions.assertNotNull(returnedArtwork);
+        verify(artworkRepository).save(artworkRecordArgumentCaptor.capture());
+        ArtworkRecord record = artworkRecordArgumentCaptor.getValue();
+
+        Assertions.assertNotNull(record, "The artwork record is returned");
+        Assertions.assertEquals(record.getId(), artwork.getId(), "The artwork id matches");
+        Assertions.assertEquals(record.getDatePosted(), artwork.getDatePosted(), "The artwork date matches");
+        Assertions.assertEquals(record.getArtistName(), artwork.getArtistName(), "The artwork name matches");
+        Assertions.assertEquals(record.getTitle(), artwork.getTitle(), "The artwork title matches");
+        Assertions.assertEquals(record.getDateCreated(), artwork.getDateCreated(), "The artwork created date matches");
+        Assertions.assertEquals(record.getHeight(), artwork.getHeight(), "The artwork height matches");
+        Assertions.assertEquals(record.getWidth(), artwork.getWidth(), "The artwork width matches");
+        Assertions.assertEquals(record.getIsSold(), artwork.getIsSold(), "The artwork is sold flag matches");
+        Assertions.assertEquals(record.getIsForSale(), artwork.getIsForSale(), "The artwork is for sale flag matches");
+        Assertions.assertEquals(record.getPrice(), artwork.getPrice(), "The artwork price matches");
+    }
 
     /** ------------------------------------------------------------------------
      *  artworkService.updateArtwork
@@ -161,9 +206,4 @@ public class ArtworkServiceTest {
     /** ------------------------------------------------------------------------
      *  artworkService.deleteArtwork
      *  ------------------------------------------------------------------------ **/
-
-    /** ------------------------------------------------------------------------
-     *  artworkService.findAllArtwork
-     *  ------------------------------------------------------------------------ **/
-
 }

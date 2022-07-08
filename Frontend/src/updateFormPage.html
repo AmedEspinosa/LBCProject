@@ -24,7 +24,7 @@
 </div>
 
 <div class="card">
-    <h2>Update Art</h2>
+    <label>Update Art</label>
     <form class="card-content" id="update-id-form">
         <p class="form-field">
             <label>Today's Date:</label>
@@ -39,26 +39,11 @@
             <input type="number" required class="validated-field" id="update-height-field">
             <label>Width(Inches):</label>
             <input type="number" required class="validated-field" id="update-width-field">
-            <label> Is it sold?</label>
-            <label>
-            <input type="radio" name="choice-radio" required class="validated-field" id="update-artwork-isSoldYes">
-            Yes
-            </label>
-            <label>
-            <input type="radio" name="choice-radio" required class="validated-field" id="update-artwork-isSoldNo">
-            No
-            </label>
-            <h3> Is it for sale?</h3>
-            <label>
-            <input type="radio" name="choice-radio" required class="validated-field" id="update-artwork-isForSaleYes">
-            Yes
-            </label>
-            <label>
-            <input type="radio" name="choice-radio" required class="validated-field" id="update-artwork-isForSaleNo">
-            No
-            </label>
-            <h3>Price:</h3>
-            <label> Enter dollars in whole amount(For example: $20.00 can be entered as 20.00)</label>
+            <label> Is it sold? (true OR false) </label>
+            <input type="text" required class="validated-field" id="update-artwork-isSold">
+            <label> Is it for sale? (true OR false)</label>
+            <input type="text" required class="validated-field" id="update-artwork-isForSale">
+            <label>Price:</label>
             <input type="number" required class="validate-field" id="update-artwork-price">
         <button type="submit">Update</button>
     </form>

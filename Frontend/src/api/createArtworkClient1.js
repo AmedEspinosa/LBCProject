@@ -46,15 +46,8 @@ export default class CreateArtworkClient extends BaseClass {
         }
     }
 
-    async addNewArtwork(artistName, title, dateCreated, height, width, isForSale, price, errorCallback) {
+    async addNewArtwork(artistName, title, dateCreated, height, width, forSale, price, errorCallback) {
         try {
-            console.log(artistName);
-            console.log(title);
-            console.log(dateCreated);
-            console.log(height);
-            console.log(width);
-            console.log(isForSale);
-            console.log(price);
 
             const response = await this.client.post(`/artwork`,{
             artistName: artistName,
@@ -62,10 +55,12 @@ export default class CreateArtworkClient extends BaseClass {
             dateCreated: dateCreated,
             height: height,
             width: width,
-            isForSale: isForSale,
+            forSale: forSale,
             price: price
             });
-            console.log(response.data);
+            console.log("This is the price before the return:" + price);
+            console.log("This is the client post response being printed before return" + response);
+            console.log("This is the client post response.data being printed before return" + response.data);
             return response.data;
         } catch (error) {
             console.log(error);

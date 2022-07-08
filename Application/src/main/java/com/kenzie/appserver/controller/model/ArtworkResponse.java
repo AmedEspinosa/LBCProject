@@ -4,11 +4,17 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ArtworkResponse {
 
     @JsonProperty("id")
     private String id;
+
+    @JsonProperty("datePosted")
+    private String datePosted;
 
     @JsonProperty("artistName")
     private String artistName;
@@ -19,23 +25,25 @@ public class ArtworkResponse {
     @JsonProperty("dateCreated")
     private String dateCreated;
 
-    @JsonProperty("datePosted")
-    private String datePosted;
-
+    @Min(0)
+    @Max(240) //inches
     @JsonProperty("height")
     private int height;
 
+    @Min(0)
+    @Max(240) //inches
     @JsonProperty("width")
     private int width;
 
-    @JsonProperty("isSold")
+    @JsonProperty("sold")
     private boolean isSold;
 
-    @JsonProperty("isForSale")
+    @JsonProperty("forSale")
     private boolean isForSale;
 
+    @Min(0)
     @JsonProperty("price")
-    private Double price;
+    private int price;
 
     public String getId() {
         return id;
@@ -43,6 +51,14 @@ public class ArtworkResponse {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getDatePosted() {
+        return datePosted;
+    }
+
+    public void setDatePosted(String datePosted) {
+        this.datePosted = datePosted;
     }
 
     public String getArtistName() {
@@ -85,15 +101,15 @@ public class ArtworkResponse {
         this.width = width;
     }
 
-    public boolean getIsSold() {
+    public boolean sold() {
         return isSold;
     }
 
     public void setIsSold(boolean isSold) {
         this.isSold = isSold;
     }
-
-    public boolean getIsForSale() {
+    
+    public boolean isForSale() {
         return isForSale;
     }
 
@@ -101,19 +117,12 @@ public class ArtworkResponse {
         this.isForSale = isForSale;
     }
 
-    public Double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
-    public String getDatePosted() {
-        return datePosted;
-    }
-
-    public void setDatePosted(String datePosted) {
-        this.datePosted = datePosted;
-    }
 }

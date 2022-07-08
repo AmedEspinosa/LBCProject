@@ -36,7 +36,7 @@ class CreatePage extends BaseClass {
                 <div>DateCreated: ${artwork.dateCreated}</div>
                 <div>Height: ${artwork.height}</div>
                 <div>Width: ${artwork.width}</div>
-                <div>IsForSale: ${artwork.isForSale}</div>
+                <div>ForSale: ${artwork.forSale}</div>
                 <div>Price: ${artwork.price}</div>
             `
         } else {
@@ -69,13 +69,13 @@ class CreatePage extends BaseClass {
         let artistName = document.getElementById("create-artwork-artist").value;
         let title = document.getElementById("create-artwork-title").value;
         let dateCreated = document.getElementById("create-artwork-dateCreated").value;
-        let height = document.getElementById("create-artwork-height").valueAsNumber;
-        let width = document.getElementById("create-artwork-width").valueAsNumber;
-        let isForSale = document.getElementById("create-artwork-isForSale").value;
-        let price = document.getElementById("create-artwork-price").valueAsNumber;
+        let height = document.getElementById("create-artwork-height").value;
+        let width = document.getElementById("create-artwork-width").value;
+        let forSale = document.getElementById("create-artwork-isForSale").value;
+        let price = document.getElementById("create-artwork-price").value;
 
         const createdArtwork = await this.client.addNewArtwork(artistName, title, dateCreated,
-            height, width, isForSale, price);
+            height, width, forSale, price);
         this.dataStore.set("createdArtwork", createdArtwork);
 
         if (createdArtwork) {

@@ -52,7 +52,6 @@ public class ArtworkController {
                 false,
                 artworkCreateRequest.getIsForSale(),
                 artworkCreateRequest.getPrice());
-
         artworkService.addNewArtwork(artwork);
         ArtworkResponse artworkResponse = createArtworkResponse(artwork);
 
@@ -86,14 +85,15 @@ public class ArtworkController {
     private ArtworkResponse createArtworkResponse(Artwork artwork) {
         ArtworkResponse artworkResponse = new ArtworkResponse();
         artworkResponse.setId(artwork.getId());
+
+        artworkResponse.setDatePosted(artwork.getDatePosted());
         artworkResponse.setArtistName(artwork.getArtistName());
         artworkResponse.setTitle(artwork.getTitle());
         artworkResponse.setDateCreated(artwork.getDateCreated());
-        artworkResponse.setDatePosted(artwork.getDatePosted());
         artworkResponse.setHeight(artwork.getHeight());
         artworkResponse.setWidth(artwork.getWidth());
-        artworkResponse.setIsSold(artwork.getIsSold());
-        artworkResponse.setIsForSale(artwork.getIsForSale());
+        artworkResponse.setSold(artwork.getIsSold());
+        artworkResponse.setForSale(artwork.getIsForSale());
         artworkResponse.setPrice(artwork.getPrice());
         return artworkResponse;
     }

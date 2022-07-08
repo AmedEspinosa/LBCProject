@@ -15,6 +15,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 @Service
 public class ArtworkService {
 
+    @Autowired
     private ArtworkRepository artworkRepository;
     private CacheStore cache;
 

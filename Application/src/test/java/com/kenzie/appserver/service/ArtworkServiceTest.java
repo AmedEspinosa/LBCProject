@@ -44,9 +44,9 @@ public class ArtworkServiceTest {
         record.setDateCreated("testCreatedDate");
         record.setHeight(48);
         record.setWidth(48);
-        record.setIsSold(false);
-        record.setIsForSale(false);
-        record.setPrice(50.00);
+        record.setSold(false);
+        record.setForSale(false);
+        record.setPrice(50);
 
         // WHEN
         when(artworkRepository.findById(id)).thenReturn(Optional.of(record));
@@ -69,7 +69,7 @@ public class ArtworkServiceTest {
     }
 
     @Test
-    void findByConcertId_invalid() {
+    void findByArtworkId_invalid() {
         // GIVEN
         String id = randomUUID().toString();
 
@@ -83,6 +83,10 @@ public class ArtworkServiceTest {
     }
 
 
+    /** ------------------------------------------------------------------------
+     *  artworkService.findAllArtwork
+     *  ------------------------------------------------------------------------ **/
+
     @Test
     void getAllArtwork() {
 
@@ -94,10 +98,9 @@ public class ArtworkServiceTest {
         record1.setDatePosted("recorddate1");
         record1.setHeight(10);
         record1.setWidth(10);
-        record1.setIsForSale(true);
-        record1.setIsSold(false);
-        record1.setPrice(10.0);
-
+        record1.setForSale(true);
+        record1.setSold(false);
+        record1.setPrice(10);
 
         ArtworkRecord record2 = new ArtworkRecord();
         record1.setId(randomUUID().toString());
@@ -106,9 +109,9 @@ public class ArtworkServiceTest {
         record1.setDatePosted("recorddate2");
         record1.setHeight(12);
         record1.setWidth(12);
-        record1.setIsForSale(true);
-        record1.setIsSold(false);
-        record1.setPrice(15.0);
+        record1.setForSale(true);
+        record1.setSold(false);
+        record1.setPrice(15);
 
         List<ArtworkRecord> recordList = new ArrayList<>();
         recordList.add(record1);
@@ -155,6 +158,45 @@ public class ArtworkServiceTest {
     /** ------------------------------------------------------------------------
      *  artworkService.addNewArtwork
      *  ------------------------------------------------------------------------ **/
+    @Test
+    void addNewArtwork() {
+        // GIVEN
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String id = randomUUID().toString();
+        String datePosted = simpleDateFormat.format(new Date());
+        String artistName = "test name";
+        String title = "test title";
+        String dateCreated = "01-01-2020";
+        int height = 10;
+        int width = 10;
+        boolean isSold = false;
+        boolean isForSale = true;
+        int price = 100;
+        Artwork artwork = new Artwork(id, datePosted, artistName, title, dateCreated, height, width, isSold,
+                isForSale, price);
+
+        ArgumentCaptor<ArtworkRecord> artworkRecordArgumentCaptor = ArgumentCaptor.forClass(ArtworkRecord.class);
+
+        // WHEN
+        Artwork returnedArtwork = artworkService.addNewArtwork(artwork);
+
+        // THEN
+        Assertions.assertNotNull(returnedArtwork);
+        verify(artworkRepository).save(artworkRecordArgumentCaptor.capture());
+        ArtworkRecord record = artworkRecordArgumentCaptor.getValue();
+
+        Assertions.assertNotNull(record, "The artwork record is returned");
+        Assertions.assertEquals(record.getId(), artwork.getId(), "The artwork id matches");
+        Assertions.assertEquals(record.getDatePosted(), artwork.getDatePosted(), "The artwork date matches");
+        Assertions.assertEquals(record.getArtistName(), artwork.getArtistName(), "The artwork name matches");
+        Assertions.assertEquals(record.getTitle(), artwork.getTitle(), "The artwork title matches");
+        Assertions.assertEquals(record.getDateCreated(), artwork.getDateCreated(), "The artwork created date matches");
+        Assertions.assertEquals(record.getHeight(), artwork.getHeight(), "The artwork height matches");
+        Assertions.assertEquals(record.getWidth(), artwork.getWidth(), "The artwork width matches");
+        Assertions.assertEquals(record.getIsSold(), artwork.getIsSold(), "The artwork is sold flag matches");
+        Assertions.assertEquals(record.getIsForSale(), artwork.getIsForSale(), "The artwork is for sale flag matches");
+        Assertions.assertEquals(record.getPrice(), artwork.getPrice(), "The artwork price matches");
+    }
 
     @Test
     void addNewArtwork() {
@@ -202,9 +244,4 @@ public class ArtworkServiceTest {
     /** ------------------------------------------------------------------------
      *  artworkService.deleteArtwork
      *  ------------------------------------------------------------------------ **/
-
-    /** ------------------------------------------------------------------------
-     *  artworkService.findAllArtwork
-     *  ------------------------------------------------------------------------ **/
-
 }

@@ -34,13 +34,14 @@ public class ArtworkCreateRequest {
     @JsonProperty("width")
     private int width;
 
+
     @NotEmpty
-    @JsonProperty("isForSale")
-    private boolean isForSale;
+    @JsonProperty("forSale")
+    private boolean forSale;
 
     @Min(0)
     @JsonProperty("price")
-    private Double price;
+    private int price;
 
     public String getArtistName() {
         return artistName;
@@ -82,19 +83,20 @@ public class ArtworkCreateRequest {
         this.width = width;
     }
 
-    public boolean getIsForSale() {
-        return isForSale;
+    public boolean forSale() {
+        return forSale;
     }
 
-    public void setIsForSale(boolean isForSale) {
-        this.isForSale = isForSale;
+    public void setForSale(boolean forSale) {
+        this.forSale = forSale;
+
     }
 
-    public Double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 }

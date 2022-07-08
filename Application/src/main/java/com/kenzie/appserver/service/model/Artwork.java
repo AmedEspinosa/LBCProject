@@ -9,12 +9,12 @@ public class Artwork {
     private final String dateCreated; //MMDDYYYY
     private final int height;
     private final int width;
-    private final boolean isSold;
-    private final boolean isForSale;
-    private final Double price;
+    private final boolean sold;
+    private final boolean forSale;
+    private final int price;
 
     public Artwork(String id, String datePosted, String artistName, String title, String dateCreated, int height,
-                   int width, boolean isSold, boolean isForSale, Double price) {
+                   int width, boolean isSold, boolean isForSale, int price) {
         this.id = id;
         this.datePosted = datePosted;
         this.artistName = artistName;
@@ -22,8 +22,8 @@ public class Artwork {
         this.dateCreated = dateCreated;
         this.height = height;
         this.width = width;
-        this.isSold = isSold;
-        this.isForSale = isForSale;
+        this.sold = isSold;
+        this.forSale = isForSale;
         this.price = price;
     }
 
@@ -56,14 +56,14 @@ public class Artwork {
     }
 
     public boolean getIsSold() {
-        return isSold;
+        return sold;
     }
 
     public boolean getIsForSale() {
-        return isForSale;
+        return forSale;
     }
 
-    public Double getPrice() {
+    public int getPrice() {
         return price;
     }
 

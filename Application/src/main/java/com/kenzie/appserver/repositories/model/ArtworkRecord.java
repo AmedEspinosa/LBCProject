@@ -19,7 +19,7 @@ public class ArtworkRecord {
     private int width;
     private boolean isSold;
     private boolean isForSale;
-    private Double price;
+    private int price;
 
     @DynamoDBHashKey(attributeName = "Id")
     public String getId() {
@@ -103,11 +103,11 @@ public class ArtworkRecord {
     }
 
     @DynamoDBAttribute(attributeName = "Price")
-    public Double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

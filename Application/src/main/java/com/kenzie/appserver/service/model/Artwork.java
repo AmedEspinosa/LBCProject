@@ -77,8 +77,8 @@ public class Artwork {
                 ", dateCreated='" + dateCreated + '\'' +
                 ", height=" + height +
                 ", width=" + width +
-                ", isSold=" + isSold +
-                ", isForSale=" + isForSale +
+                ", sold=" + sold +
+                ", forSale=" + forSale +
                 ", price=" + price +
                 '}';
     }

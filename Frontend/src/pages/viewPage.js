@@ -17,8 +17,8 @@ class ViewPage extends BaseClass {
      * Once the page has loaded, set up the event handlers and fetch the concert list.
      */
     async mount() {
-            document.getElementById('view-artwork-form').addEventListener('submit', this.onGet);
-    //        document.getElementById('view-all-artwork-form').addEventListener('submit', this.onGetAll);
+        document.getElementById('view-artwork-form').addEventListener('submit', this.onGet);
+//        document.getElementById('view-all-artwork-form').addEventListener('submit', this.onGetAll);
 
             this.client = new ViewArtworkClient();
 
@@ -28,7 +28,7 @@ class ViewPage extends BaseClass {
     // Render Methods --------------------------------------------------------------------------------------------------
 
     async renderExample() {
-
+    
         let resultArea = document.getElementById("view-artwork-form");
 
         const artwork = this.dataStore.get("artwork");
@@ -52,24 +52,20 @@ class ViewPage extends BaseClass {
     }
 
     // Event Handlers --------------------------------------------------------------------------------------------------
+// TODO : VIEW ALL ARTWORK
     async onGetAll(event) {
-            const artworks = await this.client.getAllArtwork(this.errorHandler)
+        const artworks = await this.client.getAllArtwork(this.errorHandler)
 
-            if (artworks && artworks.length > 0) {
-                for (const artwork of artworks) {
-                    await this.getArtwork(artwork.id);
-                }
+        if (artworks && artworks.length > 0) {
+            for (const artwork of artworks) {
+                await this.getArtwork(artwork.id);
             }
-            this.dataStore.set("artworks", artworks);
         }
-
-        async onGet(event) {
-            // Prevent the page from refreshing on form submit
-            event.preventDefault();
+        this.dataStore.set("artworks", artworks);
     }
 
     async onGet(event) {
-//        // Prevent the page from refreshing on form submit
+        // Prevent the page from refreshing on form submit
         event.preventDefault();
 
         let id = document.getElementById("view-artwork-id").value;

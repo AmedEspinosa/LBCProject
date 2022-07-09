@@ -89,7 +89,6 @@ public class ArtworkCreateRequest {
 
     public void setForSale(boolean forSale) {
         this.forSale = forSale;
-
     }
 
     public int getPrice() {

@@ -238,7 +238,6 @@ class ArtworkControllerTest {
         artworkUpdateRequest.setIsForSale(isForSale);
         artworkUpdateRequest.setPrice(newPrice);
 
-
         mapper.registerModule(new JavaTimeModule());
 
         // WHEN

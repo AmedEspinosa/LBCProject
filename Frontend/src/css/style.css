@@ -1,13 +1,13 @@
 :root {
     /* css variables: https://developer.mozilla.org/en-US/docs/Web/CSS/var */
-    --primary-color: #BA55D3;
+    --primary-color: #ffffff;
     --secondary-color: #000000;
-    --error-color: rgba(194, 0, 0, 0.71);
+    --error-color: #008080;
 }
 
 
 .background {
-    background-color: #000000;
+    background-color: #8C9BB5;
     margin: 0;
     counter-reset: section;
 }
@@ -28,20 +28,33 @@
     font-size: 15px;
     height: 80px;
     justify-content: center;
-    background-color: #4B0082;
+    background-color: #000000;
     padding: 0 20px;
+}
+
+.footerOne {
+    display: flexbox;
+    word-spacing: 50px;
+    font-size: 15px;
+    height: 80px;
+    width:500 px;
+    background-color: #000000;
+}
+
+.headerFirstImage {
+    background-color: #ffffff;
 }
 
 a {
     color: #E6E6FA;
-    font-family: 'Caveat', cursive;
+    font-family: 'Garamond', cursive;
     font-size: 36px;
     word-spacing: normal;
 }
 
 .header_home {
-    font-family: 'Caveat', cursive;
-    background: -webkit-linear-gradient(#008080, #0000FF, #800080);
+    font-family: 'Garamond', cursive;
+    background: -webkit-linear-gradient(#0000FF, #008080,#0000FF);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     font-size: 200px;
@@ -90,9 +103,10 @@ img {
 .card {
     color: var(--primary-color);
     background-color: var(--secondary-color);
-    margin-left: 325px;
-    margin-top:20px;
-    padding: 0 20px;
+    margin-left: 500px;
+    margin-right: 200px;
+    margin-top:50px;
+
 }
 
 .validated-field:invalid {
@@ -142,7 +156,8 @@ select {
 
 button, label, input, select, progress, meter {
   display: block;
-  font-family: 'Caveat', cursive;
+  background-color: 0000FF;
+  font-family: 'Garamond', cursive;
   font-size: 30px;
   margin: 3px;
   box-sizing: border-box;

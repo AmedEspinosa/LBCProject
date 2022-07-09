@@ -28,9 +28,9 @@ export default class DeleteArtworkClient extends BaseClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The concert
      */
-     async deleteArtwork(id) {
+     async deleteArtwork(id, errorCallback) {
         try {
-//        TODO : CODE HERE FOR DELETING ARTWORK
+            this.client.delete(`/artwork/${id}`);
         } catch (error) {
             this.handleError("deleteArtwork", error, errorCallback)
         }

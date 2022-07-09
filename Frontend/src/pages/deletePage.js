@@ -17,7 +17,7 @@ class DeletePage extends BaseClass {
      * Once the page has loaded, set up the event handlers and fetch the concert list.
      */
     async mount() {
-        document.getElementById('delete-artwork-form').addEventListener('submit', this.onGet);
+        document.getElementById('delete-artwork-form').addEventListener('submit', this.onDelete);
 
         this.client = new DeleteArtworkClient();
 
@@ -44,10 +44,9 @@ class DeletePage extends BaseClass {
     // Event Handlers --------------------------------------------------------------------------------------------------
     async onGet(event) {
 //        // Prevent the page from refreshing on form submit
-//        event.preventDefault();
+        event.preventDefault();
 //
-//        let id = document.getElementById("id-field").value;
-//        this.dataStore.set("example", null);
+        let id = document.getElementById("delete-artwork-id").value;
 //
 //        let result = await this.client.getExample(id, this.errorHandler);
 //        this.dataStore.set("example", result);
@@ -58,20 +57,14 @@ class DeletePage extends BaseClass {
 //        }
     }
 
-    async onDelete() {
-    // TODO : DELETE ARTWORK BY ID
-//        let resultArea = document.getElementById("result-info");
-//
-//        const example = this.dataStore.get("example");
-//
-//        if (example) {
-//            resultArea.innerHTML = `
-//                <div>ID: ${example.id}</div>
-//                <div>Name: ${example.name}</div>
-//            `
-//        } else {
-//            resultArea.innerHTML = "No Item";
-//        }
+    async onDelete(event) {
+        // Prevent the page from refreshing on form submit
+        event.preventDefault();
+        let id = document.getElementById("delete-artwork-id").value;
+        if (id) {
+            this.client.deleteArtwork(id);
+            this.showMessage(`Deleted artwork ID ${id}`)
+        }
     }
 }
 

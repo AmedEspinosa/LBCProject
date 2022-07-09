@@ -5,7 +5,7 @@ export default class ViewArtworkClient extends BaseClass {
 
     constructor(props = {}){
         super();
-        const methodsToBind = ['clientLoaded', 'viewAllArtwork'];
+        const methodsToBind = ['clientLoaded', 'getArtwork', 'getAllArtwork'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);
@@ -28,14 +28,28 @@ export default class ViewArtworkClient extends BaseClass {
      * @param errorCallback (Optional) A function to execute if the call fails.
      * @returns The concert
      */
-     async viewAllArtwork() {
-         try {
-             const response = await this.client.findAllArtwork();
-             return response.data;
-         } catch (error) {
-             this.handleError("getArtwork", error, errorCallback)
-         }
-     }
+    async getArtwork(id, errorCallback) {
+        try {
+            const response = await this.client.get(`/artwork/${id}`);
+            return response.data;
+        } catch (error) {
+            this.handleError("getArtwork", error, errorCallback)
+        }
+    }
+
+    /**
+     * Get all concerts
+     * @param errorCallback (Optional) A function to execute if the call fails.
+     * @returns an array of concerts
+     */
+    async getAllArtwork(errorCallback) {
+        try {
+            const response = await this.client.get(`/artwork`);
+            return response.data;
+        } catch(error) {
+            this.handleError("getConcerts", error, errorCallback);
+        }
+    }
 
     /**
      * Helper method to log the error and run any error functions.

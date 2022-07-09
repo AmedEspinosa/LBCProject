@@ -20,8 +20,9 @@ public class ArtworkService {
     private CacheStore cache;
 
     @Autowired
-    public ArtworkService(ArtworkRepository artworkRepository) {
+    public ArtworkService(ArtworkRepository artworkRepository, CacheStore cache) {
         this.artworkRepository = artworkRepository;
+        this.cache = cache;
     }
 
     public Artwork findById(String id) {

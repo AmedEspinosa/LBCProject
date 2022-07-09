@@ -69,7 +69,6 @@ class ArtworkControllerTest {
             .andExpect(status().isNotFound());
     }
 
-    //THIS TEST WAS GIVEN TO US AND WILL NEED TO BE REPLACED WITH OUR ARTWORK INSTEAD OF "EXAMPLE"*** -LAURIE
     @Test
     public void createArtwork_CreateSuccessful() throws Exception {
         String id = UUID.randomUUID().toString();

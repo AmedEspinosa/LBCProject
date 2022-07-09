@@ -36,11 +36,15 @@ public class GetArtworkController {
 
     private ArtworkResponse createArtworkResponse(Artwork artwork) {
         ArtworkResponse artworkResponse = new ArtworkResponse();
-        artworkResponse.setDateCreated(artwork.getDateCreated());
+        artworkResponse.setId(artwork.getId());
+        artworkResponse.setDatePosted(artwork.getDatePosted());
         artworkResponse.setArtistName(artwork.getArtistName());
         artworkResponse.setTitle(artwork.getTitle());
-        artworkResponse.setForSale(artwork.getIsForSale());
-        artworkResponse.setSold(artwork.getIsSold());
+        artworkResponse.setDateCreated(artwork.getDateCreated());
+        artworkResponse.setHeight(artwork.getHeight());
+        artworkResponse.setWidth(artwork.getWidth());
+        artworkResponse.setIsSold(artwork.getIsSold());
+        artworkResponse.setIsForSale(artwork.getIsForSale());
         artworkResponse.setPrice(artwork.getPrice());
 
         return artworkResponse;

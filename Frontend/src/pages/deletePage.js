@@ -44,7 +44,7 @@ class DeletePage extends BaseClass {
     // Event Handlers --------------------------------------------------------------------------------------------------
     async onGet(event) {
 //        // Prevent the page from refreshing on form submit
-//        event.preventDefault();
+        event.preventDefault();
 //
 //        let id = document.getElementById("delete-artwork-id").value;
 //        this.dataStore.set("example", null);

@@ -20,13 +20,15 @@ class ViewPage extends BaseClass {
         document.getElementById('view-artwork-form').addEventListener('submit', this.onGet);
 //        document.getElementById('view-all-artwork-form').addEventListener('submit', this.onGetAll);
 
-        this.client = new ViewArtworkClient();
+            this.client = new ViewArtworkClient();
 
-        this.dataStore.addChangeListener(this.renderExample)
+            this.dataStore.addChangeListener(this.renderExample)
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
+
     async renderExample() {
+    
         let resultArea = document.getElementById("view-artwork-form");
 
         const artwork = this.dataStore.get("artwork");
@@ -71,6 +73,7 @@ class ViewPage extends BaseClass {
 
         let result = await this.client.getArtwork(id, this.errorHandler);
         this.dataStore.set("artwork", result);
+
         if (result) {
             this.showMessage(`Got ${result.name}!`)
         } else {

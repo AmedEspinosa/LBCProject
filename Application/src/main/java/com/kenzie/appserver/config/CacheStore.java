@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 public class CacheStore {
 
-    private Cache<String, Artwork> cache;
+    private final Cache<String, Artwork> cache;
 
     public CacheStore(int expiry, TimeUnit timeUnit) {
         // initalize the cache

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.util.UUID.randomUUID;
 
@@ -36,6 +38,22 @@ public class ArtworkController {
 
         ArtworkResponse artworkResponse = createArtworkResponse(artwork);
         return ResponseEntity.ok(artworkResponse);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ArtworkResponse>> getAllArtwork() {
+        List<Artwork> artworks = artworkService.findAllArtwork();
+        // If there are no artworks, then return a 204
+        if (artworks == null ||  artworks.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        // Otherwise, convert the List of Artwork objects into a List of ArtworkResponses and return it
+        List<ArtworkResponse> response = new ArrayList<>();
+        for (Artwork artwork : artworks) {
+            response.add(this.createArtworkResponse(artwork));
+        }
+
+        return ResponseEntity.ok(response);
     }
 
     @PostMapping
@@ -92,8 +110,8 @@ public class ArtworkController {
         artworkResponse.setDateCreated(artwork.getDateCreated());
         artworkResponse.setHeight(artwork.getHeight());
         artworkResponse.setWidth(artwork.getWidth());
-        artworkResponse.setIsSold(artwork.getIsSold());
-        artworkResponse.setIsForSale(artwork.getIsForSale());
+        artworkResponse.setIsSold(artwork.getSold());
+        artworkResponse.setIsForSale(artwork.getForSale());
         artworkResponse.setPrice(artwork.getPrice());
         return artworkResponse;
     }

@@ -30,7 +30,7 @@ public class ArtworkService {
                 .findById(id)
                 .map(artwork -> new Artwork(artwork.getId(), artwork.getDatePosted(), artwork.getArtistName(),
                         artwork.getTitle(), artwork.getDateCreated(), artwork.getHeight(), artwork.getWidth(),
-                        artwork.getIsSold(), artwork.getIsForSale(), artwork.getPrice()))
+                        artwork.getSold(), artwork.getForSale(), artwork.getPrice()))
                 .orElse(null);
 
         return artworkFromBackend;
@@ -45,8 +45,8 @@ public class ArtworkService {
         artworkRecord.setDateCreated(artwork.getDateCreated());
         artworkRecord.setHeight(artwork.getHeight());
         artworkRecord.setWidth(artwork.getWidth());
-        artworkRecord.setSold(artwork.getIsSold());
-        artworkRecord.setForSale(artwork.getIsForSale());
+        artworkRecord.setSold(artwork.getSold());
+        artworkRecord.setForSale(artwork.getForSale());
         artworkRecord.setPrice(artwork.getPrice());
         artworkRepository.save(artworkRecord);
         return artwork;
@@ -62,8 +62,8 @@ public class ArtworkService {
             artworkRecord.setDateCreated(artwork.getDateCreated());
             artworkRecord.setHeight(artwork.getHeight());
             artworkRecord.setWidth(artwork.getWidth());
-            artworkRecord.setSold(artwork.getIsSold());
-            artworkRecord.setForSale(artwork.getIsForSale());
+            artworkRecord.setSold(artwork.getSold());
+            artworkRecord.setForSale(artwork.getForSale());
             artworkRecord.setPrice(artwork.getPrice());
             artworkRepository.save(artworkRecord);
             cache.evict(artwork.getId());
@@ -85,8 +85,8 @@ public class ArtworkService {
         Iterable<ArtworkRecord> artworkRecordIterable = artworkRepository.findAll();
         for (ArtworkRecord record : artworkRecordIterable) {
             artworks.add(new Artwork(record.getId(), record.getDatePosted(), record.getArtistName(), record.getTitle(),
-                    record.getDateCreated(), record.getHeight(), record.getWidth(), record.getIsSold(),
-                    record.getIsForSale(), record.getPrice()));
+                    record.getDateCreated(), record.getHeight(), record.getWidth(), record.getSold(),
+                    record.getForSale(), record.getPrice()));
         }
         return artworks;
     }

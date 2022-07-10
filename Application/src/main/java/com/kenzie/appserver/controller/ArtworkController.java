@@ -77,7 +77,7 @@ public class ArtworkController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteArtworkById(@PathVariable("id") String id) {
+    public ResponseEntity<ArtworkResponse> deleteArtworkById(@PathVariable("id") String id) {
         artworkService.deleteArtwork(id);
         return ResponseEntity.noContent().build();
     }

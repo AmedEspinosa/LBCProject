@@ -237,6 +237,37 @@ class ArtworkControllerTest {
     @Test
     public void deleteArtwork_DeleteSuccessful() throws Exception {
         // GIVEN
+//        assertThat(artworkService.findById(id)).isNull();
+
+        String id = UUID.randomUUID().toString();
+        String datePosted = mockNeat.strings().valStr();
+        String artistName = mockNeat.strings().valStr();
+        String title = mockNeat.strings().valStr();
+        String dateCreated = mockNeat.strings().valStr();
+        int height = mockNeat.ints().get();
+        int width = mockNeat.ints().get();
+        int price = mockNeat.ints().val();
+
+        Artwork artwork = new Artwork(id, datePosted, artistName, title, dateCreated, height, width, true,
+                false, price);
+
+        Artwork persistedArtwork = artworkService.addNewArtwork(artwork);
+
+        // WHEN
+        mvc.perform(delete("/artwork/{id}", persistedArtwork.getId())
+                        .accept(MediaType.APPLICATION_JSON))
+                        // THEN
+                        .andExpect(status().isNoContent());
+       // assertThat(artworkService.findById(id)).isNull();
+
+        //need to confirm or verify
+//        artworkRepository.deleteById(id);
+//        cache.evict(id);
+    }
+
+//    @Test
+//    public void viewAllArtwork_getAllArtwork_returnsAllArtwork() throws Exception {
+//        // GIVEN
 //        String id = UUID.randomUUID().toString();
 //        String datePosted = mockNeat.strings().valStr();
 //        String artistName = mockNeat.strings().valStr();
@@ -246,49 +277,20 @@ class ArtworkControllerTest {
 //        int width = mockNeat.ints().get();
 //        int price = mockNeat.ints().val();
 //
-//        Artwork artwork = new Artwork(id, datePosted, artistName, title, dateCreated, height, width, false,
-//                true, price);
-//        Artwork persistedArtwork = artworkService.addNewArtwork(artwork);
+//        Artwork artwork = new Artwork(id, datePosted, artistName, title, dateCreated, height, width, true,
+//                false, price);
 //
-//        // WHEN
-//        mvc.perform(delete("/artwork/{id}", persistedArtwork.getId())
-//                        .accept(MediaType.APPLICATION_JSON))
-//                // THEN
-//                .andExpect(status().isNoContent());
-//        assertThat(artworkService.findById(id)).isNull();
-
-        String id = "84cdd9ea-de0f-4841-8645-58620adf49b2";
-        String datePosted = "7-06-2022";
-        String artistName = "TestName";
-        String title = "TestTitle";
-        String dateCreated = "07-06-2022";
-        int height = 10;
-        int width = 20;
-        int price = 30;
-
-        Artwork artwork = new Artwork(id, datePosted, artistName, title, dateCreated, height, width, true,
-                false, price);
-
-        ArtworkCreateRequest artworkCreateRequest = new ArtworkCreateRequest();
-        artworkCreateRequest.setArtistName(artwork.getArtistName());
-        artworkCreateRequest.setTitle(artwork.getTitle());
-        artworkCreateRequest.setDateCreated(artwork.getDateCreated());
-        artworkCreateRequest.setHeight(artwork.getHeight());
-        artworkCreateRequest.setWidth(artwork.getWidth());
-        artworkCreateRequest.setForSale(true);
-        artworkCreateRequest.setPrice(artwork.getPrice());
-
-        mapper.registerModule(new JavaTimeModule());
-
-        artworkService.addNewArtwork(artwork);
-
-        // WHEN
-        mvc.perform(delete("/artwork/{id}", artwork.getId())
-                        .accept(MediaType.APPLICATION_JSON))
-        // THEN
-                .andExpect(status().isNoContent());
-       // assertThat(artworkService.findById(id)).isNull();
-
-
-    }
+//        // GIVEN
+//        String idTwo = "84cdd9ea-de0f-4841-8645-58620adf49b2";
+//        String datePostedTwo = "7-06-2022";
+//        String artistNameTwo = "TestName";
+//        String titleTwo = "TestTitle";
+//        String dateCreatedTwo = "07-06-2022";
+//        int heightTwo = 10;
+//        int widthTwo = 20;
+//        int priceTwo = 30;
+//
+//        Artwork artworkTwo = new Artwork(idTwo, datePostedTwo, artistNameTwo, titleTwo, dateCreatedTwo, heightTwo, widthTwo, true,
+//                false, priceTwo);
+//    }
 }

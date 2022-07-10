@@ -30,7 +30,10 @@ export default class DeleteArtworkClient extends BaseClass {
      */
      async deleteArtwork(id, errorCallback) {
         try {
-            this.client.delete(`/artwork/${id}`);
+            const response = await this.client.delete(`/artwork`, {
+            id: id
+            });
+            return  response.data;
         } catch (error) {
             this.handleError("deleteArtwork", error, errorCallback)
         }

@@ -34,7 +34,6 @@ public class ArtworkCreateRequest {
     @JsonProperty("width")
     private int width;
 
-
     @NotEmpty
     @JsonProperty("forSale")
     private boolean forSale;

@@ -16,9 +16,12 @@ public class ArtworkRecord {
     private String dateCreated;
     private int height;
     private int width;
-    private boolean isSold;
-    private boolean isForSale;
+    private boolean sold;
+    private boolean forSale;
     private int price;
+
+    public ArtworkRecord() {
+    }
 
     @DynamoDBHashKey(attributeName = "Id")
     public String getId() {
@@ -84,21 +87,21 @@ public class ArtworkRecord {
     }
 
     @DynamoDBAttribute(attributeName = "Sold")
-    public boolean getIsSold() {
-        return isSold;
+    public boolean getSold() {
+        return sold;
     }
 
-    public void setSold(boolean isSold) {
-        this.isSold = isSold;
+    public void setSold(boolean sold) {
+        this.sold = sold;
     }
 
     @DynamoDBAttribute(attributeName = "ForSale")
-    public boolean getIsForSale() {
-        return isForSale;
+    public boolean getForSale() {
+        return forSale;
     }
 
-    public void setForSale(boolean isForSale) {
-        this.isForSale = isForSale;
+    public void setForSale(boolean forSale) {
+        this.forSale = forSale;
     }
 
     @DynamoDBAttribute(attributeName = "Price")

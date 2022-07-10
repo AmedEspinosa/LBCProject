@@ -9,7 +9,7 @@ class DeletePage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onGet', 'onDelete', 'renderExample'], this);
+        this.bindClassMethods(['onDelete', 'renderExample'], this);
         this.dataStore = new DataStore();
     }
 
@@ -25,46 +25,45 @@ class DeletePage extends BaseClass {
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
-// TODO : RE-CODE RENDERING
     async renderExample() {
-//        let resultArea = document.getElementById("result-info");
-//
-//        const example = this.dataStore.get("example");
-//
-//        if (example) {
-//            resultArea.innerHTML = `
-//                <div>ID: ${example.id}</div>
-//                <div>Name: ${example.name}</div>
-//            `
-//        } else {
-//            resultArea.innerHTML = "No Item";
-//        }
-    }
 
-    // Event Handlers --------------------------------------------------------------------------------------------------
-    async onGet(event) {
-//        // Prevent the page from refreshing on form submit
-        event.preventDefault();
-//
-//        let id = document.getElementById("delete-artwork-id").value;
-//        this.dataStore.set("example", null);
-//
-//        let result = await this.client.getExample(id, this.errorHandler);
-//        this.dataStore.set("example", result);
-//        if (result) {
-//            this.showMessage(`Got ${result.name}!`)
-//        } else {
-//            this.errorHandler("Error doing GET!  Try again...");
-//        }
+        let resultArea = document.getElementById("delete-artwork-form");
+
+        const artwork = this.dataStore.get("artwork");
+
+        if (artwork) {
+            resultArea.innerHTML = `
+                <div>****DELETED****</div>
+                <div>ID: ${artwork.id}</div>
+                <div>Date Posted: ${artwork.datePosted}</div>
+                <div>Artist Name: ${artwork.artistName}</div>
+                <div>Title: ${artwork.title}</div>
+                <div>Date Created: ${artwork.dateCreated}</div>
+                <div>Height: ${artwork.height}</div>
+                <div>Width: ${artwork.width}</div>
+                <div>Is Sold: ${artwork.sold}</div>
+                <div>Is For Sale: ${artwork.forSale}</div>
+                <div>Price: ${artwork.price}</div>
+                <div>****DELETED****</div>
+            `
+        } else {
+            resultArea.innerHTML = "No Item";
+        }
     }
 
     async onDelete(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
         let id = document.getElementById("delete-artwork-id").value;
-        if (id) {
+        this.dataStore.set("artwork", null);
+        let result = await this.client.getArtwork(id, this.errorHandler);
+        this.dataStore.set("artwork", result);
+        if (result) {
+            this.showMessage(`Found artwork ${result.title}!`);
             this.client.deleteArtwork(id);
-            this.showMessage(`Deleted artwork ID ${id}`)
+            this.showMessage(`Deleted artwork ${result.title}`);
+        } else {
+            this.errorHandler("No artwork found with given ID!");
         }
     }
 }

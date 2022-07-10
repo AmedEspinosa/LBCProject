@@ -23,10 +23,10 @@ export default class ViewArtworkClient extends BaseClass {
     }
 
     /**
-     * Gets the concert for the given ID.
-     * @param id Unique identifier for a concert
+     * Gets the artwork for the given ID.
+     * @param id Unique identifier for a artwork
      * @param errorCallback (Optional) A function to execute if the call fails.
-     * @returns The concert
+     * @returns The artwork
      */
     async getArtwork(id, errorCallback) {
         try {
@@ -38,16 +38,16 @@ export default class ViewArtworkClient extends BaseClass {
     }
 
     /**
-     * Get all concerts
+     * Get all artwork
      * @param errorCallback (Optional) A function to execute if the call fails.
-     * @returns an array of concerts
+     * @returns an array of artworks
      */
     async getAllArtwork(errorCallback) {
         try {
             const response = await this.client.get(`/artwork`);
             return response.data;
         } catch(error) {
-            this.handleError("getConcerts", error, errorCallback);
+            this.handleError("getAllArtwork", error, errorCallback);
         }
     }
 

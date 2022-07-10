@@ -2,19 +2,22 @@ package com.kenzie.appserver.service.model;
 
 public class Artwork {
 
-    private final String id;
-    private final String datePosted;
-    private final String artistName;
-    private final String title;
-    private final String dateCreated;
-    private final int height;
-    private final int width;
-    private final boolean sold;
-    private final boolean forSale;
-    private final int price;
+    private String id;
+    private String datePosted;
+    private String artistName;
+    private String title;
+    private String dateCreated;
+    private int height;
+    private int width;
+    private boolean sold;
+    private boolean forSale;
+    private int price;
+
+    public Artwork() {
+    }
 
     public Artwork(String id, String datePosted, String artistName, String title, String dateCreated, int height,
-                   int width, boolean isSold, boolean isForSale, int price) {
+                   int width, boolean sold, boolean forSale, int price) {
         this.id = id;
         this.datePosted = datePosted;
         this.artistName = artistName;
@@ -22,8 +25,8 @@ public class Artwork {
         this.dateCreated = dateCreated;
         this.height = height;
         this.width = width;
-        this.sold = isSold;
-        this.forSale = isForSale;
+        this.sold = sold;
+        this.forSale = forSale;
         this.price = price;
     }
 
@@ -55,11 +58,11 @@ public class Artwork {
         return width;
     }
 
-    public boolean getIsSold() {
+    public boolean getSold() {
         return sold;
     }
 
-    public boolean getIsForSale() {
+    public boolean getForSale() {
         return forSale;
     }
 

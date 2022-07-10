@@ -9,8 +9,9 @@ class ViewPage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onGet', 'onGetAll', 'renderExample'], this);
+        this.bindClassMethods(['onGet', 'onGetAll', 'renderArtwork', 'renderArtworkList'], this);
         this.dataStore = new DataStore();
+        this.dataStoreList = new DataStore();
     }
 
     /**
@@ -18,16 +19,17 @@ class ViewPage extends BaseClass {
      */
     async mount() {
         document.getElementById('view-artwork-form').addEventListener('submit', this.onGet);
-//        document.getElementById('view-all-artwork-form').addEventListener('submit', this.onGetAll);
+        document.getElementById('view-all-artwork-form').addEventListener('submit', this.onGetAll);
 
             this.client = new ViewArtworkClient();
 
-            this.dataStore.addChangeListener(this.renderExample)
+            this.dataStore.addChangeListener(this.renderArtwork);
+            this.dataStoreList.addChangeListener(this.renderArtworkList);
     }
 
     // Render Methods --------------------------------------------------------------------------------------------------
 
-    async renderExample() {
+    async renderArtwork() {
     
         let resultArea = document.getElementById("view-artwork-form");
 
@@ -36,14 +38,14 @@ class ViewPage extends BaseClass {
         if (artwork) {
             resultArea.innerHTML = `
                 <div>ID: ${artwork.id}</div>
+                <div>Date Posted: ${artwork.datePosted}</div>
                 <div>Artist Name: ${artwork.artistName}</div>
                 <div>Title: ${artwork.title}</div>
                 <div>Date Created: ${artwork.dateCreated}</div>
-                <div>Date Posted: ${artwork.datePosted}</div>
                 <div>Height: ${artwork.height}</div>
                 <div>Width: ${artwork.width}</div>
-                <div>Is Sold: ${artwork.isSold}</div>
-                <div>Is For Sale: ${artwork.isForSale}</div>
+                <div>Is Sold: ${artwork.sold}</div>
+                <div>Is For Sale: ${artwork.forSale}</div>
                 <div>Price: ${artwork.price}</div>
             `
         } else {
@@ -51,21 +53,39 @@ class ViewPage extends BaseClass {
         }
     }
 
-    // Event Handlers --------------------------------------------------------------------------------------------------
-// TODO : VIEW ALL ARTWORK
-    async onGetAll(event) {
-        const artworks = await this.client.getAllArtwork(this.errorHandler)
+        async renderArtworkList() {
 
-        if (artworks && artworks.length > 0) {
+            let resultArea = document.getElementById("view-all-artwork-form");
+
+            const artworks = this.dataStoreList.get("artworks");
+
             for (const artwork of artworks) {
-                await this.getArtwork(artwork.id);
+                resultArea.innerHTML += `
+                    <div>-------------------------------------------------------</div>
+                    <div>ID: ${artwork.id}</div>
+                    <div>Date Posted: ${artwork.datePosted}</div>
+                    <div>Artist Name: ${artwork.artistName}</div>
+                    <div>Title: ${artwork.title}</div>
+                    <div>Date Created: ${artwork.dateCreated}</div>
+                    <div>Height: ${artwork.height}</div>
+                    <div>Width: ${artwork.width}</div>
+                    <div>Is Sold: ${artwork.sold}</div>
+                    <div>Is For Sale: ${artwork.forSale}</div>
+                    <div>Price: ${artwork.price}</div>
+                `
             }
         }
-        this.dataStore.set("artworks", artworks);
+
+    // Event Handlers --------------------------------------------------------------------------------------------------
+    async onGetAll(event) {
+        event.preventDefault();
+
+        const artworks = await this.client.getAllArtwork(this.errorHandler)
+
+        this.dataStoreList.set("artworks", artworks);
     }
 
     async onGet(event) {
-        // Prevent the page from refreshing on form submit
         event.preventDefault();
 
         let id = document.getElementById("view-artwork-id").value;
@@ -75,9 +95,9 @@ class ViewPage extends BaseClass {
         this.dataStore.set("artwork", result);
 
         if (result) {
-            this.showMessage(`Got ${result.name}!`)
+            this.showMessage(`Found artwork ${result.title}!`)
         } else {
-            this.errorHandler("Error doing GET!  Try again...");
+            this.errorHandler("No artwork found with given ID!");
         }
     }
 }

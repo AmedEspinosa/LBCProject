@@ -5,7 +5,7 @@ export default class DeleteArtworkClient extends BaseClass {
 
     constructor(props = {}){
         super();
-        const methodsToBind = ['clientLoaded', 'deleteArtwork'];
+        const methodsToBind = ['clientLoaded', 'getArtwork', 'deleteArtwork'];
         this.bindClassMethods(methodsToBind, this);
         this.props = props;
         this.clientLoaded(axios);
@@ -22,6 +22,15 @@ export default class DeleteArtworkClient extends BaseClass {
         }
     }
 
+    async getArtwork(id, errorCallback) {
+        try {
+            const response = await this.client.get(`/artwork/${id}`);
+            return response.data;
+        } catch (error) {
+            this.handleError("getArtwork", error, errorCallback)
+        }
+    }
+
     /**
      * Gets the concert for the given ID.
      * @param id Unique identifier for a concert
@@ -30,10 +39,11 @@ export default class DeleteArtworkClient extends BaseClass {
      */
      async deleteArtwork(id, errorCallback) {
         try {
-            const response = await this.client.delete(`/artwork`, {
-            id: id
-            });
-            return  response.data;
+            const response = await this.client.delete(`/artwork/${id}`);
+//            const response = await this.client.delete(`/artwork`, {
+//            id: id
+//            });
+            return response.data;
         } catch (error) {
             this.handleError("deleteArtwork", error, errorCallback)
         }

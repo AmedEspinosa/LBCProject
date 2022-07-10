@@ -4,6 +4,7 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Table;
+import com.kenzie.appserver.controller.model.ArtworkResponse;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.fail;
@@ -71,21 +72,21 @@ class ArtworkControllerTest {
 
     @Test
     public void createArtwork_CreateSuccessful() throws Exception {
-        String id = UUID.randomUUID().toString();
         String datePosted = mockNeat.strings().valStr();
         String artistName = mockNeat.strings().valStr();
         String title = mockNeat.strings().valStr();
         String dateCreated = mockNeat.strings().valStr();
         int height = mockNeat.ints().get();
         int width = mockNeat.ints().get();
-        boolean isForSale = true;
         int price = mockNeat.ints().val();
 
         ArtworkCreateRequest artworkCreateRequest = new ArtworkCreateRequest();
         artworkCreateRequest.setArtistName(artistName);
         artworkCreateRequest.setTitle(title);
         artworkCreateRequest.setDateCreated(dateCreated);
-        artworkCreateRequest.setForSale(isForSale);
+        artworkCreateRequest.setHeight(height);
+        artworkCreateRequest.setWidth(width);
+        artworkCreateRequest.setForSale(true);
         artworkCreateRequest.setPrice(price);
 
         mapper.registerModule(new JavaTimeModule());
@@ -99,7 +100,7 @@ class ArtworkControllerTest {
                 .andExpect(jsonPath("id")
                         .exists())
                 .andExpect(jsonPath("datePosted")
-                        .value(is(datePosted)))
+                        .exists())
                 .andExpect(jsonPath("artistName")
                         .value(is(artistName)))
                 .andExpect(jsonPath("title")
@@ -110,60 +111,17 @@ class ArtworkControllerTest {
                         .value(is(height)))
                 .andExpect(jsonPath("width")
                         .value(is(width)))
-                .andExpect(jsonPath("isSold")
-                        .value(is(false)))
-                .andExpect(jsonPath("isForSale")
-                        .value(is(isForSale)))
+                .andExpect(jsonPath("sold")
+                         .value(is(false)))
+                .andExpect(jsonPath("forSale")
+                        .value(is(true)))
                 .andExpect(jsonPath("price")
                         .value(is(price)))
                 .andExpect(status().isCreated());
     }
 
-//    @Test
-//    public void getById_ArtworkExists() throws Exception {
-//        //GIVEN
-//        //This example exists on our table*
-//        String id = "84cdd9ea-de0f-4841-8645-58620adf49b2";
-//        String datePosted = "7-06-2022";
-//        String artistName = "TestName";
-//        String title = "TestTitle";
-//        String dateCreated = "07-06-2022";
-//        int height = 10;
-//        int width = 20;
-//        int price = 30;
-//
-//        Artwork artwork = new Artwork(id, datePosted, artistName, title, dateCreated, height, width, false,
-//                true, price);
-//        Artwork persistedArtwork = artworkService.addNewArtwork(artwork);
-//
-//        //WHEN
-//        mvc.perform(get("/artwork/{id}", persistedArtwork.getId())
-//                        .accept(MediaType.APPLICATION_JSON))
-//                .andExpect(jsonPath("id")
-//                        .value(is(id)))
-//                .andExpect(jsonPath("datePosted")
-//                        .value(is(datePosted)))
-//                .andExpect(jsonPath("artistName")
-//                        .value(is(artistName)))
-//                .andExpect(jsonPath("title")
-//                        .value(is(title)))
-//                .andExpect(jsonPath("dateCreated")
-//                        .value(is(dateCreated)))
-//                .andExpect(jsonPath("height")
-//                        .value(is(height)))
-//                .andExpect(jsonPath("width")
-//                        .value(is(width)))
-//                .andExpect(jsonPath("isSold")
-//                        .value(is(false)))
-//                .andExpect(jsonPath("isForSale")
-//                        .value(is(true)))
-//                .andExpect(jsonPath("price")
-//                        .value(is(price)))
-//                .andExpect(status().isOk());
-//    }
-
     @Test
-    public void getById_ArtworkExists() throws Exception {
+    public void getArtworkById_ArtworkExists() throws Exception {
         //GIVEN
         //This example exists on our table*
         String id = UUID.randomUUID().toString();
@@ -177,10 +135,10 @@ class ArtworkControllerTest {
 
         Artwork artwork = new Artwork(id, datePosted, artistName, title, dateCreated, height, width, false,
                 true, price);
-        Artwork artwork1 = artworkService.addNewArtwork(artwork);
+        Artwork persistedArtwork = artworkService.addNewArtwork(artwork);
 
         //WHEN
-        mvc.perform(get("/artwork/{id}", artworkService.findById(id).getId())
+        mvc.perform(get("/artwork/{id}", persistedArtwork.getId())
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("id")
                         .value(is(id)))
@@ -214,15 +172,15 @@ class ArtworkControllerTest {
         String dateCreated = "07-06-2022";
         int height = 10;
         int width = 20;
-        boolean isSold = false;
-        boolean isForSale = true;
+        boolean isSold = true;
+        boolean isForSale = false;
         int price = 30;
 
         Artwork artwork = new Artwork(id, datePosted, artistName, title, dateCreated, height, width, isSold,
                 isForSale, price);
         Artwork persistedArtwork = artworkService.addNewArtwork(artwork);
 
-        String newName = mockNeat.strings().valStr();
+        String newName = "new";
         int newPrice = 80;
 
         ArtworkUpdateRequest artworkUpdateRequest = new ArtworkUpdateRequest();

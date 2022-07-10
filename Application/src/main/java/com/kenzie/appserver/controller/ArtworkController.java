@@ -1,11 +1,11 @@
 package com.kenzie.appserver.controller;
 
-import com.kenzie.appserver.controller.model.ArtworkResponse;
 import com.kenzie.appserver.controller.model.ArtworkCreateRequest;
+import com.kenzie.appserver.controller.model.ArtworkResponse;
 import com.kenzie.appserver.controller.model.ArtworkUpdateRequest;
 import com.kenzie.appserver.service.ArtworkService;
-
 import com.kenzie.appserver.service.model.Artwork;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

@@ -22,15 +22,17 @@ public class ArtworkCreateRequest {
     @JsonProperty("dateCreated")
     private String dateCreated;
 
+    //inches - height
     @NotEmpty
     @Min(0)
-    @Max(240) //inches (240" == 20ft)
+    @Max(240)
     @JsonProperty("height")
     private int height;
 
+    //inches - width
     @NotEmpty
     @Min(0)
-    @Max(240) //inches (240" == 20ft)
+    @Max(240)
     @JsonProperty("width")
     private int width;
 

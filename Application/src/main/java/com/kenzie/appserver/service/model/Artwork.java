@@ -3,10 +3,10 @@ package com.kenzie.appserver.service.model;
 public class Artwork {
 
     private final String id;
-    private final String datePosted; //MMDDYYYY
+    private final String datePosted;
     private final String artistName;
     private final String title;
-    private final String dateCreated; //MMDDYYYY
+    private final String dateCreated;
     private final int height;
     private final int width;
     private final boolean sold;

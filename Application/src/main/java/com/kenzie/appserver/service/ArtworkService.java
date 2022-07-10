@@ -82,11 +82,11 @@ public class ArtworkService {
     public List<Artwork> findAllArtwork() {
         List<Artwork> artworks = new ArrayList<>();
 
-        Iterable<ArtworkRecord>artworkRecordIterable = artworkRepository.findAll();
+        Iterable<ArtworkRecord> artworkRecordIterable = artworkRepository.findAll();
         for (ArtworkRecord record : artworkRecordIterable) {
-            artworks.add(new Artwork(record.getId(),record.getDatePosted(),record.getArtistName(),record.getTitle(),
-                    record.getDateCreated(),record.getHeight(),record.getWidth(),record.getIsSold(),
-                    record.getIsForSale(),record.getPrice()));
+            artworks.add(new Artwork(record.getId(), record.getDatePosted(), record.getArtistName(), record.getTitle(),
+                    record.getDateCreated(), record.getHeight(), record.getWidth(), record.getIsSold(),
+                    record.getIsForSale(), record.getPrice()));
         }
         return artworks;
     }

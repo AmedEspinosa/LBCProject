@@ -59,9 +59,10 @@ class ViewPage extends BaseClass {
 
             const artworks = this.dataStoreList.get("artworks");
 
+            resultArea.innerHTML = ''
+
             for (const artwork of artworks) {
                 resultArea.innerHTML += `
-                    <div>-------------------------------------------------------</div>
                     <div>ID: ${artwork.id}</div>
                     <div>Date Posted: ${artwork.datePosted}</div>
                     <div>Artist Name: ${artwork.artistName}</div>
@@ -72,6 +73,7 @@ class ViewPage extends BaseClass {
                     <div>Is Sold: ${artwork.sold}</div>
                     <div>Is For Sale: ${artwork.forSale}</div>
                     <div>Price: ${artwork.price}</div>
+                    <div>-------------------------------------------------------</div>
                 `
             }
         }

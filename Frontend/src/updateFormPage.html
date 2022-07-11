@@ -24,24 +24,26 @@
 
 <div class="card">
     <label style="text-align: center">Update Art</label>
-    <form class="card-content" id="update-id-form" >
+    <form class="card-content" id="update-artwork-form">
         <p class="form-field">
+            <label>ID:</label>
+            <input type="text" required class="validated-field" id="update-id-field">
             <label>Today's Date:</label>
             <input type="date" required class="validate-field" id="update-datePosted-field">
-            <label>Name:</label>
-            <input type="text" required class="validated-field" id="update-name-field">
+            <label>Artist Name:</label>
+            <input type="text" required class="validated-field" id="update-artistName-field">
             <label>Title</label>
             <input type="text" required class="validated-field" id="update-title-field">
             <label>Date Created:</label>
             <input type="date" required class="validate-field" id="update-dateCreated-field">
-            <label>Height(Inches):</label>
+            <label>Height (inches):</label>
             <input type="number" required class="validated-field" id="update-height-field">
-            <label>Width(Inches):</label>
+            <label>Width (inches):</label>
             <input type="number" required class="validated-field" id="update-width-field">
-            <label> Is it sold? (true OR false) </label>
-            <input type="text" required class="validated-field" id="update-artwork-isSold">
-            <label> Is it for sale? (true OR false)</label>
-            <input type="text" required class="validated-field" id="update-artwork-isForSale">
+            <label>Is it sold? (true OR false) </label>
+            <input type="text" required class="validated-field" id="update-artwork-sold">
+            <label>Is it for sale? (true OR false)</label>
+            <input type="text" required class="validated-field" id="update-artwork-forSale">
             <label>Price:</label>
             <input type="number" required class="validate-field" id="update-artwork-price">
         <button type="submit">Update</button>

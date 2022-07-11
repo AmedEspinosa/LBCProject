@@ -4,7 +4,6 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Table;
-import com.kenzie.appserver.controller.model.ArtworkResponse;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,23 +18,16 @@ import com.kenzie.appserver.service.model.Artwork;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import net.andreinc.mockneat.MockNeat;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.web.client.ResponseActions;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.verify;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -67,7 +59,7 @@ class ArtworkControllerTest {
     }
 
     @Test
-    public void getArtwork_ArtworkDoesNotExist() throws Exception {
+    public void getArtwork_ArtworkDoesNotExist_returnsNotFoundStatus() throws Exception {
         // GIVEN
         String id = "12";
         // WHEN
@@ -78,7 +70,7 @@ class ArtworkControllerTest {
     }
 
     @Test
-    public void createArtwork_CreateSuccessful() throws Exception {
+    public void addArtworkEndpoint_CreateSuccessful_returnsIsCreatedStatusAndArtworkResponse() throws Exception {
         String datePosted = mockNeat.strings().valStr();
         String artistName = mockNeat.strings().valStr();
         String title = mockNeat.strings().valStr();
@@ -128,7 +120,7 @@ class ArtworkControllerTest {
     }
 
     @Test
-    public void getArtworkById_ArtworkExists() throws Exception {
+    public void getArtworkById_artworkExists_returnsSuccessfulResponse() throws Exception {
         //GIVEN
         //This example exists on our table*
         String id = UUID.randomUUID().toString();
@@ -171,7 +163,7 @@ class ArtworkControllerTest {
     }
 
     @Test
-    public void updateArtwork_PutSuccessful() throws Exception {
+    public void updateArtworkEndpoint_PutSuccessful() throws Exception {
         // GIVEN
         String id = "84cdd9ea-de0f-4841-8645-58620adf49b2";
         String datePosted = "7-06-2022";
@@ -243,7 +235,7 @@ class ArtworkControllerTest {
     }
 
     @Test
-    public void deleteArtwork_DeleteSuccessful() throws Exception {
+    public void deleteArtworkEndpoint_deleteSuccessful() throws Exception {
         // GIVEN
         String id = UUID.randomUUID().toString();
         String datePosted = mockNeat.strings().valStr();
@@ -268,7 +260,7 @@ class ArtworkControllerTest {
     }
 
     @Test
-    public void getAllArtworkEndpoint_returnsAllItemsFromTableResponseJson() throws Exception {
+    public void getAllArtworkEndpoint_returnsAllItemsFromTableSuccessfully() throws Exception {
         //GIVEN
         for (Table table : client.listTables()) {
             if (table.getTableName().equals(ARTWORKS_TABLE_NAME)) {
@@ -280,51 +272,6 @@ class ArtworkControllerTest {
                         .andExpect(status().isOk());
             }
         }
-    }
-
-    @Test
-    public void getAllArtwork_listOfOneArtworkItem_returnsAllArtwork() throws Exception {
-        // GIVEN
-        String id = "99cdd9ea-de0f-4841-8645-58620adf49b2";
-        String datePosted = mockNeat.strings().valStr();
-        String artistName = mockNeat.strings().valStr();
-        String title = mockNeat.strings().valStr();
-        String dateCreated = mockNeat.strings().valStr();
-        int height = mockNeat.ints().get();
-        int width = mockNeat.ints().get();
-        int price = mockNeat.ints().val();
-
-        Artwork artwork = new Artwork(id, datePosted, artistName, title, dateCreated, height, width, false,
-                true, price);
-
-        artworkService.addNewArtwork(artwork);
-
-        //WHEN
-        mvc.perform(get("/artwork"))
-
-                //THEN
-                .andExpect(jsonPath("forSale")
-                        .value(is(true)))
-                .andExpect(jsonPath("id")
-                        .exists())
-                .andExpect(jsonPath("datePosted")
-                        .value(is(datePosted)))
-                .andExpect(jsonPath("artistName")
-                        .value(is(artistName)))
-                .andExpect(jsonPath("title")
-                        .value(is(title)))
-                .andExpect(jsonPath("dateCreated")
-                        .value(is(dateCreated)))
-                .andExpect(jsonPath("height")
-                        .value(is(height)))
-                .andExpect(jsonPath("width")
-                        .value(is(width)))
-                .andExpect(jsonPath("sold")
-                        .value(is(false)))
-                .andExpect(jsonPath("price")
-                        .value(is(price)))
-                .andExpect(status().isOk());
-////for sale, id, datePosted, artistName, title, date created, heigth , width, sold, price,
     }
 
     @Test

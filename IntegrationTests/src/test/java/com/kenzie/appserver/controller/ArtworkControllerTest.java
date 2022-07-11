@@ -199,8 +199,8 @@ class ArtworkControllerTest {
         artworkUpdateRequest.setDateCreated(dateCreated);
         artworkUpdateRequest.setHeight(height);
         artworkUpdateRequest.setWidth(width);
-        artworkUpdateRequest.setIsSold(false);
-        artworkUpdateRequest.setIsForSale(false);
+        artworkUpdateRequest.setSold(false);
+        artworkUpdateRequest.setForSale(false);
         artworkUpdateRequest.setPrice(newPrice);
 
         mapper.registerModule(new JavaTimeModule());

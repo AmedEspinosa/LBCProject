@@ -1,10 +1,8 @@
 package com.kenzie.appserver.controller.model;
 
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.time.LocalDate;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -15,7 +13,7 @@ public class ArtworkUpdateRequest {
     @JsonProperty("id")
     private String id;
 
-    @JsonFormat(shape =  JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
+    @JsonFormat(shape =  JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonProperty("datePosted")
     private String datePosted;
 
@@ -25,7 +23,7 @@ public class ArtworkUpdateRequest {
     @JsonProperty("title")
     private String title;
 
-    @JsonFormat(shape =  JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
+    @JsonFormat(shape =  JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonProperty("dateCreated")
     private String dateCreated;
 
@@ -39,11 +37,11 @@ public class ArtworkUpdateRequest {
     @JsonProperty("width")
     private int width;
 
-    @JsonProperty("isSold")
-    private boolean isSold;
+    @JsonProperty("sold")
+    private boolean sold;
 
-    @JsonProperty("isForSale")
-    private boolean isForSale;
+    @JsonProperty("forSale")
+    private boolean forSale;
 
     @Min(0)
     @JsonProperty("price")
@@ -105,20 +103,20 @@ public class ArtworkUpdateRequest {
         this.width = width;
     }
 
-    public boolean getIsSold() {
-        return isSold;
+    public boolean getSold() {
+        return sold;
     }
 
-    public void setIsSold(boolean isSold) {
-        this.isSold = isSold;
+    public void setSold(boolean sold) {
+        this.sold = sold;
     }
 
-    public boolean getIsForSale() {
-        return isForSale;
+    public boolean getForSale() {
+        return forSale;
     }
 
-    public void setIsForSale(boolean isForSale) {
-        this.isForSale = isForSale;
+    public void setForSale(boolean forSale) {
+        this.forSale = forSale;
     }
 
     public int getPrice() {

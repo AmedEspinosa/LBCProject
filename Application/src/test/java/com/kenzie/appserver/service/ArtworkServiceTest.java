@@ -14,7 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static java.util.UUID.randomUUID;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import static org.mockito.Mockito.*;
 
 public class ArtworkServiceTest {
@@ -84,14 +84,12 @@ public class ArtworkServiceTest {
         Assertions.assertNull(artwork, "The example is null when not found");
     }
 
-
     /** ------------------------------------------------------------------------.
      *  artworkService.findAllArtwork
      *  ------------------------------------------------------------------------ **/
 
     @Test
     void getAllArtwork() {
-
         // GIVEN
         ArtworkRecord record1 = new ArtworkRecord();
         record1.setId(randomUUID().toString());

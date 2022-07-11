@@ -31,10 +31,10 @@ export default class UpdateArtworkClient extends BaseClass {
     }
 
     /**
-     * Gets the concert for the given ID.
-     * @param id Unique identifier for a concert
+     * Gets the artwork for the given ID.
+     * @param id Unique identifier for an artwork
      * @param errorCallback (Optional) A function to execute if the call fails.
-     * @returns The concert
+     * @returns the artwork
      */
     async getArtwork(id, errorCallback) {
         try {
@@ -45,21 +45,21 @@ export default class UpdateArtworkClient extends BaseClass {
         }
     }
 
-//    async createExample(name, errorCallback) {
-//        try {
-//            const response = await this.client.post(`example`, {
-//                name: name
-//            });
-//            return response.data;
-//        } catch (error) {
-//            this.handleError("createExample", error, errorCallback);
-//        }
-//    }
+    async updateArtwork(
+        id, datePosted, artistName, title, dateCreated, height, width, sold, forSale, price, errorCallback) {
 
-    async updateArtwork(name, errorCallback) {
             try {
-                const response = await this.client.put(`artwork`, {
-                    name: name
+                const response = await this.client.put(`/artwork`,{
+                id: id,
+                datePosted: datePosted,
+                artistName: artistName,
+                title: title,
+                dateCreated: dateCreated,
+                height: height,
+                width: width,
+                sold: sold,
+                forSale: forSale,
+                price: price
                 });
                 return response.data;
             } catch (error) {

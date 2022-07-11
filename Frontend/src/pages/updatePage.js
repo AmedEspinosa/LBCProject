@@ -9,7 +9,7 @@ class UpdatePage extends BaseClass {
 
     constructor() {
         super();
-        this.bindClassMethods(['onGet','onUpdate', 'onCreate', 'renderExample'], this);
+        this.bindClassMethods(['onUpdate', 'renderExample'], this);
         this.dataStore = new DataStore();
     }
 
@@ -17,7 +17,7 @@ class UpdatePage extends BaseClass {
      * Once the page has loaded, set up the event handlers and fetch the concert list.
      */
     async mount() {
-        document.getElementById('update-id-form').addEventListener('submit', this.onGet);
+        document.getElementById('update-artwork-form').addEventListener('submit', this.onUpdate);
         this.client = new UpdateArtworkClient();
         this.dataStore.addChangeListener(this.renderExample);
     }
@@ -25,7 +25,7 @@ class UpdatePage extends BaseClass {
     // Render Methods --------------------------------------------------------------------------------------------------
 
     async renderExample() {
-        let resultArea = document.getElementById("result-info");
+        let resultArea = document.getElementById('update-artwork-form');
 
         const artwork = this.dataStore.get("artwork");
 
@@ -34,13 +34,12 @@ class UpdatePage extends BaseClass {
                 <div>ID: ${artwork.id}</div>
                 <div>DatePosted: ${artwork.datePosted}</div>
                 <div>Name: ${artwork.artistName}</div>
-
                 <div>Title: ${artwork.title}</div>
                 <div>DateCreated: ${artwork.dateCreated}</div>
                 <div>Height: ${artwork.height}</div>
                 <div>Width: ${artwork.width}</div>
-                <div>IsSold: ${artwork.isSold}</div>
-                <div>IsForSale: ${artwork.isForSale}</div>
+                <div>IsSold: ${artwork.sold}</div>
+                <div>IsForSale: ${artwork.forSale}</div>
                 <div>Price: ${artwork.price}</div>
             `
         } else {
@@ -49,71 +48,33 @@ class UpdatePage extends BaseClass {
     }
 
     // Event Handlers --------------------------------------------------------------------------------------------------
-
-    async onGet(event) {
-        event.preventDefault();
-
-         let result = await this.client.getElementById(this.errorHandler);
-         this.dataStore.set("id", result);
-    }
-
     async onUpdate(event) {
         // Prevent the page from refreshing on form submit
         event.preventDefault();
 
+        let id = document.getElementById("update-id-field").value;
         let datePosted = document.getElementById("update-datePosted-field").value;
-        this.dataStore.set("datePosted", datePosted);
-
-        let name = document.getElementById("update-name-field").value;
-        this.dataStore.set("artistName", name);
-
+        let artistName = document.getElementById("update-artistName-field").value;
         let title = document.getElementById("update-title-field").value;
-        this.dataStore.set("title", title);
-
         let dateCreated = document.getElementById("update-dateCreated-field").value;
-        this.dataStore.set("dateCreated", dateCreated);
-
         let height = document.getElementById("update-height-field").value;
-        this.dataStore.set("height", height);
-
         let width = document.getElementById("update-width-field").value;
-        this.dataStore.set("width", width);
-
-        let isSold = document.getElementById("update-artwork-isSold").value;
-        this.dataStore.set("isSold", isSold);
-
-        let isForSaleYes = document.getElementById("update-artwork-isForSale").value;
-        this.dataStore.set("isForSale", isForSale);
-
+        let sold = document.getElementById("update-artwork-sold").value;
+        let forSale = document.getElementById("update-artwork-forSale").value;
         let price = document.getElementById("update-artwork-price").value;
-        this.dataStore.set("price", price);
 
-
-        let result = await this.client.getArtwork(id, this.errorHandler);
-        this.dataStore.set("artwork", result);
-        if (result) {
-            this.showMessage(`Updated ${result.name}!`)
+        let original = await this.client.getArtwork(id, this.errorHandler);
+        this.dataStore.set("artwork", original);
+        if (original) {
+            let update = await this.client.updateArtwork(
+                id, datePosted, artistName, title, dateCreated, height, width, sold, forSale, price);
+            this.dataStore.set("artwork", update);
+            this.showMessage(`Updated ${update.title}!`);
         } else {
-            this.errorHandler("Error doing GET!  Try again...");
+            this.errorHandler("No artwork found with given ID!");
         }
     }
 
-    async onCreate(event) {
-        // Prevent the page from refreshing on form submit
-        event.preventDefault();
-        this.dataStore.set("artwork", null);
-
-        let name = document.getElementById("create-name-field").value;
-
-        const createdExample = await this.client.createExample(name, this.errorHandler);
-        this.dataStore.set("artwork", createdExample);
-
-        if (createdExample) {
-            this.showMessage(`Created ${createdExample.name}!`)
-        } else {
-            this.errorHandler("Error creating!  Try again...");
-        }
-    }
 }
 /**
  * Main method to run when the page contents have loaded.

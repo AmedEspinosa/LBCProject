@@ -24,9 +24,9 @@ export default class ViewArtworkClient extends BaseClass {
 
     /**
      * Gets the artwork for the given ID.
-     * @param id Unique identifier for a artwork
+     * @param id Unique identifier for an artwork
      * @param errorCallback (Optional) A function to execute if the call fails.
-     * @returns The artwork
+     * @returns the artwork
      */
     async getArtwork(id, errorCallback) {
         try {

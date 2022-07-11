@@ -37,16 +37,23 @@ class ViewPage extends BaseClass {
 
         if (artwork) {
             resultArea.innerHTML = `
-                <div>ID: ${artwork.id}</div>
-                <div>Date Posted: ${artwork.datePosted}</div>
-                <div>Artist Name: ${artwork.artistName}</div>
-                <div>Title: ${artwork.title}</div>
-                <div>Date Created: ${artwork.dateCreated}</div>
-                <div>Height: ${artwork.height}</div>
-                <div>Width: ${artwork.width}</div>
-                <div>Is Sold: ${artwork.sold}</div>
-                <div>Is For Sale: ${artwork.forSale}</div>
-                <div>Price: ${artwork.price}</div>
+                <body>
+                    <h3 style = "background: -webkit-linear-gradient(#0000FF, #008080,#0000FF)";
+                                                         -webkit-background-clip: text;
+                                                         -webkit-text-fill-color: transparent;
+                                                         "align-text:center";>
+                    *Your Artwork Was Successfully Deleted*<br>
+                    Name: ${artwork.artistName}<br>
+                    Title: ${artwork.title}<br>
+                    DateCreated: ${artwork.dateCreated}<br>
+                    Height: ${artwork.height}<br>
+                    Width: ${artwork.width}<br>
+                    ForSale: ${artwork.forSale}<br>
+                    Price: ${artwork.price}<br>
+                    ID: ${artwork.id}<br>
+                    Date Posted: ${artwork.datePosted}<br>
+                    Is Sold: ${artwork.sold}</h3>
+                    </body>
             `
         } else {
             resultArea.innerHTML = "No Item";
@@ -63,17 +70,23 @@ class ViewPage extends BaseClass {
 
             for (const artwork of artworks) {
                 resultArea.innerHTML += `
-                    <div>ID: ${artwork.id}</div>
-                    <div>Date Posted: ${artwork.datePosted}</div>
-                    <div>Artist Name: ${artwork.artistName}</div>
-                    <div>Title: ${artwork.title}</div>
-                    <div>Date Created: ${artwork.dateCreated}</div>
-                    <div>Height: ${artwork.height}</div>
-                    <div>Width: ${artwork.width}</div>
-                    <div>Is Sold: ${artwork.sold}</div>
-                    <div>Is For Sale: ${artwork.forSale}</div>
-                    <div>Price: ${artwork.price}</div>
-                    <div>-------------------------------------------------------</div>
+                    <body>
+                        <h3 style = "background: -webkit-linear-gradient(#0000FF, #008080,#0000FF)";
+                                                             -webkit-background-clip: text;
+                                                             -webkit-text-fill-color: transparent;
+                                                             "align-text:center";>
+                        Name: ${artwork.artistName}<br>
+                        Title: ${artwork.title}<br>
+                        DateCreated: ${artwork.dateCreated}<br>
+                        Height: ${artwork.height}<br>
+                        Width: ${artwork.width}<br>
+                        ForSale: ${artwork.forSale}<br>
+                        Price: ${artwork.price}<br>
+                        ID: ${artwork.id}<br>
+                        Date Posted: ${artwork.datePosted}<br>
+                        Is Sold: ${artwork.sold}<br>
+                        </h3>
+                        </body>
                 `
             }
         }

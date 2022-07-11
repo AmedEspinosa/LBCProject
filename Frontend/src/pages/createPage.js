@@ -31,16 +31,21 @@ class CreatePage extends BaseClass {
 
         if (artwork) {
             resultArea.innerHTML = `
-                <div>Name: ${artwork.artistName}</div>
-                <div>Title: ${artwork.title}</div>
-                <div>DateCreated: ${artwork.dateCreated}</div>
-                <div>Height: ${artwork.height}</div>
-                <div>Width: ${artwork.width}</div>
-                <div>ForSale: ${artwork.forSale}</div>
-                <div>Price: ${artwork.price}</div>
-                <div>ID: ${artwork.id}</div>
-                <div>Date Posted: ${artwork.datePosted}</div>
-                <div>Is Sold: ${artwork.sold}</div>
+            <body>
+                <h3 style = "background: -webkit-linear-gradient(#0000FF, #008080,#0000FF)";
+                                     -webkit-background-clip: text;
+                                     -webkit-text-fill-color: transparent;>
+                Name: ${artwork.artistName}<br>
+                Title: ${artwork.title}<br>
+                DateCreated: ${artwork.dateCreated}<br>
+                Height: ${artwork.height}<br>
+                Width: ${artwork.width}<br>
+                ForSale: ${artwork.forSale}<br>
+                Price: ${artwork.price}<br>
+                ID: ${artwork.id}<br>
+                Date Posted: ${artwork.datePosted}<br>
+                Is Sold: ${artwork.sold}</h3>
+                </body>
             `
         } else {
             resultArea.innerHTML = "No Item";

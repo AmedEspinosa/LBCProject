@@ -151,10 +151,9 @@ img {
 .card {
     color: var(--primary-color);
     background-color: var(--secondary-color);
-    margin-left: 200px;
-    margin-right: 200px;
     margin-top:50px;
-    width: 89%;
+    width: 50%;
+    align-items: center;
 
 }
 
@@ -208,7 +207,7 @@ button, label, input, select, progress, meter {
   background-color: 0000FF;
   font-family: 'Garamond', cursive;
   font-size: 30px;
-  margin: 3px;
+  margin: 20px;
   box-sizing: border-box;
   width: 75%;
   padding: 5px;
@@ -233,11 +232,6 @@ button {
       color: var(--secondary-color);
 }
 
-.email {
-display: flexbox;
-    word-spacing: 50px;
-    font-size: 15px;
-    height: 80px;
-    width:500 px;
-    background-color: #primary;
+.email{
+    align-items:center;
 }

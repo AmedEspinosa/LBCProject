@@ -42,7 +42,6 @@ class ViewPage extends BaseClass {
                                                          -webkit-background-clip: text;
                                                          -webkit-text-fill-color: transparent;
                                                          "align-text:center";>
-                    *Your Artwork Was Successfully Deleted*<br>
                     Name: ${artwork.artistName}<br>
                     Title: ${artwork.title}<br>
                     DateCreated: ${artwork.dateCreated}<br>

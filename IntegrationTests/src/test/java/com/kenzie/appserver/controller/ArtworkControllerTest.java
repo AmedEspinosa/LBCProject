@@ -21,9 +21,13 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import net.andreinc.mockneat.MockNeat;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.web.client.ResponseActions;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -264,6 +268,21 @@ class ArtworkControllerTest {
     }
 
     @Test
+    public void getAllArtworkEndpoint_returnsAllItemsFromTableResponseJson() throws Exception {
+        //GIVEN
+        for (Table table : client.listTables()) {
+            if (table.getTableName().equals(ARTWORKS_TABLE_NAME)) {
+
+                //WHEN
+                mvc.perform(get("/artwork")
+                                .accept(MediaType.APPLICATION_JSON))
+                        // THEN
+                        .andExpect(status().isOk());
+            }
+        }
+    }
+
+    @Test
     public void getAllArtwork_listOfOneArtworkItem_returnsAllArtwork() throws Exception {
         // GIVEN
         String id = "99cdd9ea-de0f-4841-8645-58620adf49b2";
@@ -304,45 +323,45 @@ class ArtworkControllerTest {
                         .value(is(false)))
                 .andExpect(jsonPath("price")
                         .value(is(price)))
-
                 .andExpect(status().isOk());
 ////for sale, id, datePosted, artistName, title, date created, heigth , width, sold, price,
     }
 
     @Test
-    public void getAllArtwork_emptyArtworkList_returnsNoContentResponse() throws Exception {
-
+    public void getAllArtwork_returnsAllArtWork() throws Exception {
         // GIVEN
-        List<Artwork> artworks = null;
+        String id = "99cdd9ea-de0f-4841-8645-58620adf49b2";
+        String datePosted = mockNeat.strings().valStr();
+        String artistName = mockNeat.strings().valStr();
+        String title = mockNeat.strings().valStr();
+        String dateCreated = mockNeat.strings().valStr();
+        int height = mockNeat.ints().get();
+        int width = mockNeat.ints().get();
+        int price = mockNeat.ints().val();
+
+        Artwork artwork = new Artwork(id, datePosted, artistName, title, dateCreated, height, width, false,
+                true, price);
+
+        String idTwo = "84cdd9ea-de0f-4841-8645-58620adf49b2";
+        String datePostedTwo = "7-06-2022";
+        String artistNameTwo = "TestName";
+        String titleTwo = "TestTitle";
+        String dateCreatedTwo = "07-06-2022";
+        int heightTwo = 10;
+        int widthTwo = 20;
+        int priceTwo = 30;
+
+        Artwork artworkTwo = new Artwork(idTwo, datePostedTwo, artistNameTwo, titleTwo, dateCreatedTwo, heightTwo, widthTwo, false,
+                false, priceTwo);
+
+        artworkService.addNewArtwork(artwork);
+        artworkService.addNewArtwork(artworkTwo);
 
         // WHEN
-        mvc.perform(get("/artwork")
+        String allArtworkResponse = mvc.perform(get("/artwork")
                         .accept(MediaType.APPLICATION_JSON))
-                // THEN
-                .andExpect(status().isNoContent());
+                //THEN
+                .andExpect(status().isOk())
+                .andReturn().getResponse().getContentAsString();
     }
-
-    //        String idTwo = "84cdd9ea-de0f-4841-8645-58620adf49b2";
-//        String datePostedTwo = "7-06-2022";
-//        String artistNameTwo = "TestName";
-//        String titleTwo = "TestTitle";
-//        String dateCreatedTwo = "07-06-2022";
-//        int heightTwo = 10;
-//        int widthTwo = 20;
-//        int priceTwo = 30;
-//
-//        Artwork artworkTwo = new Artwork(idTwo, datePostedTwo, artistNameTwo, titleTwo, dateCreatedTwo, heightTwo, widthTwo, false,
-//                false, priceTwo);
-
-    //List<Artwork> artworkList = artworkService.findAllArtwork();
-
-    //WHEN
-    //   String listString = mapper.writeValueAsString(artworkList);
-
-    // THEN
-
-//                .andExpectAll(
-//        status().isOk(),
-//        content().contentType(MediaType.APPLICATION_JSON),
-//        jsonPath("$.artwork," + "$.artworkTwo").value(artworkList));
 }

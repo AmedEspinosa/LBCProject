@@ -38,7 +38,7 @@ class DeletePage extends BaseClass {
                                                          -webkit-background-clip: text;
                                                          -webkit-text-fill-color: transparent;
                                                          "align-text:center";>
-                    *Your Artwork Was Successfully Deleted*<br>
+                                 <label style="text-align: center">
                     Name: ${artwork.artistName}<br>
                     Title: ${artwork.title}<br>
                     DateCreated: ${artwork.dateCreated}<br>
@@ -48,7 +48,35 @@ class DeletePage extends BaseClass {
                     Price: ${artwork.price}<br>
                     ID: ${artwork.id}<br>
                     Date Posted: ${artwork.datePosted}<br>
-                    Is Sold: ${artwork.sold}</h3>
+                    Is Sold: ${artwork.sold}<br>
+                    This artwork has been deleted!<br></label>
+                    </h3>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <br>
+                                       <img src="https://artsworcester.org/wp-content/uploads/2020/06/Jennessa-Burks_Jennessa_Burks_2020.jpg">
+                            <label style="text-align: center">
+                                                                <a href="mailto:email@sample.com">CONTACT US</a>
+                                                                </label>
                     </body>
             `
         } else {

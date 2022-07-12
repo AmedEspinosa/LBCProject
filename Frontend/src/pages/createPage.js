@@ -32,9 +32,10 @@ class CreatePage extends BaseClass {
         if (artwork) {
             resultArea.innerHTML = `
             <body>
-                <h3 style = "background: -webkit-linear-gradient(#0000FF, #008080,#0000FF)";
+                <h3 style = "background: -webkit-linear-gradient(#000000, #008080,#0000FF)";
                                      -webkit-background-clip: text;
                                      -webkit-text-fill-color: transparent;>
+             <label style="text-align: center">
                 Name: ${artwork.artistName}<br>
                 Title: ${artwork.title}<br>
                 DateCreated: ${artwork.dateCreated}<br>
@@ -44,7 +45,35 @@ class CreatePage extends BaseClass {
                 Price: ${artwork.price}<br>
                 ID: ${artwork.id}<br>
                 Date Posted: ${artwork.datePosted}<br>
-                Is Sold: ${artwork.sold}</h3>
+                Is Sold: ${artwork.sold}<br>
+                Your upload was successful!
+                </label>
+                </h3>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br><br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                                <br>
+                        <img src = http://3.bp.blogspot.com/-RhNvU7h2FL4/TxjruKgsv3I/AAAAAAAACps/jzIZuIOxoRs/s1600/AndyWarhol-Marilyn-Monroe-1962.jpg:>
+                <label style="text-align: center">
+                <a href="mailto:email@sample.com">CONTACT US</a>
+                </label>
                 </body>
             `
         } else {

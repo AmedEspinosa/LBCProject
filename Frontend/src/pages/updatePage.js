@@ -31,7 +31,7 @@ class UpdatePage extends BaseClass {
 
         if (artwork) {
             resultArea.innerHTML = `
-            <body>
+            <label style="text-align: center">
                 <h3 style = "background: -webkit-linear-gradient(#0000FF, #008080,#0000FF)";
                                                      -webkit-background-clip: text;
                                                      -webkit-text-fill-color: transparent;>
@@ -44,7 +44,14 @@ class UpdatePage extends BaseClass {
                 Price: ${artwork.price}<br>
                 ID: ${artwork.id}<br>
                 Date Posted: ${artwork.datePosted}<br>
-                Is Sold: ${artwork.sold}</h3>
+                Is Sold: ${artwork.sold}</label><br>
+                                Your update was successful!
+
+                            <img src = "https://c1.staticflickr.com/3/2433/4016843798_d2c893b33a_b.jpg">
+
+                <label style="text-align: center">
+                                <a href="mailto:email@sample.com">CONTACT US</a>
+                                </label>
                 </body>
             `
         } else {

@@ -42,6 +42,7 @@ class ViewPage extends BaseClass {
                                                          -webkit-background-clip: text;
                                                          -webkit-text-fill-color: transparent;
                                                          "align-text:center";>
+                    <label style="text-align: center">
                     Name: ${artwork.artistName}<br>
                     Title: ${artwork.title}<br>
                     DateCreated: ${artwork.dateCreated}<br>
@@ -51,7 +52,31 @@ class ViewPage extends BaseClass {
                     Price: ${artwork.price}<br>
                     ID: ${artwork.id}<br>
                     Date Posted: ${artwork.datePosted}<br>
-                    Is Sold: ${artwork.sold}</h3>
+                    Is Sold: ${artwork.sold}<br></label>
+                    </h3>
+                   <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                                               <img src="https://i.pinimg.com/originals/03/70/56/037056d846b52719707135af3a79073e.jpg">
+            <label style="text-align: center">
+                                                <a href="mailto:email@sample.com">CONTACT US</a>
+                                                </label>
                     </body>
             `
         } else {
@@ -74,6 +99,7 @@ class ViewPage extends BaseClass {
                                                              -webkit-background-clip: text;
                                                              -webkit-text-fill-color: transparent;
                                                              "align-text:center";>
+                         <label style="text-align: center">
                         Name: ${artwork.artistName}<br>
                         Title: ${artwork.title}<br>
                         DateCreated: ${artwork.dateCreated}<br>
@@ -84,8 +110,32 @@ class ViewPage extends BaseClass {
                         ID: ${artwork.id}<br>
                         Date Posted: ${artwork.datePosted}<br>
                         Is Sold: ${artwork.sold}<br>
+                        </label>
                         </h3>
-                        </body>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                           <img src="https://i.pinimg.com/originals/03/70/56/037056d846b52719707135af3a79073e.jpg">
+                       </body>
                 `
             }
         }
